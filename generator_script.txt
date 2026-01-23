@@ -1,0 +1,10 @@
+Use the following code to generate API client. 
+This creates Dart Client
+
+docker run --rm `
+  -v "${PWD}:/local" `
+  openapitools/openapi-generator-cli generate `
+  -i https://redandblackapi.raqlin.com/api/v1/openapi.json `
+  -g dart-dio `
+  -o /local/dart_sdk `
+  --additional-properties=pubName=rab_dio,pubVersion=1.0.0,nullSafety=true
