@@ -69,8 +69,8 @@ Class | Method | HTTP request | Description
 [*AgenciesApi*](doc/AgenciesApi.md) | [**agenciesCreateAgencyStaff**](doc/AgenciesApi.md#agenciescreateagencystaff) | **POST** /api/v1/travel-agency/{agency_id}/staffs | Create Agency Staff
 [*AgenciesApi*](doc/AgenciesApi.md) | [**agenciesDeleteAgency**](doc/AgenciesApi.md#agenciesdeleteagency) | **DELETE** /api/v1/travel-agency/{agency_id} | Delete Agency
 [*AgenciesApi*](doc/AgenciesApi.md) | [**agenciesDeleteAgencyStaff**](doc/AgenciesApi.md#agenciesdeleteagencystaff) | **DELETE** /api/v1/travel-agency/{agency_id}/staffs/{staff_id} | Delete Agency Staff
+[*AgenciesApi*](doc/AgenciesApi.md) | [**agenciesGetAgencies**](doc/AgenciesApi.md#agenciesgetagencies) | **GET** /api/v1/travel-agency | Get Agencies
 [*AgenciesApi*](doc/AgenciesApi.md) | [**agenciesGetAgency**](doc/AgenciesApi.md#agenciesgetagency) | **GET** /api/v1/travel-agency/{agency_id} | Get Agency
-[*AgenciesApi*](doc/AgenciesApi.md) | [**agenciesListAgencies**](doc/AgenciesApi.md#agencieslistagencies) | **GET** /api/v1/travel-agency | List Agencies
 [*AgenciesApi*](doc/AgenciesApi.md) | [**agenciesListAgencyStaffs**](doc/AgenciesApi.md#agencieslistagencystaffs) | **GET** /api/v1/travel-agency/{agency_id}/staffs | List Agency Staffs
 [*AgenciesApi*](doc/AgenciesApi.md) | [**agenciesUpdateAgency**](doc/AgenciesApi.md#agenciesupdateagency) | **PUT** /api/v1/travel-agency/{agency_id} | Update Agency
 [*AgenciesApi*](doc/AgenciesApi.md) | [**agenciesUpdateAgencyStaff**](doc/AgenciesApi.md#agenciesupdateagencystaff) | **PATCH** /api/v1/travel-agency/{agency_id}/staffs/{staff_id} | Update Agency Staff

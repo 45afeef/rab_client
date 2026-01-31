@@ -13,8 +13,8 @@ Method | HTTP request | Description
 [**agenciesCreateAgencyStaff**](AgenciesApi.md#agenciescreateagencystaff) | **POST** /api/v1/travel-agency/{agency_id}/staffs | Create Agency Staff
 [**agenciesDeleteAgency**](AgenciesApi.md#agenciesdeleteagency) | **DELETE** /api/v1/travel-agency/{agency_id} | Delete Agency
 [**agenciesDeleteAgencyStaff**](AgenciesApi.md#agenciesdeleteagencystaff) | **DELETE** /api/v1/travel-agency/{agency_id}/staffs/{staff_id} | Delete Agency Staff
+[**agenciesGetAgencies**](AgenciesApi.md#agenciesgetagencies) | **GET** /api/v1/travel-agency | Get Agencies
 [**agenciesGetAgency**](AgenciesApi.md#agenciesgetagency) | **GET** /api/v1/travel-agency/{agency_id} | Get Agency
-[**agenciesListAgencies**](AgenciesApi.md#agencieslistagencies) | **GET** /api/v1/travel-agency | List Agencies
 [**agenciesListAgencyStaffs**](AgenciesApi.md#agencieslistagencystaffs) | **GET** /api/v1/travel-agency/{agency_id}/staffs | List Agency Staffs
 [**agenciesUpdateAgency**](AgenciesApi.md#agenciesupdateagency) | **PUT** /api/v1/travel-agency/{agency_id} | Update Agency
 [**agenciesUpdateAgencyStaff**](AgenciesApi.md#agenciesupdateagencystaff) | **PATCH** /api/v1/travel-agency/{agency_id}/staffs/{staff_id} | Update Agency Staff
@@ -204,6 +204,47 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **agenciesGetAgencies**
+> BuiltList<AgencyPublic> agenciesGetAgencies()
+
+Get Agencies
+
+Superuser: get all travel agencies Staff: get agencies where the user is a staff member
+
+### Example
+```dart
+import 'package:rab_dio/api.dart';
+// TODO Configure OAuth2 access token for authorization: OAuth2PasswordBearer
+//defaultApiClient.getAuthentication<OAuth>('OAuth2PasswordBearer').accessToken = 'YOUR_ACCESS_TOKEN';
+
+final api = RabDio().getAgenciesApi();
+
+try {
+    final response = api.agenciesGetAgencies();
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling AgenciesApi->agenciesGetAgencies: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**BuiltList&lt;AgencyPublic&gt;**](AgencyPublic.md)
+
+### Authorization
+
+[OAuth2PasswordBearer](../README.md#OAuth2PasswordBearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **agenciesGetAgency**
 > AgencyDetail agenciesGetAgency(agencyId)
 
@@ -237,47 +278,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**AgencyDetail**](AgencyDetail.md)
-
-### Authorization
-
-[OAuth2PasswordBearer](../README.md#OAuth2PasswordBearer)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **agenciesListAgencies**
-> BuiltList<AgencyPublic> agenciesListAgencies()
-
-List Agencies
-
-Superuser: list agencies.
-
-### Example
-```dart
-import 'package:rab_dio/api.dart';
-// TODO Configure OAuth2 access token for authorization: OAuth2PasswordBearer
-//defaultApiClient.getAuthentication<OAuth>('OAuth2PasswordBearer').accessToken = 'YOUR_ACCESS_TOKEN';
-
-final api = RabDio().getAgenciesApi();
-
-try {
-    final response = api.agenciesListAgencies();
-    print(response);
-} on DioException catch (e) {
-    print('Exception when calling AgenciesApi->agenciesListAgencies: $e\n');
-}
-```
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-[**BuiltList&lt;AgencyPublic&gt;**](AgencyPublic.md)
 
 ### Authorization
 

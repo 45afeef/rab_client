@@ -13,6 +13,13 @@ part 'cab_create.g.dart';
 /// Properties:
 /// * [vehicleType] 
 /// * [vehicleNumber] 
+/// * [minimumRate] 
+/// * [kmForMinimumRate] 
+/// * [perKmRate] 
+/// * [capacity] 
+/// * [name] 
+/// * [companyModel] 
+/// * [color] 
 @BuiltValue()
 abstract class CabCreate implements Built<CabCreate, CabCreateBuilder> {
   @BuiltValueField(wireName: r'vehicle_type')
@@ -20,6 +27,27 @@ abstract class CabCreate implements Built<CabCreate, CabCreateBuilder> {
 
   @BuiltValueField(wireName: r'vehicle_number')
   String get vehicleNumber;
+
+  @BuiltValueField(wireName: r'minimum_rate')
+  num get minimumRate;
+
+  @BuiltValueField(wireName: r'km_for_minimum_rate')
+  num get kmForMinimumRate;
+
+  @BuiltValueField(wireName: r'per_km_rate')
+  num get perKmRate;
+
+  @BuiltValueField(wireName: r'capacity')
+  int get capacity;
+
+  @BuiltValueField(wireName: r'name')
+  String get name;
+
+  @BuiltValueField(wireName: r'company_model')
+  String get companyModel;
+
+  @BuiltValueField(wireName: r'color')
+  String get color;
 
   CabCreate._();
 
@@ -52,6 +80,41 @@ class _$CabCreateSerializer implements PrimitiveSerializer<CabCreate> {
     yield r'vehicle_number';
     yield serializers.serialize(
       object.vehicleNumber,
+      specifiedType: const FullType(String),
+    );
+    yield r'minimum_rate';
+    yield serializers.serialize(
+      object.minimumRate,
+      specifiedType: const FullType(num),
+    );
+    yield r'km_for_minimum_rate';
+    yield serializers.serialize(
+      object.kmForMinimumRate,
+      specifiedType: const FullType(num),
+    );
+    yield r'per_km_rate';
+    yield serializers.serialize(
+      object.perKmRate,
+      specifiedType: const FullType(num),
+    );
+    yield r'capacity';
+    yield serializers.serialize(
+      object.capacity,
+      specifiedType: const FullType(int),
+    );
+    yield r'name';
+    yield serializers.serialize(
+      object.name,
+      specifiedType: const FullType(String),
+    );
+    yield r'company_model';
+    yield serializers.serialize(
+      object.companyModel,
+      specifiedType: const FullType(String),
+    );
+    yield r'color';
+    yield serializers.serialize(
+      object.color,
       specifiedType: const FullType(String),
     );
   }
@@ -90,6 +153,55 @@ class _$CabCreateSerializer implements PrimitiveSerializer<CabCreate> {
             specifiedType: const FullType(String),
           ) as String;
           result.vehicleNumber = valueDes;
+          break;
+        case r'minimum_rate':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(num),
+          ) as num;
+          result.minimumRate = valueDes;
+          break;
+        case r'km_for_minimum_rate':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(num),
+          ) as num;
+          result.kmForMinimumRate = valueDes;
+          break;
+        case r'per_km_rate':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(num),
+          ) as num;
+          result.perKmRate = valueDes;
+          break;
+        case r'capacity':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
+          result.capacity = valueDes;
+          break;
+        case r'name':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.name = valueDes;
+          break;
+        case r'company_model':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.companyModel = valueDes;
+          break;
+        case r'color':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.color = valueDes;
           break;
         default:
           unhandled.add(key);

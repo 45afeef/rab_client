@@ -4,7 +4,7 @@ This creates Dart Client
 docker run --rm `
   -v "${PWD}:/local" `
   openapitools/openapi-generator-cli generate `
-  -i https://redandblackapi.raqlin.com/api/v1/openapi.json `
+  -i https://rab-fastapi-predev-135325225027.asia-south1.run.app/api/v1/openapi.json `
   -g dart-dio `
   -o /local/dart_sdk `
   --additional-properties=pubName=rab_dio,pubVersion=1.0.0,nullSafety=true
