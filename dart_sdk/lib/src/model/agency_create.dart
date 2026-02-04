@@ -14,7 +14,6 @@ part 'agency_create.g.dart';
 /// * [agencyName] 
 /// * [contactEmail] 
 /// * [locationId] 
-/// * [createdBy] 
 @BuiltValue()
 abstract class AgencyCreate implements Built<AgencyCreate, AgencyCreateBuilder> {
   @BuiltValueField(wireName: r'agency_name')
@@ -25,9 +24,6 @@ abstract class AgencyCreate implements Built<AgencyCreate, AgencyCreateBuilder> 
 
   @BuiltValueField(wireName: r'location_id')
   String? get locationId;
-
-  @BuiltValueField(wireName: r'created_by')
-  String get createdBy;
 
   AgencyCreate._();
 
@@ -57,13 +53,11 @@ class _$AgencyCreateSerializer implements PrimitiveSerializer<AgencyCreate> {
       object.agencyName,
       specifiedType: const FullType(String),
     );
-    if (object.contactEmail != null) {
-      yield r'contact_email';
-      yield serializers.serialize(
-        object.contactEmail,
-        specifiedType: const FullType.nullable(String),
-      );
-    }
+    yield r'contact_email';
+    yield object.contactEmail == null ? null : serializers.serialize(
+      object.contactEmail,
+      specifiedType: const FullType.nullable(String),
+    );
     if (object.locationId != null) {
       yield r'location_id';
       yield serializers.serialize(
@@ -71,11 +65,6 @@ class _$AgencyCreateSerializer implements PrimitiveSerializer<AgencyCreate> {
         specifiedType: const FullType.nullable(String),
       );
     }
-    yield r'created_by';
-    yield serializers.serialize(
-      object.createdBy,
-      specifiedType: const FullType(String),
-    );
   }
 
   @override
@@ -121,13 +110,6 @@ class _$AgencyCreateSerializer implements PrimitiveSerializer<AgencyCreate> {
           ) as String?;
           if (valueDes == null) continue;
           result.locationId = valueDes;
-          break;
-        case r'created_by':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.createdBy = valueDes;
           break;
         default:
           unhandled.add(key);

@@ -9,9 +9,8 @@ import 'package:rab_dio/api.dart';
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **agencyName** | **String** |  | 
-**contactEmail** | **String** |  | [optional] 
+**contactEmail** | **String** |  | 
 **locationId** | **String** |  | [optional] 
-**createdBy** | **String** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

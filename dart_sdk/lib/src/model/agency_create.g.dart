@@ -13,17 +13,12 @@ class _$AgencyCreate extends AgencyCreate {
   final String? contactEmail;
   @override
   final String? locationId;
-  @override
-  final String createdBy;
 
   factory _$AgencyCreate([void Function(AgencyCreateBuilder)? updates]) =>
       (AgencyCreateBuilder()..update(updates))._build();
 
   _$AgencyCreate._(
-      {required this.agencyName,
-      this.contactEmail,
-      this.locationId,
-      required this.createdBy})
+      {required this.agencyName, this.contactEmail, this.locationId})
       : super._();
   @override
   AgencyCreate rebuild(void Function(AgencyCreateBuilder) updates) =>
@@ -38,8 +33,7 @@ class _$AgencyCreate extends AgencyCreate {
     return other is AgencyCreate &&
         agencyName == other.agencyName &&
         contactEmail == other.contactEmail &&
-        locationId == other.locationId &&
-        createdBy == other.createdBy;
+        locationId == other.locationId;
   }
 
   @override
@@ -48,7 +42,6 @@ class _$AgencyCreate extends AgencyCreate {
     _$hash = $jc(_$hash, agencyName.hashCode);
     _$hash = $jc(_$hash, contactEmail.hashCode);
     _$hash = $jc(_$hash, locationId.hashCode);
-    _$hash = $jc(_$hash, createdBy.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -58,8 +51,7 @@ class _$AgencyCreate extends AgencyCreate {
     return (newBuiltValueToStringHelper(r'AgencyCreate')
           ..add('agencyName', agencyName)
           ..add('contactEmail', contactEmail)
-          ..add('locationId', locationId)
-          ..add('createdBy', createdBy))
+          ..add('locationId', locationId))
         .toString();
   }
 }
@@ -80,10 +72,6 @@ class AgencyCreateBuilder
   String? get locationId => _$this._locationId;
   set locationId(String? locationId) => _$this._locationId = locationId;
 
-  String? _createdBy;
-  String? get createdBy => _$this._createdBy;
-  set createdBy(String? createdBy) => _$this._createdBy = createdBy;
-
   AgencyCreateBuilder() {
     AgencyCreate._defaults(this);
   }
@@ -94,7 +82,6 @@ class AgencyCreateBuilder
       _agencyName = $v.agencyName;
       _contactEmail = $v.contactEmail;
       _locationId = $v.locationId;
-      _createdBy = $v.createdBy;
       _$v = null;
     }
     return this;
@@ -120,8 +107,6 @@ class AgencyCreateBuilder
               agencyName, r'AgencyCreate', 'agencyName'),
           contactEmail: contactEmail,
           locationId: locationId,
-          createdBy: BuiltValueNullFieldError.checkNotNull(
-              createdBy, r'AgencyCreate', 'createdBy'),
         );
     replace(_$result);
     return _$result;
