@@ -1,0 +1,53 @@
+name: Generate Dart Client SDK
+
+on:
+  workflow_dispatch:
+
+jobs:
+  generate-dart-sdk:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Docker
+        uses: docker/setup-buildx-action@v3
+
+      - name: Generate Dart client using OpenAPI Generator
+        run: |
+          docker run --rm \
+            -v "${PWD}:/local" \
+            openapitools/openapi-generator-cli generate \
+            -i https://rab-fastapi-predev-135325225027.asia-south1.run.app/api/v1/openapi.json \
+            -g dart-dio \
+            -o /local/dart_sdk \
+            --additional-properties=pubName=rab_dio,pubVersion=1.0.0,nullSafety=true
+
+      - name: Set up Dart
+        uses: dart-lang/setup-dart@v1
+
+      - name: Install dependencies
+        working-directory: dart_sdk
+        run: dart pub get
+
+      - name: Run build_runner
+        working-directory: dart_sdk
+        run: dart run build_runner build --delete-conflicting-outputs
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          if git status --porcelain | grep .; then
+            TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+            git add dart_sdk
+            git commit -m "chore(dart-sdk): regenerate client from OpenAPI (${TIMESTAMP})"
+            git push
+          else
+            echo "No changes to commit"
+          fi
