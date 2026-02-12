@@ -8,7 +8,7 @@ part of 'user_public.dart';
 
 class _$UserPublic extends UserPublic {
   @override
-  final String email;
+  final String phoneNumber;
   @override
   final bool? isActive;
   @override
@@ -26,7 +26,7 @@ class _$UserPublic extends UserPublic {
       (UserPublicBuilder()..update(updates))._build();
 
   _$UserPublic._(
-      {required this.email,
+      {required this.phoneNumber,
       this.isActive,
       this.isSuperuser,
       this.fullName,
@@ -45,7 +45,7 @@ class _$UserPublic extends UserPublic {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is UserPublic &&
-        email == other.email &&
+        phoneNumber == other.phoneNumber &&
         isActive == other.isActive &&
         isSuperuser == other.isSuperuser &&
         fullName == other.fullName &&
@@ -57,7 +57,7 @@ class _$UserPublic extends UserPublic {
   @override
   int get hashCode {
     var _$hash = 0;
-    _$hash = $jc(_$hash, email.hashCode);
+    _$hash = $jc(_$hash, phoneNumber.hashCode);
     _$hash = $jc(_$hash, isActive.hashCode);
     _$hash = $jc(_$hash, isSuperuser.hashCode);
     _$hash = $jc(_$hash, fullName.hashCode);
@@ -71,7 +71,7 @@ class _$UserPublic extends UserPublic {
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'UserPublic')
-          ..add('email', email)
+          ..add('phoneNumber', phoneNumber)
           ..add('isActive', isActive)
           ..add('isSuperuser', isSuperuser)
           ..add('fullName', fullName)
@@ -85,9 +85,9 @@ class _$UserPublic extends UserPublic {
 class UserPublicBuilder implements Builder<UserPublic, UserPublicBuilder> {
   _$UserPublic? _$v;
 
-  String? _email;
-  String? get email => _$this._email;
-  set email(String? email) => _$this._email = email;
+  String? _phoneNumber;
+  String? get phoneNumber => _$this._phoneNumber;
+  set phoneNumber(String? phoneNumber) => _$this._phoneNumber = phoneNumber;
 
   bool? _isActive;
   bool? get isActive => _$this._isActive;
@@ -120,7 +120,7 @@ class UserPublicBuilder implements Builder<UserPublic, UserPublicBuilder> {
   UserPublicBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _email = $v.email;
+      _phoneNumber = $v.phoneNumber;
       _isActive = $v.isActive;
       _isSuperuser = $v.isSuperuser;
       _fullName = $v.fullName;
@@ -148,8 +148,8 @@ class UserPublicBuilder implements Builder<UserPublic, UserPublicBuilder> {
   _$UserPublic _build() {
     final _$result = _$v ??
         _$UserPublic._(
-          email: BuiltValueNullFieldError.checkNotNull(
-              email, r'UserPublic', 'email'),
+          phoneNumber: BuiltValueNullFieldError.checkNotNull(
+              phoneNumber, r'UserPublic', 'phoneNumber'),
           isActive: isActive,
           isSuperuser: isSuperuser,
           fullName: fullName,

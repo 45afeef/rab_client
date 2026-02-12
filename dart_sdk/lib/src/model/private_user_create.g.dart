@@ -8,7 +8,7 @@ part of 'private_user_create.dart';
 
 class _$PrivateUserCreate extends PrivateUserCreate {
   @override
-  final String email;
+  final String phoneNumber;
   @override
   final String password;
   @override
@@ -21,7 +21,7 @@ class _$PrivateUserCreate extends PrivateUserCreate {
       (PrivateUserCreateBuilder()..update(updates))._build();
 
   _$PrivateUserCreate._(
-      {required this.email,
+      {required this.phoneNumber,
       required this.password,
       required this.fullName,
       this.isVerified})
@@ -38,7 +38,7 @@ class _$PrivateUserCreate extends PrivateUserCreate {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is PrivateUserCreate &&
-        email == other.email &&
+        phoneNumber == other.phoneNumber &&
         password == other.password &&
         fullName == other.fullName &&
         isVerified == other.isVerified;
@@ -47,7 +47,7 @@ class _$PrivateUserCreate extends PrivateUserCreate {
   @override
   int get hashCode {
     var _$hash = 0;
-    _$hash = $jc(_$hash, email.hashCode);
+    _$hash = $jc(_$hash, phoneNumber.hashCode);
     _$hash = $jc(_$hash, password.hashCode);
     _$hash = $jc(_$hash, fullName.hashCode);
     _$hash = $jc(_$hash, isVerified.hashCode);
@@ -58,7 +58,7 @@ class _$PrivateUserCreate extends PrivateUserCreate {
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'PrivateUserCreate')
-          ..add('email', email)
+          ..add('phoneNumber', phoneNumber)
           ..add('password', password)
           ..add('fullName', fullName)
           ..add('isVerified', isVerified))
@@ -70,9 +70,9 @@ class PrivateUserCreateBuilder
     implements Builder<PrivateUserCreate, PrivateUserCreateBuilder> {
   _$PrivateUserCreate? _$v;
 
-  String? _email;
-  String? get email => _$this._email;
-  set email(String? email) => _$this._email = email;
+  String? _phoneNumber;
+  String? get phoneNumber => _$this._phoneNumber;
+  set phoneNumber(String? phoneNumber) => _$this._phoneNumber = phoneNumber;
 
   String? _password;
   String? get password => _$this._password;
@@ -93,7 +93,7 @@ class PrivateUserCreateBuilder
   PrivateUserCreateBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _email = $v.email;
+      _phoneNumber = $v.phoneNumber;
       _password = $v.password;
       _fullName = $v.fullName;
       _isVerified = $v.isVerified;
@@ -118,8 +118,8 @@ class PrivateUserCreateBuilder
   _$PrivateUserCreate _build() {
     final _$result = _$v ??
         _$PrivateUserCreate._(
-          email: BuiltValueNullFieldError.checkNotNull(
-              email, r'PrivateUserCreate', 'email'),
+          phoneNumber: BuiltValueNullFieldError.checkNotNull(
+              phoneNumber, r'PrivateUserCreate', 'phoneNumber'),
           password: BuiltValueNullFieldError.checkNotNull(
               password, r'PrivateUserCreate', 'password'),
           fullName: BuiltValueNullFieldError.checkNotNull(

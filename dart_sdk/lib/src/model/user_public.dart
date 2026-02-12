@@ -11,7 +11,7 @@ part 'user_public.g.dart';
 /// UserPublic
 ///
 /// Properties:
-/// * [email] 
+/// * [phoneNumber] 
 /// * [isActive] 
 /// * [isSuperuser] 
 /// * [fullName] 
@@ -20,8 +20,8 @@ part 'user_public.g.dart';
 /// * [updatedAt] 
 @BuiltValue()
 abstract class UserPublic implements Built<UserPublic, UserPublicBuilder> {
-  @BuiltValueField(wireName: r'email')
-  String get email;
+  @BuiltValueField(wireName: r'phone_number')
+  String get phoneNumber;
 
   @BuiltValueField(wireName: r'is_active')
   bool? get isActive;
@@ -66,9 +66,9 @@ class _$UserPublicSerializer implements PrimitiveSerializer<UserPublic> {
     UserPublic object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
-    yield r'email';
+    yield r'phone_number';
     yield serializers.serialize(
-      object.email,
+      object.phoneNumber,
       specifiedType: const FullType(String),
     );
     if (object.isActive != null) {
@@ -130,12 +130,12 @@ class _$UserPublicSerializer implements PrimitiveSerializer<UserPublic> {
       final key = serializedList[i] as String;
       final value = serializedList[i + 1];
       switch (key) {
-        case r'email':
+        case r'phone_number':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(String),
           ) as String;
-          result.email = valueDes;
+          result.phoneNumber = valueDes;
           break;
         case r'is_active':
           final valueDes = serializers.deserialize(

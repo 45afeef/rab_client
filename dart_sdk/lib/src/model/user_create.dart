@@ -11,15 +11,15 @@ part 'user_create.g.dart';
 /// UserCreate
 ///
 /// Properties:
-/// * [email] 
+/// * [phoneNumber] 
 /// * [isActive] 
 /// * [isSuperuser] 
 /// * [fullName] 
 /// * [password] 
 @BuiltValue()
 abstract class UserCreate implements Built<UserCreate, UserCreateBuilder> {
-  @BuiltValueField(wireName: r'email')
-  String get email;
+  @BuiltValueField(wireName: r'phone_number')
+  String get phoneNumber;
 
   @BuiltValueField(wireName: r'is_active')
   bool? get isActive;
@@ -58,9 +58,9 @@ class _$UserCreateSerializer implements PrimitiveSerializer<UserCreate> {
     UserCreate object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
-    yield r'email';
+    yield r'phone_number';
     yield serializers.serialize(
-      object.email,
+      object.phoneNumber,
       specifiedType: const FullType(String),
     );
     if (object.isActive != null) {
@@ -112,12 +112,12 @@ class _$UserCreateSerializer implements PrimitiveSerializer<UserCreate> {
       final key = serializedList[i] as String;
       final value = serializedList[i + 1];
       switch (key) {
-        case r'email':
+        case r'phone_number':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(String),
           ) as String;
-          result.email = valueDes;
+          result.phoneNumber = valueDes;
           break;
         case r'is_active':
           final valueDes = serializers.deserialize(

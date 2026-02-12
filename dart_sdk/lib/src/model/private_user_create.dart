@@ -11,14 +11,14 @@ part 'private_user_create.g.dart';
 /// PrivateUserCreate
 ///
 /// Properties:
-/// * [email] 
+/// * [phoneNumber] 
 /// * [password] 
 /// * [fullName] 
 /// * [isVerified] 
 @BuiltValue()
 abstract class PrivateUserCreate implements Built<PrivateUserCreate, PrivateUserCreateBuilder> {
-  @BuiltValueField(wireName: r'email')
-  String get email;
+  @BuiltValueField(wireName: r'phone_number')
+  String get phoneNumber;
 
   @BuiltValueField(wireName: r'password')
   String get password;
@@ -53,9 +53,9 @@ class _$PrivateUserCreateSerializer implements PrimitiveSerializer<PrivateUserCr
     PrivateUserCreate object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
-    yield r'email';
+    yield r'phone_number';
     yield serializers.serialize(
-      object.email,
+      object.phoneNumber,
       specifiedType: const FullType(String),
     );
     yield r'password';
@@ -98,12 +98,12 @@ class _$PrivateUserCreateSerializer implements PrimitiveSerializer<PrivateUserCr
       final key = serializedList[i] as String;
       final value = serializedList[i + 1];
       switch (key) {
-        case r'email':
+        case r'phone_number':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(String),
           ) as String;
-          result.email = valueDes;
+          result.phoneNumber = valueDes;
           break;
         case r'password':
           final valueDes = serializers.deserialize(

@@ -12,14 +12,14 @@ part 'user_update_me.g.dart';
 ///
 /// Properties:
 /// * [fullName] 
-/// * [email] 
+/// * [phoneNumber] 
 @BuiltValue()
 abstract class UserUpdateMe implements Built<UserUpdateMe, UserUpdateMeBuilder> {
   @BuiltValueField(wireName: r'full_name')
   String? get fullName;
 
-  @BuiltValueField(wireName: r'email')
-  String? get email;
+  @BuiltValueField(wireName: r'phone_number')
+  String? get phoneNumber;
 
   UserUpdateMe._();
 
@@ -51,10 +51,10 @@ class _$UserUpdateMeSerializer implements PrimitiveSerializer<UserUpdateMe> {
         specifiedType: const FullType.nullable(String),
       );
     }
-    if (object.email != null) {
-      yield r'email';
+    if (object.phoneNumber != null) {
+      yield r'phone_number';
       yield serializers.serialize(
-        object.email,
+        object.phoneNumber,
         specifiedType: const FullType.nullable(String),
       );
     }
@@ -89,13 +89,13 @@ class _$UserUpdateMeSerializer implements PrimitiveSerializer<UserUpdateMe> {
           if (valueDes == null) continue;
           result.fullName = valueDes;
           break;
-        case r'email':
+        case r'phone_number':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType.nullable(String),
           ) as String?;
           if (valueDes == null) continue;
-          result.email = valueDes;
+          result.phoneNumber = valueDes;
           break;
         default:
           unhandled.add(key);

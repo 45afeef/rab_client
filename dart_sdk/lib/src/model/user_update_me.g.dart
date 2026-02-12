@@ -10,12 +10,12 @@ class _$UserUpdateMe extends UserUpdateMe {
   @override
   final String? fullName;
   @override
-  final String? email;
+  final String? phoneNumber;
 
   factory _$UserUpdateMe([void Function(UserUpdateMeBuilder)? updates]) =>
       (UserUpdateMeBuilder()..update(updates))._build();
 
-  _$UserUpdateMe._({this.fullName, this.email}) : super._();
+  _$UserUpdateMe._({this.fullName, this.phoneNumber}) : super._();
   @override
   UserUpdateMe rebuild(void Function(UserUpdateMeBuilder) updates) =>
       (toBuilder()..update(updates)).build();
@@ -28,14 +28,14 @@ class _$UserUpdateMe extends UserUpdateMe {
     if (identical(other, this)) return true;
     return other is UserUpdateMe &&
         fullName == other.fullName &&
-        email == other.email;
+        phoneNumber == other.phoneNumber;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, fullName.hashCode);
-    _$hash = $jc(_$hash, email.hashCode);
+    _$hash = $jc(_$hash, phoneNumber.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -44,7 +44,7 @@ class _$UserUpdateMe extends UserUpdateMe {
   String toString() {
     return (newBuiltValueToStringHelper(r'UserUpdateMe')
           ..add('fullName', fullName)
-          ..add('email', email))
+          ..add('phoneNumber', phoneNumber))
         .toString();
   }
 }
@@ -57,9 +57,9 @@ class UserUpdateMeBuilder
   String? get fullName => _$this._fullName;
   set fullName(String? fullName) => _$this._fullName = fullName;
 
-  String? _email;
-  String? get email => _$this._email;
-  set email(String? email) => _$this._email = email;
+  String? _phoneNumber;
+  String? get phoneNumber => _$this._phoneNumber;
+  set phoneNumber(String? phoneNumber) => _$this._phoneNumber = phoneNumber;
 
   UserUpdateMeBuilder() {
     UserUpdateMe._defaults(this);
@@ -69,7 +69,7 @@ class UserUpdateMeBuilder
     final $v = _$v;
     if ($v != null) {
       _fullName = $v.fullName;
-      _email = $v.email;
+      _phoneNumber = $v.phoneNumber;
       _$v = null;
     }
     return this;
@@ -92,7 +92,7 @@ class UserUpdateMeBuilder
     final _$result = _$v ??
         _$UserUpdateMe._(
           fullName: fullName,
-          email: email,
+          phoneNumber: phoneNumber,
         );
     replace(_$result);
     return _$result;

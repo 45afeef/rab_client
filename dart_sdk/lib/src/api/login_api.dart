@@ -134,11 +134,11 @@ class LoginApi {
     );
   }
 
-  /// Send password recovery email
-  /// Trigger a password recovery email to the provided email address if a user exists. The email includes a one-time token the user can use to reset their password.
+  /// (Admin) Create password recovery token for a user
+  /// Admin-only endpoint that creates a password recovery token for the provided phone number. The admin may preview or send the recovery email to the user&#39;s registered contact email.
   ///
   /// Parameters:
-  /// * [email] 
+  /// * [phoneNumber] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -149,7 +149,7 @@ class LoginApi {
   /// Returns a [Future] containing a [Response] with a [Message] as data
   /// Throws [DioException] if API call or serialization fails
   Future<Response<Message>> loginRecoverPassword({ 
-    required String email,
+    required String phoneNumber,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -157,14 +157,19 @@ class LoginApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/v1/password-recovery/{email}'.replaceAll('{' r'email' '}', encodeQueryParameter(_serializers, email, const FullType(String)).toString());
+    final _path = r'/api/v1/password-recovery/{phone_number}'.replaceAll('{' r'phone_number' '}', encodeQueryParameter(_serializers, phoneNumber, const FullType(String)).toString());
     final _options = Options(
       method: r'POST',
       headers: <String, dynamic>{
         ...?headers,
       },
       extra: <String, dynamic>{
-        'secure': <Map<String, String>>[],
+        'secure': <Map<String, String>>[
+          {
+            'type': 'oauth2',
+            'name': 'OAuth2PasswordBearer',
+          },
+        ],
         ...?extra,
       },
       validateStatus: validateStatus,
@@ -213,7 +218,7 @@ class LoginApi {
   /// Admin-only endpoint that generates and returns the HTML body for a password recovery email. Helpful for debugging email templates without actually sending emails. This endpoint is protected by &#x60;get_current_active_superuser&#x60; and should only be used in staging or development.
   ///
   /// Parameters:
-  /// * [email] 
+  /// * [phoneNumber] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -224,7 +229,7 @@ class LoginApi {
   /// Returns a [Future] containing a [Response] with a [String] as data
   /// Throws [DioException] if API call or serialization fails
   Future<Response<String>> loginRecoverPasswordHtmlContent({ 
-    required String email,
+    required String phoneNumber,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -232,7 +237,7 @@ class LoginApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/v1/password-recovery-html-content/{email}'.replaceAll('{' r'email' '}', encodeQueryParameter(_serializers, email, const FullType(String)).toString());
+    final _path = r'/api/v1/password-recovery-html-content/{phone_number}'.replaceAll('{' r'phone_number' '}', encodeQueryParameter(_serializers, phoneNumber, const FullType(String)).toString());
     final _options = Options(
       method: r'POST',
       headers: <String, dynamic>{

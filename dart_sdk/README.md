@@ -79,8 +79,8 @@ Class | Method | HTTP request | Description
 [*BookingApi*](doc/BookingApi.md) | [**bookingListBookings**](doc/BookingApi.md#bookinglistbookings) | **GET** /api/v1/booking/ | List Bookings
 [*BookingApi*](doc/BookingApi.md) | [**bookingUpdateBooking**](doc/BookingApi.md#bookingupdatebooking) | **PATCH** /api/v1/booking/{booking_id} | Update Booking
 [*LoginApi*](doc/LoginApi.md) | [**loginLoginAccessToken**](doc/LoginApi.md#loginloginaccesstoken) | **POST** /api/v1/login/access-token | Obtain an access token (OAuth2 password flow)
-[*LoginApi*](doc/LoginApi.md) | [**loginRecoverPassword**](doc/LoginApi.md#loginrecoverpassword) | **POST** /api/v1/password-recovery/{email} | Send password recovery email
-[*LoginApi*](doc/LoginApi.md) | [**loginRecoverPasswordHtmlContent**](doc/LoginApi.md#loginrecoverpasswordhtmlcontent) | **POST** /api/v1/password-recovery-html-content/{email} | (Admin) Preview password recovery HTML email
+[*LoginApi*](doc/LoginApi.md) | [**loginRecoverPassword**](doc/LoginApi.md#loginrecoverpassword) | **POST** /api/v1/password-recovery/{phone_number} | (Admin) Create password recovery token for a user
+[*LoginApi*](doc/LoginApi.md) | [**loginRecoverPasswordHtmlContent**](doc/LoginApi.md#loginrecoverpasswordhtmlcontent) | **POST** /api/v1/password-recovery-html-content/{phone_number} | (Admin) Preview password recovery HTML email
 [*LoginApi*](doc/LoginApi.md) | [**loginResetPassword**](doc/LoginApi.md#loginresetpassword) | **POST** /api/v1/reset-password/ | Reset a user&#39;s password using a recovery token
 [*LoginApi*](doc/LoginApi.md) | [**loginTestToken**](doc/LoginApi.md#logintesttoken) | **POST** /api/v1/login/test-token | Validate an access token and return current user
 [*PrivateApi*](doc/PrivateApi.md) | [**privateCreateUser**](doc/PrivateApi.md#privatecreateuser) | **POST** /api/v1/private/users/ | Create User
@@ -109,7 +109,6 @@ Class | Method | HTTP request | Description
 [*UsersApi*](doc/UsersApi.md) | [**usersReadUserById**](doc/UsersApi.md#usersreaduserbyid) | **GET** /api/v1/users/{user_id} | Read User By Id
 [*UsersApi*](doc/UsersApi.md) | [**usersReadUserMe**](doc/UsersApi.md#usersreaduserme) | **GET** /api/v1/users/me | Read User Me
 [*UsersApi*](doc/UsersApi.md) | [**usersReadUsers**](doc/UsersApi.md#usersreadusers) | **GET** /api/v1/users/ | Read Users
-[*UsersApi*](doc/UsersApi.md) | [**usersRegisterUser**](doc/UsersApi.md#usersregisteruser) | **POST** /api/v1/users/signup | Register User
 [*UsersApi*](doc/UsersApi.md) | [**usersUpdatePasswordMe**](doc/UsersApi.md#usersupdatepasswordme) | **PATCH** /api/v1/users/me/password | Update Password Me
 [*UsersApi*](doc/UsersApi.md) | [**usersUpdateUser**](doc/UsersApi.md#usersupdateuser) | **PATCH** /api/v1/users/{user_id} | Update User
 [*UsersApi*](doc/UsersApi.md) | [**usersUpdateUserMe**](doc/UsersApi.md#usersupdateuserme) | **PATCH** /api/v1/users/me | Update User Me
@@ -165,7 +164,6 @@ Class | Method | HTTP request | Description
  - [UpdatePassword](doc/UpdatePassword.md)
  - [UserCreate](doc/UserCreate.md)
  - [UserPublic](doc/UserPublic.md)
- - [UserRegister](doc/UserRegister.md)
  - [UserUpdate](doc/UserUpdate.md)
  - [UserUpdateMe](doc/UserUpdateMe.md)
  - [UsersPublic](doc/UsersPublic.md)

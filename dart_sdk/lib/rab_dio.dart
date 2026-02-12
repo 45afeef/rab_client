@@ -68,7 +68,6 @@ export 'package:rab_dio/src/model/units_list.dart';
 export 'package:rab_dio/src/model/update_password.dart';
 export 'package:rab_dio/src/model/user_create.dart';
 export 'package:rab_dio/src/model/user_public.dart';
-export 'package:rab_dio/src/model/user_register.dart';
 export 'package:rab_dio/src/model/user_update.dart';
 export 'package:rab_dio/src/model/user_update_me.dart';
 export 'package:rab_dio/src/model/users_public.dart';

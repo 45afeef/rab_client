@@ -8,7 +8,7 @@ import 'package:rab_dio/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**email** | **String** |  | 
+**phoneNumber** | **String** |  | 
 **isActive** | **bool** |  | [optional] [default to true]
 **isSuperuser** | **bool** |  | [optional] [default to false]
 **fullName** | **String** |  | [optional] 

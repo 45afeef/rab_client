@@ -10,8 +10,8 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**loginLoginAccessToken**](LoginApi.md#loginloginaccesstoken) | **POST** /api/v1/login/access-token | Obtain an access token (OAuth2 password flow)
-[**loginRecoverPassword**](LoginApi.md#loginrecoverpassword) | **POST** /api/v1/password-recovery/{email} | Send password recovery email
-[**loginRecoverPasswordHtmlContent**](LoginApi.md#loginrecoverpasswordhtmlcontent) | **POST** /api/v1/password-recovery-html-content/{email} | (Admin) Preview password recovery HTML email
+[**loginRecoverPassword**](LoginApi.md#loginrecoverpassword) | **POST** /api/v1/password-recovery/{phone_number} | (Admin) Create password recovery token for a user
+[**loginRecoverPasswordHtmlContent**](LoginApi.md#loginrecoverpasswordhtmlcontent) | **POST** /api/v1/password-recovery-html-content/{phone_number} | (Admin) Preview password recovery HTML email
 [**loginResetPassword**](LoginApi.md#loginresetpassword) | **POST** /api/v1/reset-password/ | Reset a user&#39;s password using a recovery token
 [**loginTestToken**](LoginApi.md#logintesttoken) | **POST** /api/v1/login/test-token | Validate an access token and return current user
 
@@ -70,21 +70,23 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **loginRecoverPassword**
-> Message loginRecoverPassword(email)
+> Message loginRecoverPassword(phoneNumber)
 
-Send password recovery email
+(Admin) Create password recovery token for a user
 
-Trigger a password recovery email to the provided email address if a user exists. The email includes a one-time token the user can use to reset their password.
+Admin-only endpoint that creates a password recovery token for the provided phone number. The admin may preview or send the recovery email to the user's registered contact email.
 
 ### Example
 ```dart
 import 'package:rab_dio/api.dart';
+// TODO Configure OAuth2 access token for authorization: OAuth2PasswordBearer
+//defaultApiClient.getAuthentication<OAuth>('OAuth2PasswordBearer').accessToken = 'YOUR_ACCESS_TOKEN';
 
 final api = RabDio().getLoginApi();
-final String email = email_example; // String | 
+final String phoneNumber = phoneNumber_example; // String | 
 
 try {
-    final response = api.loginRecoverPassword(email);
+    final response = api.loginRecoverPassword(phoneNumber);
     print(response);
 } on DioException catch (e) {
     print('Exception when calling LoginApi->loginRecoverPassword: $e\n');
@@ -95,7 +97,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **email** | **String**|  | 
+ **phoneNumber** | **String**|  | 
 
 ### Return type
 
@@ -103,7 +105,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[OAuth2PasswordBearer](../README.md#OAuth2PasswordBearer)
 
 ### HTTP request headers
 
@@ -113,7 +115,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **loginRecoverPasswordHtmlContent**
-> String loginRecoverPasswordHtmlContent(email)
+> String loginRecoverPasswordHtmlContent(phoneNumber)
 
 (Admin) Preview password recovery HTML email
 
@@ -126,10 +128,10 @@ import 'package:rab_dio/api.dart';
 //defaultApiClient.getAuthentication<OAuth>('OAuth2PasswordBearer').accessToken = 'YOUR_ACCESS_TOKEN';
 
 final api = RabDio().getLoginApi();
-final String email = email_example; // String | 
+final String phoneNumber = phoneNumber_example; // String | 
 
 try {
-    final response = api.loginRecoverPasswordHtmlContent(email);
+    final response = api.loginRecoverPasswordHtmlContent(phoneNumber);
     print(response);
 } on DioException catch (e) {
     print('Exception when calling LoginApi->loginRecoverPasswordHtmlContent: $e\n');
@@ -140,7 +142,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **email** | **String**|  | 
+ **phoneNumber** | **String**|  | 
 
 ### Return type
 

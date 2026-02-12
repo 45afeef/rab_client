@@ -56,7 +56,6 @@ doc/UnitsList.md
 doc/UpdatePassword.md
 doc/UserCreate.md
 doc/UserPublic.md
-doc/UserRegister.md
 doc/UserUpdate.md
 doc/UserUpdateMe.md
 doc/UsersApi.md
@@ -131,7 +130,6 @@ lib/src/model/units_list.dart
 lib/src/model/update_password.dart
 lib/src/model/user_create.dart
 lib/src/model/user_public.dart
-lib/src/model/user_register.dart
 lib/src/model/user_update.dart
 lib/src/model/user_update_me.dart
 lib/src/model/users_public.dart

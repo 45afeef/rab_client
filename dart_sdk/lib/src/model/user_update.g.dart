@@ -8,7 +8,7 @@ part of 'user_update.dart';
 
 class _$UserUpdate extends UserUpdate {
   @override
-  final String? email;
+  final String? phoneNumber;
   @override
   final bool? isActive;
   @override
@@ -22,7 +22,7 @@ class _$UserUpdate extends UserUpdate {
       (UserUpdateBuilder()..update(updates))._build();
 
   _$UserUpdate._(
-      {this.email,
+      {this.phoneNumber,
       this.isActive,
       this.isSuperuser,
       this.fullName,
@@ -39,7 +39,7 @@ class _$UserUpdate extends UserUpdate {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is UserUpdate &&
-        email == other.email &&
+        phoneNumber == other.phoneNumber &&
         isActive == other.isActive &&
         isSuperuser == other.isSuperuser &&
         fullName == other.fullName &&
@@ -49,7 +49,7 @@ class _$UserUpdate extends UserUpdate {
   @override
   int get hashCode {
     var _$hash = 0;
-    _$hash = $jc(_$hash, email.hashCode);
+    _$hash = $jc(_$hash, phoneNumber.hashCode);
     _$hash = $jc(_$hash, isActive.hashCode);
     _$hash = $jc(_$hash, isSuperuser.hashCode);
     _$hash = $jc(_$hash, fullName.hashCode);
@@ -61,7 +61,7 @@ class _$UserUpdate extends UserUpdate {
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'UserUpdate')
-          ..add('email', email)
+          ..add('phoneNumber', phoneNumber)
           ..add('isActive', isActive)
           ..add('isSuperuser', isSuperuser)
           ..add('fullName', fullName)
@@ -73,9 +73,9 @@ class _$UserUpdate extends UserUpdate {
 class UserUpdateBuilder implements Builder<UserUpdate, UserUpdateBuilder> {
   _$UserUpdate? _$v;
 
-  String? _email;
-  String? get email => _$this._email;
-  set email(String? email) => _$this._email = email;
+  String? _phoneNumber;
+  String? get phoneNumber => _$this._phoneNumber;
+  set phoneNumber(String? phoneNumber) => _$this._phoneNumber = phoneNumber;
 
   bool? _isActive;
   bool? get isActive => _$this._isActive;
@@ -100,7 +100,7 @@ class UserUpdateBuilder implements Builder<UserUpdate, UserUpdateBuilder> {
   UserUpdateBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _email = $v.email;
+      _phoneNumber = $v.phoneNumber;
       _isActive = $v.isActive;
       _isSuperuser = $v.isSuperuser;
       _fullName = $v.fullName;
@@ -126,7 +126,7 @@ class UserUpdateBuilder implements Builder<UserUpdate, UserUpdateBuilder> {
   _$UserUpdate _build() {
     final _$result = _$v ??
         _$UserUpdate._(
-          email: email,
+          phoneNumber: phoneNumber,
           isActive: isActive,
           isSuperuser: isSuperuser,
           fullName: fullName,

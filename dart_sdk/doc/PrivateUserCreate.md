@@ -8,7 +8,7 @@ import 'package:rab_dio/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**email** | **String** |  | 
+**phoneNumber** | **String** |  | 
 **password** | **String** |  | 
 **fullName** | **String** |  | 
 **isVerified** | **bool** |  | [optional] [default to false]

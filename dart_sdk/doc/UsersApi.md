@@ -15,7 +15,6 @@ Method | HTTP request | Description
 [**usersReadUserById**](UsersApi.md#usersreaduserbyid) | **GET** /api/v1/users/{user_id} | Read User By Id
 [**usersReadUserMe**](UsersApi.md#usersreaduserme) | **GET** /api/v1/users/me | Read User Me
 [**usersReadUsers**](UsersApi.md#usersreadusers) | **GET** /api/v1/users/ | Read Users
-[**usersRegisterUser**](UsersApi.md#usersregisteruser) | **POST** /api/v1/users/signup | Register User
 [**usersUpdatePasswordMe**](UsersApi.md#usersupdatepasswordme) | **PATCH** /api/v1/users/me/password | Update Password Me
 [**usersUpdateUser**](UsersApi.md#usersupdateuser) | **PATCH** /api/v1/users/{user_id} | Update User
 [**usersUpdateUserMe**](UsersApi.md#usersupdateuserme) | **PATCH** /api/v1/users/me | Update User Me
@@ -26,7 +25,7 @@ Method | HTTP request | Description
 
 Create User
 
-Create new user.
+Superuser can Create new user.
 
 ### Example
 ```dart
@@ -71,7 +70,7 @@ Name | Type | Description  | Notes
 
 Delete User
 
-Delete a user.
+Delete a user by id.
 
 ### Example
 ```dart
@@ -281,49 +280,6 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **usersRegisterUser**
-> UserPublic usersRegisterUser(userRegister)
-
-Register User
-
-Create new user without the need to be logged in.
-
-### Example
-```dart
-import 'package:rab_dio/api.dart';
-
-final api = RabDio().getUsersApi();
-final UserRegister userRegister = ; // UserRegister | 
-
-try {
-    final response = api.usersRegisterUser(userRegister);
-    print(response);
-} on DioException catch (e) {
-    print('Exception when calling UsersApi->usersRegisterUser: $e\n');
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **userRegister** | [**UserRegister**](UserRegister.md)|  | 
-
-### Return type
-
-[**UserPublic**](UserPublic.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

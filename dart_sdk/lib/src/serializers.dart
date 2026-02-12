@@ -60,7 +60,6 @@ import 'package:rab_dio/src/model/units_list.dart';
 import 'package:rab_dio/src/model/update_password.dart';
 import 'package:rab_dio/src/model/user_create.dart';
 import 'package:rab_dio/src/model/user_public.dart';
-import 'package:rab_dio/src/model/user_register.dart';
 import 'package:rab_dio/src/model/user_update.dart';
 import 'package:rab_dio/src/model/user_update_me.dart';
 import 'package:rab_dio/src/model/users_public.dart';
@@ -116,7 +115,6 @@ part 'serializers.g.dart';
   UpdatePassword,
   UserCreate,
   UserPublic,
-  UserRegister,
   UserUpdate,
   UserUpdateMe,
   UsersPublic,
