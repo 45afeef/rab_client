@@ -15,6 +15,8 @@ part 'agency_staff_public.g.dart';
 /// * [id] 
 /// * [userId] 
 /// * [travelAgencyId] 
+/// * [fullName] 
+/// * [phoneNumber] 
 /// * [role] 
 @BuiltValue()
 abstract class AgencyStaffPublic implements Built<AgencyStaffPublic, AgencyStaffPublicBuilder> {
@@ -26,6 +28,12 @@ abstract class AgencyStaffPublic implements Built<AgencyStaffPublic, AgencyStaff
 
   @BuiltValueField(wireName: r'travel_agency_id')
   String get travelAgencyId;
+
+  @BuiltValueField(wireName: r'full_name')
+  String? get fullName;
+
+  @BuiltValueField(wireName: r'phone_number')
+  String? get phoneNumber;
 
   @BuiltValueField(wireName: r'role')
   StaffRole? get role;
@@ -69,6 +77,20 @@ class _$AgencyStaffPublicSerializer implements PrimitiveSerializer<AgencyStaffPu
       object.travelAgencyId,
       specifiedType: const FullType(String),
     );
+    if (object.fullName != null) {
+      yield r'full_name';
+      yield serializers.serialize(
+        object.fullName,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
+    if (object.phoneNumber != null) {
+      yield r'phone_number';
+      yield serializers.serialize(
+        object.phoneNumber,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
     if (object.role != null) {
       yield r'role';
       yield serializers.serialize(
@@ -119,6 +141,22 @@ class _$AgencyStaffPublicSerializer implements PrimitiveSerializer<AgencyStaffPu
             specifiedType: const FullType(String),
           ) as String;
           result.travelAgencyId = valueDes;
+          break;
+        case r'full_name':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.fullName = valueDes;
+          break;
+        case r'phone_number':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.phoneNumber = valueDes;
           break;
         case r'role':
           final valueDes = serializers.deserialize(

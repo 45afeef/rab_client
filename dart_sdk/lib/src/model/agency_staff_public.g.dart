@@ -14,6 +14,10 @@ class _$AgencyStaffPublic extends AgencyStaffPublic {
   @override
   final String travelAgencyId;
   @override
+  final String? fullName;
+  @override
+  final String? phoneNumber;
+  @override
   final StaffRole? role;
 
   factory _$AgencyStaffPublic(
@@ -24,6 +28,8 @@ class _$AgencyStaffPublic extends AgencyStaffPublic {
       {required this.id,
       required this.userId,
       required this.travelAgencyId,
+      this.fullName,
+      this.phoneNumber,
       this.role})
       : super._();
   @override
@@ -41,6 +47,8 @@ class _$AgencyStaffPublic extends AgencyStaffPublic {
         id == other.id &&
         userId == other.userId &&
         travelAgencyId == other.travelAgencyId &&
+        fullName == other.fullName &&
+        phoneNumber == other.phoneNumber &&
         role == other.role;
   }
 
@@ -50,6 +58,8 @@ class _$AgencyStaffPublic extends AgencyStaffPublic {
     _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jc(_$hash, userId.hashCode);
     _$hash = $jc(_$hash, travelAgencyId.hashCode);
+    _$hash = $jc(_$hash, fullName.hashCode);
+    _$hash = $jc(_$hash, phoneNumber.hashCode);
     _$hash = $jc(_$hash, role.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -61,6 +71,8 @@ class _$AgencyStaffPublic extends AgencyStaffPublic {
           ..add('id', id)
           ..add('userId', userId)
           ..add('travelAgencyId', travelAgencyId)
+          ..add('fullName', fullName)
+          ..add('phoneNumber', phoneNumber)
           ..add('role', role))
         .toString();
   }
@@ -83,6 +95,14 @@ class AgencyStaffPublicBuilder
   set travelAgencyId(String? travelAgencyId) =>
       _$this._travelAgencyId = travelAgencyId;
 
+  String? _fullName;
+  String? get fullName => _$this._fullName;
+  set fullName(String? fullName) => _$this._fullName = fullName;
+
+  String? _phoneNumber;
+  String? get phoneNumber => _$this._phoneNumber;
+  set phoneNumber(String? phoneNumber) => _$this._phoneNumber = phoneNumber;
+
   StaffRole? _role;
   StaffRole? get role => _$this._role;
   set role(StaffRole? role) => _$this._role = role;
@@ -97,6 +117,8 @@ class AgencyStaffPublicBuilder
       _id = $v.id;
       _userId = $v.userId;
       _travelAgencyId = $v.travelAgencyId;
+      _fullName = $v.fullName;
+      _phoneNumber = $v.phoneNumber;
       _role = $v.role;
       _$v = null;
     }
@@ -125,6 +147,8 @@ class AgencyStaffPublicBuilder
               userId, r'AgencyStaffPublic', 'userId'),
           travelAgencyId: BuiltValueNullFieldError.checkNotNull(
               travelAgencyId, r'AgencyStaffPublic', 'travelAgencyId'),
+          fullName: fullName,
+          phoneNumber: phoneNumber,
           role: role,
         );
     replace(_$result);
