@@ -43,21 +43,21 @@ void main() {
       // TODO
     });
 
+    // Get Agencies
+    //
+    // Superuser: get all travel agencies Staff: get agencies where the user is a staff member
+    //
+    //Future<BuiltList<AgencyPublic>> agenciesGetAgencies() async
+    test('test agenciesGetAgencies', () async {
+      // TODO
+    });
+
     // Get Agency
     //
     // Get agency detail. Superuser or owner or staff can view details.
     //
     //Future<AgencyDetail> agenciesGetAgency(String agencyId) async
     test('test agenciesGetAgency', () async {
-      // TODO
-    });
-
-    // List Agencies
-    //
-    // Superuser: list agencies.
-    //
-    //Future<BuiltList<AgencyPublic>> agenciesListAgencies() async
-    test('test agenciesListAgencies', () async {
       // TODO
     });
 

@@ -40,9 +40,9 @@ class _$Profile extends Profile {
   @override
   final String? createdByUserId;
   @override
-  final String? id;
+  final String? userId;
   @override
-  final String userId;
+  final String? id;
   @override
   final DateTime? createdAt;
   @override
@@ -68,8 +68,8 @@ class _$Profile extends Profile {
       this.primaryEmail,
       this.secondaryEmail,
       this.createdByUserId,
+      this.userId,
       this.id,
-      required this.userId,
       this.createdAt,
       this.updatedAt})
       : super._();
@@ -100,8 +100,8 @@ class _$Profile extends Profile {
         primaryEmail == other.primaryEmail &&
         secondaryEmail == other.secondaryEmail &&
         createdByUserId == other.createdByUserId &&
-        id == other.id &&
         userId == other.userId &&
+        id == other.id &&
         createdAt == other.createdAt &&
         updatedAt == other.updatedAt;
   }
@@ -125,8 +125,8 @@ class _$Profile extends Profile {
     _$hash = $jc(_$hash, primaryEmail.hashCode);
     _$hash = $jc(_$hash, secondaryEmail.hashCode);
     _$hash = $jc(_$hash, createdByUserId.hashCode);
-    _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jc(_$hash, userId.hashCode);
+    _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
     _$hash = $jc(_$hash, updatedAt.hashCode);
     _$hash = $jf(_$hash);
@@ -152,8 +152,8 @@ class _$Profile extends Profile {
           ..add('primaryEmail', primaryEmail)
           ..add('secondaryEmail', secondaryEmail)
           ..add('createdByUserId', createdByUserId)
-          ..add('id', id)
           ..add('userId', userId)
+          ..add('id', id)
           ..add('createdAt', createdAt)
           ..add('updatedAt', updatedAt))
         .toString();
@@ -232,13 +232,13 @@ class ProfileBuilder implements Builder<Profile, ProfileBuilder> {
   set createdByUserId(String? createdByUserId) =>
       _$this._createdByUserId = createdByUserId;
 
-  String? _id;
-  String? get id => _$this._id;
-  set id(String? id) => _$this._id = id;
-
   String? _userId;
   String? get userId => _$this._userId;
   set userId(String? userId) => _$this._userId = userId;
+
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
 
   DateTime? _createdAt;
   DateTime? get createdAt => _$this._createdAt;
@@ -271,8 +271,8 @@ class ProfileBuilder implements Builder<Profile, ProfileBuilder> {
       _primaryEmail = $v.primaryEmail;
       _secondaryEmail = $v.secondaryEmail;
       _createdByUserId = $v.createdByUserId;
-      _id = $v.id;
       _userId = $v.userId;
+      _id = $v.id;
       _createdAt = $v.createdAt;
       _updatedAt = $v.updatedAt;
       _$v = null;
@@ -312,9 +312,8 @@ class ProfileBuilder implements Builder<Profile, ProfileBuilder> {
           primaryEmail: primaryEmail,
           secondaryEmail: secondaryEmail,
           createdByUserId: createdByUserId,
+          userId: userId,
           id: id,
-          userId: BuiltValueNullFieldError.checkNotNull(
-              userId, r'Profile', 'userId'),
           createdAt: createdAt,
           updatedAt: updatedAt,
         );

@@ -22,6 +22,16 @@ void main() {
       // TODO
     });
 
+    // String fullName
+    test('to test the property `fullName`', () async {
+      // TODO
+    });
+
+    // String phoneNumber
+    test('to test the property `phoneNumber`', () async {
+      // TODO
+    });
+
     // StaffRole role
     test('to test the property `role`', () async {
       // TODO

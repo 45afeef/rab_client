@@ -16,11 +16,11 @@ void main() {
       // TODO
     });
 
-    // Send password recovery email
+    // (Admin) Create password recovery token for a user
     //
-    // Trigger a password recovery email to the provided email address if a user exists. The email includes a one-time token the user can use to reset their password.
+    // Admin-only endpoint that creates a password recovery token for the provided phone number. The admin may preview or send the recovery email to the user's registered contact email.
     //
-    //Future<Message> loginRecoverPassword(String email) async
+    //Future<Message> loginRecoverPassword(String phoneNumber) async
     test('test loginRecoverPassword', () async {
       // TODO
     });
@@ -29,7 +29,7 @@ void main() {
     //
     // Admin-only endpoint that generates and returns the HTML body for a password recovery email. Helpful for debugging email templates without actually sending emails. This endpoint is protected by `get_current_active_superuser` and should only be used in staging or development.
     //
-    //Future<String> loginRecoverPasswordHtmlContent(String email) async
+    //Future<String> loginRecoverPasswordHtmlContent(String phoneNumber) async
     test('test loginRecoverPasswordHtmlContent', () async {
       // TODO
     });

@@ -40,9 +40,9 @@ class _$ProfilePublic extends ProfilePublic {
   @override
   final String? createdByUserId;
   @override
-  final String id;
+  final String? userId;
   @override
-  final String userId;
+  final String id;
 
   factory _$ProfilePublic([void Function(ProfilePublicBuilder)? updates]) =>
       (ProfilePublicBuilder()..update(updates))._build();
@@ -64,8 +64,8 @@ class _$ProfilePublic extends ProfilePublic {
       this.primaryEmail,
       this.secondaryEmail,
       this.createdByUserId,
-      required this.id,
-      required this.userId})
+      this.userId,
+      required this.id})
       : super._();
   @override
   ProfilePublic rebuild(void Function(ProfilePublicBuilder) updates) =>
@@ -94,8 +94,8 @@ class _$ProfilePublic extends ProfilePublic {
         primaryEmail == other.primaryEmail &&
         secondaryEmail == other.secondaryEmail &&
         createdByUserId == other.createdByUserId &&
-        id == other.id &&
-        userId == other.userId;
+        userId == other.userId &&
+        id == other.id;
   }
 
   @override
@@ -117,8 +117,8 @@ class _$ProfilePublic extends ProfilePublic {
     _$hash = $jc(_$hash, primaryEmail.hashCode);
     _$hash = $jc(_$hash, secondaryEmail.hashCode);
     _$hash = $jc(_$hash, createdByUserId.hashCode);
-    _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jc(_$hash, userId.hashCode);
+    _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -142,8 +142,8 @@ class _$ProfilePublic extends ProfilePublic {
           ..add('primaryEmail', primaryEmail)
           ..add('secondaryEmail', secondaryEmail)
           ..add('createdByUserId', createdByUserId)
-          ..add('id', id)
-          ..add('userId', userId))
+          ..add('userId', userId)
+          ..add('id', id))
         .toString();
   }
 }
@@ -221,13 +221,13 @@ class ProfilePublicBuilder
   set createdByUserId(String? createdByUserId) =>
       _$this._createdByUserId = createdByUserId;
 
-  String? _id;
-  String? get id => _$this._id;
-  set id(String? id) => _$this._id = id;
-
   String? _userId;
   String? get userId => _$this._userId;
   set userId(String? userId) => _$this._userId = userId;
+
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
 
   ProfilePublicBuilder() {
     ProfilePublic._defaults(this);
@@ -252,8 +252,8 @@ class ProfilePublicBuilder
       _primaryEmail = $v.primaryEmail;
       _secondaryEmail = $v.secondaryEmail;
       _createdByUserId = $v.createdByUserId;
-      _id = $v.id;
       _userId = $v.userId;
+      _id = $v.id;
       _$v = null;
     }
     return this;
@@ -291,9 +291,8 @@ class ProfilePublicBuilder
           primaryEmail: primaryEmail,
           secondaryEmail: secondaryEmail,
           createdByUserId: createdByUserId,
+          userId: userId,
           id: BuiltValueNullFieldError.checkNotNull(id, r'ProfilePublic', 'id'),
-          userId: BuiltValueNullFieldError.checkNotNull(
-              userId, r'ProfilePublic', 'userId'),
         );
     replace(_$result);
     return _$result;

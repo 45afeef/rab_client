@@ -22,10 +22,5 @@ void main() {
       // TODO
     });
 
-    // String createdBy
-    test('to test the property `createdBy`', () async {
-      // TODO
-    });
-
   });
 }

@@ -24,8 +24,8 @@ Name | Type | Description | Notes
 **primaryEmail** | **String** |  | [optional] 
 **secondaryEmail** | **String** |  | [optional] 
 **createdByUserId** | **String** |  | [optional] 
+**userId** | **String** |  | [optional] 
 **id** | **String** |  | [optional] 
-**userId** | **String** |  | 
 **createdAt** | [**DateTime**](DateTime.md) |  | [optional] 
 **updatedAt** | [**DateTime**](DateTime.md) |  | [optional] 
 

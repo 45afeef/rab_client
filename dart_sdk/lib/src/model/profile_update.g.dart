@@ -39,6 +39,8 @@ class _$ProfileUpdate extends ProfileUpdate {
   final String? secondaryEmail;
   @override
   final String? createdByUserId;
+  @override
+  final String? userId;
 
   factory _$ProfileUpdate([void Function(ProfileUpdateBuilder)? updates]) =>
       (ProfileUpdateBuilder()..update(updates))._build();
@@ -59,7 +61,8 @@ class _$ProfileUpdate extends ProfileUpdate {
       this.secondaryPhoneNumber,
       this.primaryEmail,
       this.secondaryEmail,
-      this.createdByUserId})
+      this.createdByUserId,
+      this.userId})
       : super._();
   @override
   ProfileUpdate rebuild(void Function(ProfileUpdateBuilder) updates) =>
@@ -87,7 +90,8 @@ class _$ProfileUpdate extends ProfileUpdate {
         secondaryPhoneNumber == other.secondaryPhoneNumber &&
         primaryEmail == other.primaryEmail &&
         secondaryEmail == other.secondaryEmail &&
-        createdByUserId == other.createdByUserId;
+        createdByUserId == other.createdByUserId &&
+        userId == other.userId;
   }
 
   @override
@@ -109,6 +113,7 @@ class _$ProfileUpdate extends ProfileUpdate {
     _$hash = $jc(_$hash, primaryEmail.hashCode);
     _$hash = $jc(_$hash, secondaryEmail.hashCode);
     _$hash = $jc(_$hash, createdByUserId.hashCode);
+    _$hash = $jc(_$hash, userId.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -131,7 +136,8 @@ class _$ProfileUpdate extends ProfileUpdate {
           ..add('secondaryPhoneNumber', secondaryPhoneNumber)
           ..add('primaryEmail', primaryEmail)
           ..add('secondaryEmail', secondaryEmail)
-          ..add('createdByUserId', createdByUserId))
+          ..add('createdByUserId', createdByUserId)
+          ..add('userId', userId))
         .toString();
   }
 }
@@ -209,6 +215,10 @@ class ProfileUpdateBuilder
   set createdByUserId(String? createdByUserId) =>
       _$this._createdByUserId = createdByUserId;
 
+  String? _userId;
+  String? get userId => _$this._userId;
+  set userId(String? userId) => _$this._userId = userId;
+
   ProfileUpdateBuilder() {
     ProfileUpdate._defaults(this);
   }
@@ -232,6 +242,7 @@ class ProfileUpdateBuilder
       _primaryEmail = $v.primaryEmail;
       _secondaryEmail = $v.secondaryEmail;
       _createdByUserId = $v.createdByUserId;
+      _userId = $v.userId;
       _$v = null;
     }
     return this;
@@ -269,6 +280,7 @@ class ProfileUpdateBuilder
           primaryEmail: primaryEmail,
           secondaryEmail: secondaryEmail,
           createdByUserId: createdByUserId,
+          userId: userId,
         );
     replace(_$result);
     return _$result;

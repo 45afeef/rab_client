@@ -17,5 +17,40 @@ void main() {
       // TODO
     });
 
+    // num minimumRate
+    test('to test the property `minimumRate`', () async {
+      // TODO
+    });
+
+    // num kmForMinimumRate
+    test('to test the property `kmForMinimumRate`', () async {
+      // TODO
+    });
+
+    // num perKmRate
+    test('to test the property `perKmRate`', () async {
+      // TODO
+    });
+
+    // int capacity
+    test('to test the property `capacity`', () async {
+      // TODO
+    });
+
+    // String name
+    test('to test the property `name`', () async {
+      // TODO
+    });
+
+    // String companyModel
+    test('to test the property `companyModel`', () async {
+      // TODO
+    });
+
+    // String color
+    test('to test the property `color`', () async {
+      // TODO
+    });
+
   });
 }

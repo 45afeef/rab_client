@@ -28,8 +28,8 @@ part 'profile_public.g.dart';
 /// * [primaryEmail] 
 /// * [secondaryEmail] 
 /// * [createdByUserId] 
-/// * [id] 
 /// * [userId] 
+/// * [id] 
 @BuiltValue()
 abstract class ProfilePublic implements Built<ProfilePublic, ProfilePublicBuilder> {
   @BuiltValueField(wireName: r'first_name')
@@ -80,11 +80,11 @@ abstract class ProfilePublic implements Built<ProfilePublic, ProfilePublicBuilde
   @BuiltValueField(wireName: r'created_by_user_id')
   String? get createdByUserId;
 
+  @BuiltValueField(wireName: r'user_id')
+  String? get userId;
+
   @BuiltValueField(wireName: r'id')
   String get id;
-
-  @BuiltValueField(wireName: r'user_id')
-  String get userId;
 
   ProfilePublic._();
 
@@ -219,14 +219,16 @@ class _$ProfilePublicSerializer implements PrimitiveSerializer<ProfilePublic> {
         specifiedType: const FullType.nullable(String),
       );
     }
+    if (object.userId != null) {
+      yield r'user_id';
+      yield serializers.serialize(
+        object.userId,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
     yield r'id';
     yield serializers.serialize(
       object.id,
-      specifiedType: const FullType(String),
-    );
-    yield r'user_id';
-    yield serializers.serialize(
-      object.userId,
       specifiedType: const FullType(String),
     );
   }
@@ -380,19 +382,20 @@ class _$ProfilePublicSerializer implements PrimitiveSerializer<ProfilePublic> {
           if (valueDes == null) continue;
           result.createdByUserId = valueDes;
           break;
+        case r'user_id':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.userId = valueDes;
+          break;
         case r'id':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(String),
           ) as String;
           result.id = valueDes;
-          break;
-        case r'user_id':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.userId = valueDes;
           break;
         default:
           unhandled.add(key);

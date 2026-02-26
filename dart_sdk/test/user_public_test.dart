@@ -7,8 +7,8 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(UserPublic, () {
-    // String email
-    test('to test the property `email`', () async {
+    // String phoneNumber
+    test('to test the property `phoneNumber`', () async {
       // TODO
     });
 

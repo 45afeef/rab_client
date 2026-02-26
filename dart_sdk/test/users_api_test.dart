@@ -9,7 +9,7 @@ void main() {
   group(UsersApi, () {
     // Create User
     //
-    // Create new user.
+    // Superuser can Create new user.
     //
     //Future<UserPublic> usersCreateUser(UserCreate userCreate) async
     test('test usersCreateUser', () async {
@@ -18,7 +18,7 @@ void main() {
 
     // Delete User
     //
-    // Delete a user.
+    // Delete a user by id.
     //
     //Future<Message> usersDeleteUser(String userId) async
     test('test usersDeleteUser', () async {
@@ -58,15 +58,6 @@ void main() {
     //
     //Future<UsersPublic> usersReadUsers({ int skip, int limit }) async
     test('test usersReadUsers', () async {
-      // TODO
-    });
-
-    // Register User
-    //
-    // Create new user without the need to be logged in.
-    //
-    //Future<UserPublic> usersRegisterUser(UserRegister userRegister) async
-    test('test usersRegisterUser', () async {
       // TODO
     });
 

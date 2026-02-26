@@ -80,7 +80,7 @@ abstract class ProfileCreate implements Built<ProfileCreate, ProfileCreateBuilde
   String? get createdByUserId;
 
   @BuiltValueField(wireName: r'user_id')
-  String get userId;
+  String? get userId;
 
   ProfileCreate._();
 
@@ -215,11 +215,13 @@ class _$ProfileCreateSerializer implements PrimitiveSerializer<ProfileCreate> {
         specifiedType: const FullType.nullable(String),
       );
     }
-    yield r'user_id';
-    yield serializers.serialize(
-      object.userId,
-      specifiedType: const FullType(String),
-    );
+    if (object.userId != null) {
+      yield r'user_id';
+      yield serializers.serialize(
+        object.userId,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
   }
 
   @override
@@ -374,8 +376,9 @@ class _$ProfileCreateSerializer implements PrimitiveSerializer<ProfileCreate> {
         case r'user_id':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.userId = valueDes;
           break;
         default:

@@ -28,8 +28,8 @@ part 'profile.g.dart';
 /// * [primaryEmail] 
 /// * [secondaryEmail] 
 /// * [createdByUserId] 
-/// * [id] 
 /// * [userId] 
+/// * [id] 
 /// * [createdAt] 
 /// * [updatedAt] 
 @BuiltValue()
@@ -82,11 +82,11 @@ abstract class Profile implements Built<Profile, ProfileBuilder> {
   @BuiltValueField(wireName: r'created_by_user_id')
   String? get createdByUserId;
 
+  @BuiltValueField(wireName: r'user_id')
+  String? get userId;
+
   @BuiltValueField(wireName: r'id')
   String? get id;
-
-  @BuiltValueField(wireName: r'user_id')
-  String get userId;
 
   @BuiltValueField(wireName: r'created_at')
   DateTime? get createdAt;
@@ -227,6 +227,13 @@ class _$ProfileSerializer implements PrimitiveSerializer<Profile> {
         specifiedType: const FullType.nullable(String),
       );
     }
+    if (object.userId != null) {
+      yield r'user_id';
+      yield serializers.serialize(
+        object.userId,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
     if (object.id != null) {
       yield r'id';
       yield serializers.serialize(
@@ -234,11 +241,6 @@ class _$ProfileSerializer implements PrimitiveSerializer<Profile> {
         specifiedType: const FullType(String),
       );
     }
-    yield r'user_id';
-    yield serializers.serialize(
-      object.userId,
-      specifiedType: const FullType(String),
-    );
     if (object.createdAt != null) {
       yield r'created_at';
       yield serializers.serialize(
@@ -404,19 +406,20 @@ class _$ProfileSerializer implements PrimitiveSerializer<Profile> {
           if (valueDes == null) continue;
           result.createdByUserId = valueDes;
           break;
+        case r'user_id':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.userId = valueDes;
+          break;
         case r'id':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(String),
           ) as String;
           result.id = valueDes;
-          break;
-        case r'user_id':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.userId = valueDes;
           break;
         case r'created_at':
           final valueDes = serializers.deserialize(

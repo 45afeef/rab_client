@@ -28,6 +28,7 @@ part 'profile_update.g.dart';
 /// * [primaryEmail] 
 /// * [secondaryEmail] 
 /// * [createdByUserId] 
+/// * [userId] 
 @BuiltValue()
 abstract class ProfileUpdate implements Built<ProfileUpdate, ProfileUpdateBuilder> {
   @BuiltValueField(wireName: r'first_name')
@@ -77,6 +78,9 @@ abstract class ProfileUpdate implements Built<ProfileUpdate, ProfileUpdateBuilde
 
   @BuiltValueField(wireName: r'created_by_user_id')
   String? get createdByUserId;
+
+  @BuiltValueField(wireName: r'user_id')
+  String? get userId;
 
   ProfileUpdate._();
 
@@ -208,6 +212,13 @@ class _$ProfileUpdateSerializer implements PrimitiveSerializer<ProfileUpdate> {
       yield r'created_by_user_id';
       yield serializers.serialize(
         object.createdByUserId,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
+    if (object.userId != null) {
+      yield r'user_id';
+      yield serializers.serialize(
+        object.userId,
         specifiedType: const FullType.nullable(String),
       );
     }
@@ -361,6 +372,14 @@ class _$ProfileUpdateSerializer implements PrimitiveSerializer<ProfileUpdate> {
           ) as String?;
           if (valueDes == null) continue;
           result.createdByUserId = valueDes;
+          break;
+        case r'user_id':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.userId = valueDes;
           break;
         default:
           unhandled.add(key);
