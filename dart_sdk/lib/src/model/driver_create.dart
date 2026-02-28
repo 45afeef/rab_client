@@ -48,7 +48,7 @@ class _$DriverCreateSerializer implements PrimitiveSerializer<DriverCreate> {
       yield r'user_id';
       yield serializers.serialize(
         object.userId,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType.nullable(String),
       );
     }
     yield r'profile_id';
@@ -82,8 +82,9 @@ class _$DriverCreateSerializer implements PrimitiveSerializer<DriverCreate> {
         case r'user_id':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.userId = valueDes;
           break;
         case r'profile_id':

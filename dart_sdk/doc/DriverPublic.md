@@ -8,7 +8,7 @@ import 'package:rab_dio/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**userId** | **String** |  | 
+**userId** | **String** |  | [optional] 
 **providerId** | **String** |  | 
 **id** | **String** |  | 
 

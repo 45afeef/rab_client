@@ -8,7 +8,7 @@ part of 'driver_public.dart';
 
 class _$DriverPublic extends DriverPublic {
   @override
-  final String userId;
+  final String? userId;
   @override
   final String providerId;
   @override
@@ -17,7 +17,7 @@ class _$DriverPublic extends DriverPublic {
   factory _$DriverPublic([void Function(DriverPublicBuilder)? updates]) =>
       (DriverPublicBuilder()..update(updates))._build();
 
-  _$DriverPublic._({required this.userId, required this.providerId, this.id})
+  _$DriverPublic._({this.userId, required this.providerId, this.id})
       : super._();
   @override
   DriverPublic rebuild(void Function(DriverPublicBuilder) updates) =>
@@ -102,8 +102,7 @@ class DriverPublicBuilder
   _$DriverPublic _build() {
     final _$result = _$v ??
         _$DriverPublic._(
-          userId: BuiltValueNullFieldError.checkNotNull(
-              userId, r'DriverPublic', 'userId'),
+          userId: userId,
           providerId: BuiltValueNullFieldError.checkNotNull(
               providerId, r'DriverPublic', 'providerId'),
           id: id,
