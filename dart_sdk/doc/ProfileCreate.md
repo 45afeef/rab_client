@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 **state** | **String** |  | [optional] 
 **zipCode** | **String** |  | [optional] 
 **country** | **String** |  | [optional] 
-**primaryPhoneNumber** | **String** |  | 
+**primaryPhoneNumber** | **String** |  | [optional] 
 **secondaryPhoneNumber** | **String** |  | [optional] 
 **primaryEmail** | **String** |  | [optional] 
 **secondaryEmail** | **String** |  | [optional] 

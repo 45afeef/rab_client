@@ -8,3 +8,12 @@ docker run --rm `
   -g dart-dio `
   -o /local/dart_sdk `
   --additional-properties=pubName=rab_dio,pubVersion=1.0.0,nullSafety=true
+
+
+docker run --rm `
+  -v "${PWD}:/local" `
+  openapitools/openapi-generator-cli generate `
+  -i http://host.docker.internal:8000/api/v1/openapi.json `
+  -g dart-dio `
+  -o /local/dart_sdk `
+  --additional-properties=pubName=rab_dio,pubVersion=1.0.0,nullSafety=true

@@ -182,11 +182,13 @@ class _$ProfileCreateSerializer implements PrimitiveSerializer<ProfileCreate> {
         specifiedType: const FullType.nullable(String),
       );
     }
-    yield r'primary_phone_number';
-    yield object.primaryPhoneNumber == null ? null : serializers.serialize(
-      object.primaryPhoneNumber,
-      specifiedType: const FullType.nullable(String),
-    );
+    if (object.primaryPhoneNumber != null) {
+      yield r'primary_phone_number';
+      yield serializers.serialize(
+        object.primaryPhoneNumber,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
     if (object.secondaryPhoneNumber != null) {
       yield r'secondary_phone_number';
       yield serializers.serialize(
