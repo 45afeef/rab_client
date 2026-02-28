@@ -40,7 +40,7 @@ class _$ProfileCreate extends ProfileCreate {
   @override
   final String? createdByUserId;
   @override
-  final String? userId;
+  final String userId;
 
   factory _$ProfileCreate([void Function(ProfileCreateBuilder)? updates]) =>
       (ProfileCreateBuilder()..update(updates))._build();
@@ -62,7 +62,7 @@ class _$ProfileCreate extends ProfileCreate {
       this.primaryEmail,
       this.secondaryEmail,
       this.createdByUserId,
-      this.userId})
+      required this.userId})
       : super._();
   @override
   ProfileCreate rebuild(void Function(ProfileCreateBuilder) updates) =>
@@ -280,7 +280,8 @@ class ProfileCreateBuilder
           primaryEmail: primaryEmail,
           secondaryEmail: secondaryEmail,
           createdByUserId: createdByUserId,
-          userId: userId,
+          userId: BuiltValueNullFieldError.checkNotNull(
+              userId, r'ProfileCreate', 'userId'),
         );
     replace(_$result);
     return _$result;
