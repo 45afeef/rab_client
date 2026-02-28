@@ -13,6 +13,7 @@ part 'driver_public.g.dart';
 /// Properties:
 /// * [userId] 
 /// * [providerId] 
+/// * [profileId] 
 /// * [id] 
 @BuiltValue()
 abstract class DriverPublic implements Built<DriverPublic, DriverPublicBuilder> {
@@ -21,6 +22,9 @@ abstract class DriverPublic implements Built<DriverPublic, DriverPublicBuilder> 
 
   @BuiltValueField(wireName: r'provider_id')
   String get providerId;
+
+  @BuiltValueField(wireName: r'profile_id')
+  String get profileId;
 
   @BuiltValueField(wireName: r'id')
   String? get id;
@@ -58,6 +62,11 @@ class _$DriverPublicSerializer implements PrimitiveSerializer<DriverPublic> {
     yield r'provider_id';
     yield serializers.serialize(
       object.providerId,
+      specifiedType: const FullType(String),
+    );
+    yield r'profile_id';
+    yield serializers.serialize(
+      object.profileId,
       specifiedType: const FullType(String),
     );
     yield r'id';
@@ -102,6 +111,13 @@ class _$DriverPublicSerializer implements PrimitiveSerializer<DriverPublic> {
             specifiedType: const FullType(String),
           ) as String;
           result.providerId = valueDes;
+          break;
+        case r'profile_id':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.profileId = valueDes;
           break;
         case r'id':
           final valueDes = serializers.deserialize(

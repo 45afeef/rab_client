@@ -12,12 +12,15 @@ class _$DriverPublic extends DriverPublic {
   @override
   final String providerId;
   @override
+  final String profileId;
+  @override
   final String? id;
 
   factory _$DriverPublic([void Function(DriverPublicBuilder)? updates]) =>
       (DriverPublicBuilder()..update(updates))._build();
 
-  _$DriverPublic._({this.userId, required this.providerId, this.id})
+  _$DriverPublic._(
+      {this.userId, required this.providerId, required this.profileId, this.id})
       : super._();
   @override
   DriverPublic rebuild(void Function(DriverPublicBuilder) updates) =>
@@ -32,6 +35,7 @@ class _$DriverPublic extends DriverPublic {
     return other is DriverPublic &&
         userId == other.userId &&
         providerId == other.providerId &&
+        profileId == other.profileId &&
         id == other.id;
   }
 
@@ -40,6 +44,7 @@ class _$DriverPublic extends DriverPublic {
     var _$hash = 0;
     _$hash = $jc(_$hash, userId.hashCode);
     _$hash = $jc(_$hash, providerId.hashCode);
+    _$hash = $jc(_$hash, profileId.hashCode);
     _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -50,6 +55,7 @@ class _$DriverPublic extends DriverPublic {
     return (newBuiltValueToStringHelper(r'DriverPublic')
           ..add('userId', userId)
           ..add('providerId', providerId)
+          ..add('profileId', profileId)
           ..add('id', id))
         .toString();
   }
@@ -67,6 +73,10 @@ class DriverPublicBuilder
   String? get providerId => _$this._providerId;
   set providerId(String? providerId) => _$this._providerId = providerId;
 
+  String? _profileId;
+  String? get profileId => _$this._profileId;
+  set profileId(String? profileId) => _$this._profileId = profileId;
+
   String? _id;
   String? get id => _$this._id;
   set id(String? id) => _$this._id = id;
@@ -80,6 +90,7 @@ class DriverPublicBuilder
     if ($v != null) {
       _userId = $v.userId;
       _providerId = $v.providerId;
+      _profileId = $v.profileId;
       _id = $v.id;
       _$v = null;
     }
@@ -105,6 +116,8 @@ class DriverPublicBuilder
           userId: userId,
           providerId: BuiltValueNullFieldError.checkNotNull(
               providerId, r'DriverPublic', 'providerId'),
+          profileId: BuiltValueNullFieldError.checkNotNull(
+              profileId, r'DriverPublic', 'profileId'),
           id: id,
         );
     replace(_$result);
