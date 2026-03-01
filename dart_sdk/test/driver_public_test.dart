@@ -17,6 +17,11 @@ void main() {
       // TODO
     });
 
+    // String profileId
+    test('to test the property `profileId`', () async {
+      // TODO
+    });
+
     // String id
     test('to test the property `id`', () async {
       // TODO
