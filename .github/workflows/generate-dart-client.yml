@@ -17,6 +17,9 @@ jobs:
       - name: Set up Docker
         uses: docker/setup-buildx-action@v3
 
+      - name: Delete existing Dart SDK directory
+        run: rm -rf dart_sdk
+
       - name: Generate Dart client using OpenAPI Generator
         run: |
           docker run --rm \
