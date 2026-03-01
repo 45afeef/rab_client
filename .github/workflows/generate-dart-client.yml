@@ -20,9 +20,11 @@ jobs:
       - name: Delete existing Dart SDK directory
         run: rm -rf dart_sdk
 
+      # 🔑 Critical Fix: Run container as runner user
       - name: Generate Dart client using OpenAPI Generator
         run: |
           docker run --rm \
+            --user $(id -u):$(id -g) \
             -v "${PWD}:/local" \
             openapitools/openapi-generator-cli generate \
             -i https://rab-fastapi-predev-135325225027.asia-south1.run.app/api/v1/openapi.json \
