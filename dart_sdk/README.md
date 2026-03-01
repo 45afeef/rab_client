@@ -98,6 +98,7 @@ Class | Method | HTTP request | Description
 [*ProvidersCabApi*](doc/ProvidersCabApi.md) | [**providersCabListDrivers**](doc/ProvidersCabApi.md#providerscablistdrivers) | **GET** /api/v1/providers/{provider_id}/cab/drivers | List Drivers
 [*ProvidersStayApi*](doc/ProvidersStayApi.md) | [**providersStayAddAmenity**](doc/ProvidersStayApi.md#providersstayaddamenity) | **POST** /api/v1/providers/{provider_id}/stay/units/{unit_id}/amenities | Add Amenity
 [*ProvidersStayApi*](doc/ProvidersStayApi.md) | [**providersStayCreateStayUnit**](doc/ProvidersStayApi.md#providersstaycreatestayunit) | **POST** /api/v1/providers/{provider_id}/stay/units | Create Stay Unit
+[*ProvidersStayApi*](doc/ProvidersStayApi.md) | [**providersStayListAmenities**](doc/ProvidersStayApi.md#providersstaylistamenities) | **GET** /api/v1/providers/{provider_id}/stay/units/{unit_id}/amenities | List Amenities
 [*ProvidersStayApi*](doc/ProvidersStayApi.md) | [**providersStayListStayUnits**](doc/ProvidersStayApi.md#providersstayliststayunits) | **GET** /api/v1/providers/{provider_id}/stay/units | List Stay Units
 [*QueryApi*](doc/QueryApi.md) | [**queryListStayUnits**](doc/QueryApi.md#queryliststayunits) | **GET** /api/v1/query/units | List Stay Units
 [*QueryApi*](doc/QueryApi.md) | [**queryQueryCabs**](doc/QueryApi.md#queryquerycabs) | **GET** /api/v1/query/cabs | Query Cabs
@@ -154,7 +155,9 @@ Class | Method | HTTP request | Description
  - [ResponseProvidersListProvidersInner](doc/ResponseProvidersListProvidersInner.md)
  - [ResponseProvidersUpdateProvider](doc/ResponseProvidersUpdateProvider.md)
  - [StaffRole](doc/StaffRole.md)
- - [StayAmenity](doc/StayAmenity.md)
+ - [StayAmenitiesList](doc/StayAmenitiesList.md)
+ - [StayAmenityCreate](doc/StayAmenityCreate.md)
+ - [StayAmenityPublic](doc/StayAmenityPublic.md)
  - [StayProviderCreate](doc/StayProviderCreate.md)
  - [StayProviderPublic](doc/StayProviderPublic.md)
  - [StayUnitCreate](doc/StayUnitCreate.md)

@@ -45,7 +45,9 @@ Serializers _$serializers = (Serializers().toBuilder()
       ..add(ResponseProvidersListProvidersInner.serializer)
       ..add(ResponseProvidersUpdateProvider.serializer)
       ..add(StaffRole.serializer)
-      ..add(StayAmenity.serializer)
+      ..add(StayAmenitiesList.serializer)
+      ..add(StayAmenityCreate.serializer)
+      ..add(StayAmenityPublic.serializer)
       ..add(StayProviderCreate.serializer)
       ..add(StayProviderCreateProviderTypeEnum.serializer)
       ..add(StayProviderPublic.serializer)
@@ -75,6 +77,9 @@ Serializers _$serializers = (Serializers().toBuilder()
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(LocationInner)]),
           () => ListBuilder<LocationInner>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(StayAmenityPublic)]),
+          () => ListBuilder<StayAmenityPublic>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(StayUnitPublic)]),
           () => ListBuilder<StayUnitPublic>())

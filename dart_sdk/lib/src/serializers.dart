@@ -50,7 +50,9 @@ import 'package:rab_dio/src/model/response_providers_get_provider.dart';
 import 'package:rab_dio/src/model/response_providers_list_providers_inner.dart';
 import 'package:rab_dio/src/model/response_providers_update_provider.dart';
 import 'package:rab_dio/src/model/staff_role.dart';
-import 'package:rab_dio/src/model/stay_amenity.dart';
+import 'package:rab_dio/src/model/stay_amenities_list.dart';
+import 'package:rab_dio/src/model/stay_amenity_create.dart';
+import 'package:rab_dio/src/model/stay_amenity_public.dart';
 import 'package:rab_dio/src/model/stay_provider_create.dart';
 import 'package:rab_dio/src/model/stay_provider_public.dart';
 import 'package:rab_dio/src/model/stay_unit_create.dart';
@@ -105,7 +107,9 @@ part 'serializers.g.dart';
   ResponseProvidersListProvidersInner,
   ResponseProvidersUpdateProvider,
   StaffRole,
-  StayAmenity,
+  StayAmenitiesList,
+  StayAmenityCreate,
+  StayAmenityPublic,
   StayProviderCreate,
   StayProviderPublic,
   StayUnitCreate,
@@ -133,10 +137,6 @@ Serializers serializers = (_$serializers.toBuilder()
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(DriverPublic)]),
         () => ListBuilder<DriverPublic>(),
-      )
-      ..addBuilderFactory(
-        const FullType(BuiltMap, [FullType(String), FullType.nullable(JsonObject)]),
-        () => MapBuilder<String, JsonObject>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(ResponseProvidersListProvidersInner)]),

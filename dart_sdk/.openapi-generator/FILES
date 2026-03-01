@@ -47,7 +47,9 @@ doc/ResponseProvidersGetProvider.md
 doc/ResponseProvidersListProvidersInner.md
 doc/ResponseProvidersUpdateProvider.md
 doc/StaffRole.md
-doc/StayAmenity.md
+doc/StayAmenitiesList.md
+doc/StayAmenityCreate.md
+doc/StayAmenityPublic.md
 doc/StayProviderCreate.md
 doc/StayProviderPublic.md
 doc/StayUnitCreate.md
@@ -121,7 +123,9 @@ lib/src/model/response_providers_get_provider.dart
 lib/src/model/response_providers_list_providers_inner.dart
 lib/src/model/response_providers_update_provider.dart
 lib/src/model/staff_role.dart
-lib/src/model/stay_amenity.dart
+lib/src/model/stay_amenities_list.dart
+lib/src/model/stay_amenity_create.dart
+lib/src/model/stay_amenity_public.dart
 lib/src/model/stay_provider_create.dart
 lib/src/model/stay_provider_public.dart
 lib/src/model/stay_unit_create.dart
@@ -183,7 +187,9 @@ test/response_providers_get_provider_test.dart
 test/response_providers_list_providers_inner_test.dart
 test/response_providers_update_provider_test.dart
 test/staff_role_test.dart
-test/stay_amenity_test.dart
+test/stay_amenities_list_test.dart
+test/stay_amenity_create_test.dart
+test/stay_amenity_public_test.dart
 test/stay_provider_create_test.dart
 test/stay_provider_public_test.dart
 test/stay_unit_create_test.dart

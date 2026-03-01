@@ -9,7 +9,7 @@ void main() {
   group(ProvidersStayApi, () {
     // Add Amenity
     //
-    //Future<StayAmenity> providersStayAddAmenity(String providerId, String unitId, BuiltMap<String, JsonObject> requestBody) async
+    //Future<StayAmenityPublic> providersStayAddAmenity(String providerId, String unitId, StayAmenityCreate stayAmenityCreate) async
     test('test providersStayAddAmenity', () async {
       // TODO
     });
@@ -18,6 +18,13 @@ void main() {
     //
     //Future<StayUnitPublic> providersStayCreateStayUnit(String providerId, StayUnitCreate stayUnitCreate) async
     test('test providersStayCreateStayUnit', () async {
+      // TODO
+    });
+
+    // List Amenities
+    //
+    //Future<StayAmenitiesList> providersStayListAmenities(String providerId, String unitId) async
+    test('test providersStayListAmenities', () async {
       // TODO
     });
 
