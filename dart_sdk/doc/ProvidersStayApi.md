@@ -153,7 +153,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **providersStayListStayUnits**
-> UnitsList providersStayListStayUnits(providerId, minPrice, maxPrice, amenity, limit, offset)
+> UnitsList providersStayListStayUnits(providerId, minPrice, maxPrice, amenities, limit, offset)
 
 List Stay Units
 
@@ -167,12 +167,12 @@ final api = RabDio().getProvidersStayApi();
 final String providerId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
 final int minPrice = 56; // int | 
 final int maxPrice = 56; // int | 
-final String amenity = amenity_example; // String | 
+final BuiltList<String> amenities = ; // BuiltList<String> | 
 final int limit = 56; // int | 
 final int offset = 56; // int | 
 
 try {
-    final response = api.providersStayListStayUnits(providerId, minPrice, maxPrice, amenity, limit, offset);
+    final response = api.providersStayListStayUnits(providerId, minPrice, maxPrice, amenities, limit, offset);
     print(response);
 } on DioException catch (e) {
     print('Exception when calling ProvidersStayApi->providersStayListStayUnits: $e\n');
@@ -186,7 +186,7 @@ Name | Type | Description  | Notes
  **providerId** | **String**|  | 
  **minPrice** | **int**|  | [optional] 
  **maxPrice** | **int**|  | [optional] 
- **amenity** | **String**|  | [optional] 
+ **amenities** | [**BuiltList&lt;String&gt;**](String.md)|  | [optional] 
  **limit** | **int**|  | [optional] [default to 100]
  **offset** | **int**|  | [optional] [default to 0]
 

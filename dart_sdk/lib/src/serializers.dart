@@ -155,6 +155,10 @@ Serializers serializers = (_$serializers.toBuilder()
         () => ListBuilder<AgencyStaffPublic>(),
       )
       ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(String)]),
+        () => ListBuilder<String>(),
+      )
+      ..addBuilderFactory(
         const FullType(BuiltMap, [FullType(String), FullType(JsonObject)]),
         () => MapBuilder<String, JsonObject>(),
       )

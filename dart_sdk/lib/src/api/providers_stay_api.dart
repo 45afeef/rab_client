@@ -8,6 +8,7 @@ import 'package:built_value/json_object.dart';
 import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
+import 'package:built_collection/built_collection.dart';
 import 'package:rab_dio/src/api_util.dart';
 import 'package:rab_dio/src/model/http_validation_error.dart';
 import 'package:rab_dio/src/model/stay_amenities_list.dart';
@@ -320,7 +321,7 @@ class ProvidersStayApi {
   /// * [providerId] 
   /// * [minPrice] 
   /// * [maxPrice] 
-  /// * [amenity] 
+  /// * [amenities] 
   /// * [limit] 
   /// * [offset] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -336,7 +337,7 @@ class ProvidersStayApi {
     required String providerId,
     int? minPrice,
     int? maxPrice,
-    String? amenity,
+    BuiltList<String>? amenities,
     int? limit = 100,
     int? offset = 0,
     CancelToken? cancelToken,
@@ -367,7 +368,7 @@ class ProvidersStayApi {
     final _queryParameters = <String, dynamic>{
       r'min_price': encodeQueryParameter(_serializers, minPrice, const FullType(int)),
       r'max_price': encodeQueryParameter(_serializers, maxPrice, const FullType(int)),
-      r'amenity': encodeQueryParameter(_serializers, amenity, const FullType(String)),
+      r'amenities': encodeCollectionQueryParameter<String>(_serializers, amenities, const FullType(BuiltList, [FullType(String)]), format: ListFormat.multi,),
       if (limit != null) r'limit': encodeQueryParameter(_serializers, limit, const FullType(int)),
       if (offset != null) r'offset': encodeQueryParameter(_serializers, offset, const FullType(int)),
     };
