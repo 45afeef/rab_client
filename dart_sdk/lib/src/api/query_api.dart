@@ -30,7 +30,7 @@ class QueryApi {
   /// * [providerId] 
   /// * [minPrice] 
   /// * [maxPrice] 
-  /// * [amenity] 
+  /// * [amenities] 
   /// * [limit] 
   /// * [offset] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -46,7 +46,7 @@ class QueryApi {
     String? providerId,
     int? minPrice,
     int? maxPrice,
-    String? amenity,
+    BuiltList<String>? amenities,
     int? limit = 100,
     int? offset = 0,
     CancelToken? cancelToken,
@@ -78,7 +78,7 @@ class QueryApi {
       r'provider_id': encodeQueryParameter(_serializers, providerId, const FullType(String)),
       r'min_price': encodeQueryParameter(_serializers, minPrice, const FullType(int)),
       r'max_price': encodeQueryParameter(_serializers, maxPrice, const FullType(int)),
-      r'amenity': encodeQueryParameter(_serializers, amenity, const FullType(String)),
+      r'amenities': encodeCollectionQueryParameter<String>(_serializers, amenities, const FullType(BuiltList, [FullType(String)]), format: ListFormat.multi,),
       if (limit != null) r'limit': encodeQueryParameter(_serializers, limit, const FullType(int)),
       if (offset != null) r'offset': encodeQueryParameter(_serializers, offset, const FullType(int)),
     };

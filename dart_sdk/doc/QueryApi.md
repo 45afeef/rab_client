@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 
 # **queryListStayUnits**
-> UnitsList queryListStayUnits(providerId, minPrice, maxPrice, amenity, limit, offset)
+> UnitsList queryListStayUnits(providerId, minPrice, maxPrice, amenities, limit, offset)
 
 List Stay Units
 
@@ -32,12 +32,12 @@ final api = RabDio().getQueryApi();
 final String providerId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
 final int minPrice = 56; // int | 
 final int maxPrice = 56; // int | 
-final String amenity = amenity_example; // String | 
+final BuiltList<String> amenities = ; // BuiltList<String> | 
 final int limit = 56; // int | 
 final int offset = 56; // int | 
 
 try {
-    final response = api.queryListStayUnits(providerId, minPrice, maxPrice, amenity, limit, offset);
+    final response = api.queryListStayUnits(providerId, minPrice, maxPrice, amenities, limit, offset);
     print(response);
 } on DioException catch (e) {
     print('Exception when calling QueryApi->queryListStayUnits: $e\n');
@@ -51,7 +51,7 @@ Name | Type | Description  | Notes
  **providerId** | **String**|  | [optional] 
  **minPrice** | **int**|  | [optional] 
  **maxPrice** | **int**|  | [optional] 
- **amenity** | **String**|  | [optional] 
+ **amenities** | [**BuiltList&lt;String&gt;**](String.md)|  | [optional] 
  **limit** | **int**|  | [optional] [default to 100]
  **offset** | **int**|  | [optional] [default to 0]
 

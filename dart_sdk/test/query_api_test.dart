@@ -11,7 +11,7 @@ void main() {
     //
     // Agency staff: list available stay units with filtering and pagination.
     //
-    //Future<UnitsList> queryListStayUnits({ String providerId, int minPrice, int maxPrice, String amenity, int limit, int offset }) async
+    //Future<UnitsList> queryListStayUnits({ String providerId, int minPrice, int maxPrice, BuiltList<String> amenities, int limit, int offset }) async
     test('test queryListStayUnits', () async {
       // TODO
     });
