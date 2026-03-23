@@ -335,7 +335,7 @@ class ProvidersStayApi {
   /// Throws [DioException] if API call or serialization fails
   Future<Response<UnitsList>> providersStayListStayUnits({ 
     required String providerId,
-    int? minPrice,
+    int? minPrice = 0,
     int? maxPrice,
     BuiltList<String>? amenities,
     int? limit = 100,
@@ -366,9 +366,9 @@ class ProvidersStayApi {
     );
 
     final _queryParameters = <String, dynamic>{
-      r'min_price': encodeQueryParameter(_serializers, minPrice, const FullType(int)),
-      r'max_price': encodeQueryParameter(_serializers, maxPrice, const FullType(int)),
-      r'amenities': encodeCollectionQueryParameter<String>(_serializers, amenities, const FullType(BuiltList, [FullType(String)]), format: ListFormat.multi,),
+      if (minPrice != null) r'min_price': encodeQueryParameter(_serializers, minPrice, const FullType(int)),
+      if (maxPrice != null) r'max_price': encodeQueryParameter(_serializers, maxPrice, const FullType(int)),
+      if (amenities != null) r'amenities': encodeCollectionQueryParameter<String>(_serializers, amenities, const FullType(BuiltList, [FullType(String)]), format: ListFormat.multi,),
       if (limit != null) r'limit': encodeQueryParameter(_serializers, limit, const FullType(int)),
       if (offset != null) r'offset': encodeQueryParameter(_serializers, offset, const FullType(int)),
     };

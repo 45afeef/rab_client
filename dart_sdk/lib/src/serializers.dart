@@ -139,10 +139,6 @@ Serializers serializers = (_$serializers.toBuilder()
         () => ListBuilder<DriverPublic>(),
       )
       ..addBuilderFactory(
-        const FullType(BuiltList, [FullType.nullable(String)]),
-        () => ListBuilder<String>(),
-      )
-      ..addBuilderFactory(
         const FullType(BuiltList, [FullType(ResponseProvidersListProvidersInner)]),
         () => ListBuilder<ResponseProvidersListProvidersInner>(),
       )

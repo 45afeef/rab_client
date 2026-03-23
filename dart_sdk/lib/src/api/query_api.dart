@@ -75,10 +75,10 @@ class QueryApi {
     );
 
     final _queryParameters = <String, dynamic>{
-      r'provider_id': encodeQueryParameter(_serializers, providerId, const FullType(String)),
-      r'min_price': encodeQueryParameter(_serializers, minPrice, const FullType(int)),
-      r'max_price': encodeQueryParameter(_serializers, maxPrice, const FullType(int)),
-      r'amenities': encodeCollectionQueryParameter<String>(_serializers, amenities, const FullType(BuiltList, [FullType(String)]), format: ListFormat.multi,),
+      if (providerId != null) r'provider_id': encodeQueryParameter(_serializers, providerId, const FullType(String)),
+      if (minPrice != null) r'min_price': encodeQueryParameter(_serializers, minPrice, const FullType(int)),
+      if (maxPrice != null) r'max_price': encodeQueryParameter(_serializers, maxPrice, const FullType(int)),
+      if (amenities != null) r'amenities': encodeCollectionQueryParameter<String>(_serializers, amenities, const FullType(BuiltList, [FullType(String)]), format: ListFormat.multi,),
       if (limit != null) r'limit': encodeQueryParameter(_serializers, limit, const FullType(int)),
       if (offset != null) r'offset': encodeQueryParameter(_serializers, offset, const FullType(int)),
     };
@@ -172,10 +172,10 @@ class QueryApi {
     );
 
     final _queryParameters = <String, dynamic>{
-      r'provider_id': encodeQueryParameter(_serializers, providerId, const FullType(String)),
-      r'vehicle_type': encodeQueryParameter(_serializers, vehicleType, const FullType(VehicleType)),
-      r'lat': encodeQueryParameter(_serializers, lat, const FullType(num)),
-      r'lon': encodeQueryParameter(_serializers, lon, const FullType(num)),
+      if (providerId != null) r'provider_id': encodeQueryParameter(_serializers, providerId, const FullType(String)),
+      if (vehicleType != null) r'vehicle_type': encodeQueryParameter(_serializers, vehicleType, const FullType(VehicleType)),
+      if (lat != null) r'lat': encodeQueryParameter(_serializers, lat, const FullType(num)),
+      if (lon != null) r'lon': encodeQueryParameter(_serializers, lon, const FullType(num)),
       if (radiusKm != null) r'radius_km': encodeQueryParameter(_serializers, radiusKm, const FullType(num)),
       if (limit != null) r'limit': encodeQueryParameter(_serializers, limit, const FullType(int)),
       if (offset != null) r'offset': encodeQueryParameter(_serializers, offset, const FullType(int)),
@@ -268,9 +268,9 @@ class QueryApi {
     );
 
     final _queryParameters = <String, dynamic>{
-      r'provider_id': encodeQueryParameter(_serializers, providerId, const FullType(String)),
-      r'lat': encodeQueryParameter(_serializers, lat, const FullType(num)),
-      r'lon': encodeQueryParameter(_serializers, lon, const FullType(num)),
+      if (providerId != null) r'provider_id': encodeQueryParameter(_serializers, providerId, const FullType(String)),
+      if (lat != null) r'lat': encodeQueryParameter(_serializers, lat, const FullType(num)),
+      if (lon != null) r'lon': encodeQueryParameter(_serializers, lon, const FullType(num)),
       if (radiusKm != null) r'radius_km': encodeQueryParameter(_serializers, radiusKm, const FullType(num)),
       if (limit != null) r'limit': encodeQueryParameter(_serializers, limit, const FullType(int)),
       if (offset != null) r'offset': encodeQueryParameter(_serializers, offset, const FullType(int)),
@@ -377,9 +377,9 @@ class QueryApi {
       r'lat': encodeQueryParameter(_serializers, lat, const FullType(num)),
       r'lon': encodeQueryParameter(_serializers, lon, const FullType(num)),
       if (radiusKm != null) r'radius_km': encodeQueryParameter(_serializers, radiusKm, const FullType(num)),
-      r'amenity': encodeQueryParameter(_serializers, amenity, const FullType(String)),
-      r'min_price': encodeQueryParameter(_serializers, minPrice, const FullType(int)),
-      r'max_price': encodeQueryParameter(_serializers, maxPrice, const FullType(int)),
+      if (amenity != null) r'amenity': encodeQueryParameter(_serializers, amenity, const FullType(String)),
+      if (minPrice != null) r'min_price': encodeQueryParameter(_serializers, minPrice, const FullType(int)),
+      if (maxPrice != null) r'max_price': encodeQueryParameter(_serializers, maxPrice, const FullType(int)),
       if (sortByDistance != null) r'sort_by_distance': encodeQueryParameter(_serializers, sortByDistance, const FullType(bool)),
       if (limit != null) r'limit': encodeQueryParameter(_serializers, limit, const FullType(int)),
       if (offset != null) r'offset': encodeQueryParameter(_serializers, offset, const FullType(int)),

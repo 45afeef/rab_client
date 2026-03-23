@@ -184,7 +184,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **providerId** | **String**|  | 
- **minPrice** | **int**|  | [optional] 
+ **minPrice** | **int**|  | [optional] [default to 0]
  **maxPrice** | **int**|  | [optional] 
  **amenities** | [**BuiltList&lt;String&gt;**](String.md)|  | [optional] 
  **limit** | **int**|  | [optional] [default to 100]
