@@ -42,5 +42,15 @@ void main() {
       // TODO
     });
 
+    // int optimalOccupancy
+    test('to test the property `optimalOccupancy`', () async {
+      // TODO
+    });
+
+    // int maxOccupancy
+    test('to test the property `maxOccupancy`', () async {
+      // TODO
+    });
+
   });
 }

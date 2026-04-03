@@ -21,6 +21,8 @@ part 'response_providers_list_providers_inner.g.dart';
 /// * [locationId] 
 /// * [propertyType] 
 /// * [roomCount] 
+/// * [optimalOccupancy] 
+/// * [maxOccupancy] 
 @BuiltValue()
 abstract class ResponseProvidersListProvidersInner implements Built<ResponseProvidersListProvidersInner, ResponseProvidersListProvidersInnerBuilder> {
   /// Any Of [CabProviderPublic], [StayProviderPublic]

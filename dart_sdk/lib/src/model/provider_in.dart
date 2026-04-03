@@ -22,6 +22,8 @@ part 'provider_in.g.dart';
 /// * [providerType] 
 /// * [propertyType] 
 /// * [roomCount] 
+/// * [optimalOccupancy] 
+/// * [maxOccupancy] 
 @BuiltValue()
 abstract class ProviderIn implements Built<ProviderIn, ProviderInBuilder> {
   /// Any Of [CabProviderCreate], [StayProviderCreate]

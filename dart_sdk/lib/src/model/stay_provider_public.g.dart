@@ -71,6 +71,10 @@ class _$StayProviderPublic extends StayProviderPublic {
   final String? propertyType;
   @override
   final int? roomCount;
+  @override
+  final int? optimalOccupancy;
+  @override
+  final int? maxOccupancy;
 
   factory _$StayProviderPublic(
           [void Function(StayProviderPublicBuilder)? updates]) =>
@@ -82,7 +86,9 @@ class _$StayProviderPublic extends StayProviderPublic {
       required this.providerType,
       this.locationId,
       this.propertyType,
-      this.roomCount})
+      this.roomCount,
+      this.optimalOccupancy,
+      this.maxOccupancy})
       : super._();
   @override
   StayProviderPublic rebuild(
@@ -102,7 +108,9 @@ class _$StayProviderPublic extends StayProviderPublic {
         providerType == other.providerType &&
         locationId == other.locationId &&
         propertyType == other.propertyType &&
-        roomCount == other.roomCount;
+        roomCount == other.roomCount &&
+        optimalOccupancy == other.optimalOccupancy &&
+        maxOccupancy == other.maxOccupancy;
   }
 
   @override
@@ -114,6 +122,8 @@ class _$StayProviderPublic extends StayProviderPublic {
     _$hash = $jc(_$hash, locationId.hashCode);
     _$hash = $jc(_$hash, propertyType.hashCode);
     _$hash = $jc(_$hash, roomCount.hashCode);
+    _$hash = $jc(_$hash, optimalOccupancy.hashCode);
+    _$hash = $jc(_$hash, maxOccupancy.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -126,7 +136,9 @@ class _$StayProviderPublic extends StayProviderPublic {
           ..add('providerType', providerType)
           ..add('locationId', locationId)
           ..add('propertyType', propertyType)
-          ..add('roomCount', roomCount))
+          ..add('roomCount', roomCount)
+          ..add('optimalOccupancy', optimalOccupancy)
+          ..add('maxOccupancy', maxOccupancy))
         .toString();
   }
 }
@@ -160,6 +172,15 @@ class StayProviderPublicBuilder
   int? get roomCount => _$this._roomCount;
   set roomCount(int? roomCount) => _$this._roomCount = roomCount;
 
+  int? _optimalOccupancy;
+  int? get optimalOccupancy => _$this._optimalOccupancy;
+  set optimalOccupancy(int? optimalOccupancy) =>
+      _$this._optimalOccupancy = optimalOccupancy;
+
+  int? _maxOccupancy;
+  int? get maxOccupancy => _$this._maxOccupancy;
+  set maxOccupancy(int? maxOccupancy) => _$this._maxOccupancy = maxOccupancy;
+
   StayProviderPublicBuilder() {
     StayProviderPublic._defaults(this);
   }
@@ -173,6 +194,8 @@ class StayProviderPublicBuilder
       _locationId = $v.locationId;
       _propertyType = $v.propertyType;
       _roomCount = $v.roomCount;
+      _optimalOccupancy = $v.optimalOccupancy;
+      _maxOccupancy = $v.maxOccupancy;
       _$v = null;
     }
     return this;
@@ -203,6 +226,8 @@ class StayProviderPublicBuilder
           locationId: locationId,
           propertyType: propertyType,
           roomCount: roomCount,
+          optimalOccupancy: optimalOccupancy,
+          maxOccupancy: maxOccupancy,
         );
     replace(_$result);
     return _$result;

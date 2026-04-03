@@ -21,6 +21,8 @@ part 'response_providers_create_provider.g.dart';
 /// * [locationId] 
 /// * [propertyType] 
 /// * [roomCount] 
+/// * [optimalOccupancy] 
+/// * [maxOccupancy] 
 @BuiltValue()
 abstract class ResponseProvidersCreateProvider implements Built<ResponseProvidersCreateProvider, ResponseProvidersCreateProviderBuilder> {
   /// Any Of [CabProviderPublic], [StayProviderPublic]

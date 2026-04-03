@@ -30,7 +30,7 @@ void main() {
 
     // List Stay Units
     //
-    //Future<UnitsList> providersStayListStayUnits(String providerId, { int minPrice, int maxPrice, BuiltList<String> amenities, int limit, int offset }) async
+    //Future<UnitsList> providersStayListStayUnits(String providerId, { int minPrice, int maxPrice, int paxCount, BuiltList<String> amenities, int limit, int offset }) async
     test('test providersStayListStayUnits', () async {
       // TODO
     });

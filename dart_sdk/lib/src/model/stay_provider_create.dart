@@ -19,6 +19,8 @@ part 'stay_provider_create.g.dart';
 /// * [providerType] 
 /// * [propertyType] 
 /// * [roomCount] 
+/// * [optimalOccupancy] 
+/// * [maxOccupancy] 
 @BuiltValue()
 abstract class StayProviderCreate implements Built<StayProviderCreate, StayProviderCreateBuilder> {
   @BuiltValueField(wireName: r'provider_name')
@@ -42,6 +44,12 @@ abstract class StayProviderCreate implements Built<StayProviderCreate, StayProvi
 
   @BuiltValueField(wireName: r'room_count')
   int? get roomCount;
+
+  @BuiltValueField(wireName: r'optimal_occupancy')
+  int? get optimalOccupancy;
+
+  @BuiltValueField(wireName: r'max_occupancy')
+  int? get maxOccupancy;
 
   StayProviderCreate._();
 
@@ -104,6 +112,20 @@ class _$StayProviderCreateSerializer implements PrimitiveSerializer<StayProvider
       yield r'room_count';
       yield serializers.serialize(
         object.roomCount,
+        specifiedType: const FullType.nullable(int),
+      );
+    }
+    if (object.optimalOccupancy != null) {
+      yield r'optimal_occupancy';
+      yield serializers.serialize(
+        object.optimalOccupancy,
+        specifiedType: const FullType.nullable(int),
+      );
+    }
+    if (object.maxOccupancy != null) {
+      yield r'max_occupancy';
+      yield serializers.serialize(
+        object.maxOccupancy,
         specifiedType: const FullType.nullable(int),
       );
     }
@@ -181,6 +203,22 @@ class _$StayProviderCreateSerializer implements PrimitiveSerializer<StayProvider
           ) as int?;
           if (valueDes == null) continue;
           result.roomCount = valueDes;
+          break;
+        case r'optimal_occupancy':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
+          result.optimalOccupancy = valueDes;
+          break;
+        case r'max_occupancy':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
+          result.maxOccupancy = valueDes;
           break;
         default:
           unhandled.add(key);

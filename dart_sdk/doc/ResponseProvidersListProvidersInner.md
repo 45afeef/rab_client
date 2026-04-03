@@ -14,6 +14,8 @@ Name | Type | Description | Notes
 **locationId** | **String** |  | [optional] 
 **propertyType** | **String** |  | [optional] 
 **roomCount** | **int** |  | [optional] 
+**optimalOccupancy** | **int** |  | [optional] 
+**maxOccupancy** | **int** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
