@@ -17,7 +17,7 @@ Method | HTTP request | Description
 
 
 # **queryListStayProviders**
-> BuiltMap<String, JsonObject> queryListStayProviders(locationId, minPrice, maxPrice, paxCount, amenities, minRating, limit, offset)
+> PublicStayProviderList queryListStayProviders(locationId, minPrice, maxPrice, paxCount, amenities, minRating, limit, offset)
 
 List Stay Providers
 
@@ -62,7 +62,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**BuiltMap&lt;String, JsonObject&gt;**](JsonObject.md)
+[**PublicStayProviderList**](PublicStayProviderList.md)
 
 ### Authorization
 

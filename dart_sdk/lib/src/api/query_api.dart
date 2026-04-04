@@ -12,6 +12,7 @@ import 'package:built_collection/built_collection.dart';
 import 'package:built_value/json_object.dart';
 import 'package:rab_dio/src/api_util.dart';
 import 'package:rab_dio/src/model/http_validation_error.dart';
+import 'package:rab_dio/src/model/public_stay_provider_list.dart';
 import 'package:rab_dio/src/model/units_list.dart';
 import 'package:rab_dio/src/model/vehicle_type.dart';
 
@@ -42,9 +43,9 @@ class QueryApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future] containing a [Response] with a [BuiltMap<String, JsonObject>] as data
+  /// Returns a [Future] containing a [Response] with a [PublicStayProviderList] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BuiltMap<String, JsonObject>>> queryListStayProviders({ 
+  Future<Response<PublicStayProviderList>> queryListStayProviders({ 
     String? locationId,
     int? minPrice,
     int? maxPrice,
@@ -98,14 +99,14 @@ class QueryApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    BuiltMap<String, JsonObject>? _responseData;
+    PublicStayProviderList? _responseData;
 
     try {
       final rawResponse = _response.data;
       _responseData = rawResponse == null ? null : _serializers.deserialize(
         rawResponse,
-        specifiedType: const FullType(BuiltMap, [FullType(String), FullType(JsonObject)]),
-      ) as BuiltMap<String, JsonObject>;
+        specifiedType: const FullType(PublicStayProviderList),
+      ) as PublicStayProviderList;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -117,7 +118,7 @@ class QueryApi {
       );
     }
 
-    return Response<BuiltMap<String, JsonObject>>(
+    return Response<PublicStayProviderList>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,

@@ -151,6 +151,7 @@ Class | Method | HTTP request | Description
  - [ProfilePublic](doc/ProfilePublic.md)
  - [ProfileUpdate](doc/ProfileUpdate.md)
  - [ProviderIn](doc/ProviderIn.md)
+ - [PublicStayProviderList](doc/PublicStayProviderList.md)
  - [ResponseProvidersCreateProvider](doc/ResponseProvidersCreateProvider.md)
  - [ResponseProvidersGetProvider](doc/ResponseProvidersGetProvider.md)
  - [ResponseProvidersListProvidersInner](doc/ResponseProvidersListProvidersInner.md)

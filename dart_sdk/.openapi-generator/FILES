@@ -41,6 +41,7 @@ doc/ProviderIn.md
 doc/ProvidersApi.md
 doc/ProvidersCabApi.md
 doc/ProvidersStayApi.md
+doc/PublicStayProviderList.md
 doc/QueryApi.md
 doc/ResponseProvidersCreateProvider.md
 doc/ResponseProvidersGetProvider.md
@@ -118,6 +119,7 @@ lib/src/model/profile_create.dart
 lib/src/model/profile_public.dart
 lib/src/model/profile_update.dart
 lib/src/model/provider_in.dart
+lib/src/model/public_stay_provider_list.dart
 lib/src/model/response_providers_create_provider.dart
 lib/src/model/response_providers_get_provider.dart
 lib/src/model/response_providers_list_providers_inner.dart
@@ -181,6 +183,7 @@ test/provider_in_test.dart
 test/providers_api_test.dart
 test/providers_cab_api_test.dart
 test/providers_stay_api_test.dart
+test/public_stay_provider_list_test.dart
 test/query_api_test.dart
 test/response_providers_create_provider_test.dart
 test/response_providers_get_provider_test.dart

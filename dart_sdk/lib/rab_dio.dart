@@ -53,6 +53,7 @@ export 'package:rab_dio/src/model/profile_create.dart';
 export 'package:rab_dio/src/model/profile_public.dart';
 export 'package:rab_dio/src/model/profile_update.dart';
 export 'package:rab_dio/src/model/provider_in.dart';
+export 'package:rab_dio/src/model/public_stay_provider_list.dart';
 export 'package:rab_dio/src/model/response_providers_create_provider.dart';
 export 'package:rab_dio/src/model/response_providers_get_provider.dart';
 export 'package:rab_dio/src/model/response_providers_list_providers_inner.dart';

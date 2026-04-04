@@ -45,6 +45,7 @@ import 'package:rab_dio/src/model/profile_create.dart';
 import 'package:rab_dio/src/model/profile_public.dart';
 import 'package:rab_dio/src/model/profile_update.dart';
 import 'package:rab_dio/src/model/provider_in.dart';
+import 'package:rab_dio/src/model/public_stay_provider_list.dart';
 import 'package:rab_dio/src/model/response_providers_create_provider.dart';
 import 'package:rab_dio/src/model/response_providers_get_provider.dart';
 import 'package:rab_dio/src/model/response_providers_list_providers_inner.dart';
@@ -102,6 +103,7 @@ part 'serializers.g.dart';
   ProfilePublic,
   ProfileUpdate,
   ProviderIn,
+  PublicStayProviderList,
   ResponseProvidersCreateProvider,
   ResponseProvidersGetProvider,
   ResponseProvidersListProvidersInner,

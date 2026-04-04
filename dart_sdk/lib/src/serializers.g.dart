@@ -40,6 +40,7 @@ Serializers _$serializers = (Serializers().toBuilder()
       ..add(ProfilePublic.serializer)
       ..add(ProfileUpdate.serializer)
       ..add(ProviderIn.serializer)
+      ..add(PublicStayProviderList.serializer)
       ..add(ResponseProvidersCreateProvider.serializer)
       ..add(ResponseProvidersGetProvider.serializer)
       ..add(ResponseProvidersListProvidersInner.serializer)
@@ -80,6 +81,9 @@ Serializers _$serializers = (Serializers().toBuilder()
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(StayAmenityPublic)]),
           () => ListBuilder<StayAmenityPublic>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(StayProviderPublic)]),
+          () => ListBuilder<StayProviderPublic>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(StayUnitPublic)]),
           () => ListBuilder<StayUnitPublic>())
