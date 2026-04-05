@@ -133,11 +133,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **queryQueryCabs**
-> BuiltMap<String, JsonObject> queryQueryCabs(providerId, vehicleType, lat, lon, radiusKm, limit, offset)
+> CabsList queryQueryCabs(providerId, vehicleType, lat, lon, radiusKm, minCapacity, maxCapacity, minMinimumRate, maxMinimumRate, minPerKmRate, maxPerKmRate, minKmForMinimumRate, maxKmForMinimumRate, limit, offset)
 
 Query Cabs
 
-Query cabs with optional vehicle type and location-based provider filtering.  **Authorization**: Public (no authentication required).  **Filtering Logic**: - `provider_id`: Filter to a specific provider's cabs - `vehicle_type`: Filter by vehicle type string (e.g., SEDAN, SUV, HATCHBACK, etc.) - `lat` + `lon`: Geographic search. If both provided:   - Uses bounding box around (lat, lon) with radius_km to find nearby providers   - Returns cabs from those nearby providers (not a haversine distance to individual cabs) - `radius_km`: Controls the search radius when lat/lon are provided (default 5km)  **Location-Based Search Note**:  This is a provider-level filter using provider location, not individual cab location. The bbox algorithm is fast but approximate (±0.1° accuracy per 11km).  **Response**: `{ data: List[CabPublic], count: int }`
+Query cabs with optional vehicle type, location-based provider filtering, and capacity/rate filters.  **Authorization**: Public (no authentication required).  **Filtering Logic**: - `provider_id`: Filter to a specific provider's cabs - `vehicle_type`: Filter by vehicle type string (e.g., SEDAN, SUV, HATCHBACK, etc.) - `lat` + `lon`: Geographic search. If both provided:   - Uses bounding box around (lat, lon) with radius_km to find nearby providers   - Returns cabs from those nearby providers (not a haversine distance to individual cabs) - `radius_km`: Controls the search radius when lat/lon are provided (default 5km) - `min_capacity` / `max_capacity`: Filter by passenger capacity (inclusive bounds) - `min_minimum_rate` / `max_minimum_rate`: Filter by minimum rate (inclusive bounds) - `min_per_km_rate` / `max_per_km_rate`: Filter by per km rate (inclusive bounds) - `min_km_for_minimum_rate` / `max_km_for_minimum_rate`: Filter by km for minimum rate (inclusive bounds)  **Location-Based Search Note**:  This is a provider-level filter using provider location, not individual cab location. The bbox algorithm is fast but approximate (±0.1° accuracy per 11km).  **Response**: `{ data: List[CabPublic], count: int }`
 
 ### Example
 ```dart
@@ -149,11 +149,19 @@ final VehicleType vehicleType = ; // VehicleType | Filter by vehicle type (e.g.,
 final num lat = 8.14; // num | Latitude: if provided with lon, filters cabs by provider location
 final num lon = 8.14; // num | Longitude: if provided with lat, filters cabs by provider location
 final num radiusKm = 8.14; // num | Search radius in kilometers (used with lat/lon)
+final int minCapacity = 56; // int | Minimum passenger capacity filter
+final int maxCapacity = 56; // int | Maximum passenger capacity filter
+final int minMinimumRate = 56; // int | Minimum minimum rate filter
+final int maxMinimumRate = 56; // int | Maximum minimum rate filter
+final int minPerKmRate = 56; // int | Minimum per km rate filter
+final int maxPerKmRate = 56; // int | Maximum per km rate filter
+final int minKmForMinimumRate = 56; // int | Minimum km for minimum rate filter
+final int maxKmForMinimumRate = 56; // int | Maximum km for minimum rate filter
 final int limit = 56; // int | Max results per page
 final int offset = 56; // int | Results to skip (pagination)
 
 try {
-    final response = api.queryQueryCabs(providerId, vehicleType, lat, lon, radiusKm, limit, offset);
+    final response = api.queryQueryCabs(providerId, vehicleType, lat, lon, radiusKm, minCapacity, maxCapacity, minMinimumRate, maxMinimumRate, minPerKmRate, maxPerKmRate, minKmForMinimumRate, maxKmForMinimumRate, limit, offset);
     print(response);
 } on DioException catch (e) {
     print('Exception when calling QueryApi->queryQueryCabs: $e\n');
@@ -169,12 +177,20 @@ Name | Type | Description  | Notes
  **lat** | **num**| Latitude: if provided with lon, filters cabs by provider location | [optional] 
  **lon** | **num**| Longitude: if provided with lat, filters cabs by provider location | [optional] 
  **radiusKm** | **num**| Search radius in kilometers (used with lat/lon) | [optional] [default to 5.0]
+ **minCapacity** | **int**| Minimum passenger capacity filter | [optional] 
+ **maxCapacity** | **int**| Maximum passenger capacity filter | [optional] 
+ **minMinimumRate** | **int**| Minimum minimum rate filter | [optional] 
+ **maxMinimumRate** | **int**| Maximum minimum rate filter | [optional] 
+ **minPerKmRate** | **int**| Minimum per km rate filter | [optional] 
+ **maxPerKmRate** | **int**| Maximum per km rate filter | [optional] 
+ **minKmForMinimumRate** | **int**| Minimum km for minimum rate filter | [optional] 
+ **maxKmForMinimumRate** | **int**| Maximum km for minimum rate filter | [optional] 
  **limit** | **int**| Max results per page | [optional] [default to 100]
  **offset** | **int**| Results to skip (pagination) | [optional] [default to 0]
 
 ### Return type
 
-[**BuiltMap&lt;String, JsonObject&gt;**](JsonObject.md)
+[**CabsList**](CabsList.md)
 
 ### Authorization
 
@@ -188,11 +204,11 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **queryQueryDrivers**
-> BuiltMap<String, JsonObject> queryQueryDrivers(providerId, lat, lon, radiusKm, limit, offset)
+> DriversList queryQueryDrivers(providerId, lat, lon, radiusKm, minCapacity, limit, offset)
 
 Query Drivers
 
-Query drivers with optional location-based provider filtering.  **Authorization**: Public (no authentication required).  **Filtering Logic**: - `provider_id`: Filter to a specific provider's drivers - `lat` + `lon`: Geographic search. If both provided:   - Uses bounding box around (lat, lon) with radius_km to find nearby providers   - Returns drivers from those nearby providers - `radius_km`: Controls the search radius when lat/lon are provided (default 5km)  **Response**: `{ data: List[DriverPublic], count: int }`
+Query drivers with optional location-based provider filtering and capacity filtering.  **Authorization**: Public (no authentication required).  **Filtering Logic**: - `provider_id`: Filter to a specific provider's drivers - `lat` + `lon`: Geographic search. If both provided:   - Uses bounding box around (lat, lon) with radius_km to find nearby providers   - Returns drivers from those nearby providers - `radius_km`: Controls the search radius when lat/lon are provided (default 5km) - `min_capacity`: Filter drivers who have at least one cab with capacity >= min_capacity  **Response**: `{ data: List[DriverPublic], count: int }`
 
 ### Example
 ```dart
@@ -203,11 +219,12 @@ final String providerId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | Filt
 final num lat = 8.14; // num | Latitude: if provided with lon, filters drivers by provider location
 final num lon = 8.14; // num | Longitude: if provided with lat, filters drivers by provider location
 final num radiusKm = 8.14; // num | Search radius in kilometers (used with lat/lon)
+final int minCapacity = 56; // int | Minimum capacity of associated cabs filter
 final int limit = 56; // int | Max results per page
 final int offset = 56; // int | Results to skip (pagination)
 
 try {
-    final response = api.queryQueryDrivers(providerId, lat, lon, radiusKm, limit, offset);
+    final response = api.queryQueryDrivers(providerId, lat, lon, radiusKm, minCapacity, limit, offset);
     print(response);
 } on DioException catch (e) {
     print('Exception when calling QueryApi->queryQueryDrivers: $e\n');
@@ -222,12 +239,13 @@ Name | Type | Description  | Notes
  **lat** | **num**| Latitude: if provided with lon, filters drivers by provider location | [optional] 
  **lon** | **num**| Longitude: if provided with lat, filters drivers by provider location | [optional] 
  **radiusKm** | **num**| Search radius in kilometers (used with lat/lon) | [optional] [default to 5.0]
+ **minCapacity** | **int**| Minimum capacity of associated cabs filter | [optional] 
  **limit** | **int**| Max results per page | [optional] [default to 100]
  **offset** | **int**| Results to skip (pagination) | [optional] [default to 0]
 
 ### Return type
 
-[**BuiltMap&lt;String, JsonObject&gt;**](JsonObject.md)
+[**DriversList**](DriversList.md)
 
 ### Authorization
 

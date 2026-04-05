@@ -28,8 +28,10 @@ Serializers _$serializers = (Serializers().toBuilder()
       ..add(CabProviderPublic.serializer)
       ..add(CabProviderPublicProviderTypeEnum.serializer)
       ..add(CabPublic.serializer)
+      ..add(CabsList.serializer)
       ..add(DriverCreate.serializer)
       ..add(DriverPublic.serializer)
+      ..add(DriversList.serializer)
       ..add(HTTPValidationError.serializer)
       ..add(LocationInner.serializer)
       ..add(Message.serializer)
@@ -75,6 +77,12 @@ Serializers _$serializers = (Serializers().toBuilder()
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(BookingStayCreate)]),
           () => ListBuilder<BookingStayCreate>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(CabPublic)]),
+          () => ListBuilder<CabPublic>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(DriverPublic)]),
+          () => ListBuilder<DriverPublic>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(LocationInner)]),
           () => ListBuilder<LocationInner>())

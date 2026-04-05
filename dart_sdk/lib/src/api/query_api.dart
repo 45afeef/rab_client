@@ -9,8 +9,9 @@ import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
 import 'package:built_collection/built_collection.dart';
-import 'package:built_value/json_object.dart';
 import 'package:rab_dio/src/api_util.dart';
+import 'package:rab_dio/src/model/cabs_list.dart';
+import 'package:rab_dio/src/model/drivers_list.dart';
 import 'package:rab_dio/src/model/http_validation_error.dart';
 import 'package:rab_dio/src/model/public_stay_provider_list.dart';
 import 'package:rab_dio/src/model/units_list.dart';
@@ -234,7 +235,7 @@ class QueryApi {
   }
 
   /// Query Cabs
-  /// Query cabs with optional vehicle type and location-based provider filtering.  **Authorization**: Public (no authentication required).  **Filtering Logic**: - &#x60;provider_id&#x60;: Filter to a specific provider&#39;s cabs - &#x60;vehicle_type&#x60;: Filter by vehicle type string (e.g., SEDAN, SUV, HATCHBACK, etc.) - &#x60;lat&#x60; + &#x60;lon&#x60;: Geographic search. If both provided:   - Uses bounding box around (lat, lon) with radius_km to find nearby providers   - Returns cabs from those nearby providers (not a haversine distance to individual cabs) - &#x60;radius_km&#x60;: Controls the search radius when lat/lon are provided (default 5km)  **Location-Based Search Note**:  This is a provider-level filter using provider location, not individual cab location. The bbox algorithm is fast but approximate (±0.1° accuracy per 11km).  **Response**: &#x60;{ data: List[CabPublic], count: int }&#x60;
+  /// Query cabs with optional vehicle type, location-based provider filtering, and capacity/rate filters.  **Authorization**: Public (no authentication required).  **Filtering Logic**: - &#x60;provider_id&#x60;: Filter to a specific provider&#39;s cabs - &#x60;vehicle_type&#x60;: Filter by vehicle type string (e.g., SEDAN, SUV, HATCHBACK, etc.) - &#x60;lat&#x60; + &#x60;lon&#x60;: Geographic search. If both provided:   - Uses bounding box around (lat, lon) with radius_km to find nearby providers   - Returns cabs from those nearby providers (not a haversine distance to individual cabs) - &#x60;radius_km&#x60;: Controls the search radius when lat/lon are provided (default 5km) - &#x60;min_capacity&#x60; / &#x60;max_capacity&#x60;: Filter by passenger capacity (inclusive bounds) - &#x60;min_minimum_rate&#x60; / &#x60;max_minimum_rate&#x60;: Filter by minimum rate (inclusive bounds) - &#x60;min_per_km_rate&#x60; / &#x60;max_per_km_rate&#x60;: Filter by per km rate (inclusive bounds) - &#x60;min_km_for_minimum_rate&#x60; / &#x60;max_km_for_minimum_rate&#x60;: Filter by km for minimum rate (inclusive bounds)  **Location-Based Search Note**:  This is a provider-level filter using provider location, not individual cab location. The bbox algorithm is fast but approximate (±0.1° accuracy per 11km).  **Response**: &#x60;{ data: List[CabPublic], count: int }&#x60;
   ///
   /// Parameters:
   /// * [providerId] - Filter by specific cab provider
@@ -242,6 +243,14 @@ class QueryApi {
   /// * [lat] - Latitude: if provided with lon, filters cabs by provider location
   /// * [lon] - Longitude: if provided with lat, filters cabs by provider location
   /// * [radiusKm] - Search radius in kilometers (used with lat/lon)
+  /// * [minCapacity] - Minimum passenger capacity filter
+  /// * [maxCapacity] - Maximum passenger capacity filter
+  /// * [minMinimumRate] - Minimum minimum rate filter
+  /// * [maxMinimumRate] - Maximum minimum rate filter
+  /// * [minPerKmRate] - Minimum per km rate filter
+  /// * [maxPerKmRate] - Maximum per km rate filter
+  /// * [minKmForMinimumRate] - Minimum km for minimum rate filter
+  /// * [maxKmForMinimumRate] - Maximum km for minimum rate filter
   /// * [limit] - Max results per page
   /// * [offset] - Results to skip (pagination)
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -251,14 +260,22 @@ class QueryApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future] containing a [Response] with a [BuiltMap<String, JsonObject>] as data
+  /// Returns a [Future] containing a [Response] with a [CabsList] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BuiltMap<String, JsonObject>>> queryQueryCabs({ 
+  Future<Response<CabsList>> queryQueryCabs({ 
     String? providerId,
     VehicleType? vehicleType,
     num? lat,
     num? lon,
     num? radiusKm = 5.0,
+    int? minCapacity,
+    int? maxCapacity,
+    int? minMinimumRate,
+    int? maxMinimumRate,
+    int? minPerKmRate,
+    int? maxPerKmRate,
+    int? minKmForMinimumRate,
+    int? maxKmForMinimumRate,
     int? limit = 100,
     int? offset = 0,
     CancelToken? cancelToken,
@@ -287,6 +304,14 @@ class QueryApi {
       if (lat != null) r'lat': encodeQueryParameter(_serializers, lat, const FullType(num)),
       if (lon != null) r'lon': encodeQueryParameter(_serializers, lon, const FullType(num)),
       if (radiusKm != null) r'radius_km': encodeQueryParameter(_serializers, radiusKm, const FullType(num)),
+      if (minCapacity != null) r'min_capacity': encodeQueryParameter(_serializers, minCapacity, const FullType(int)),
+      if (maxCapacity != null) r'max_capacity': encodeQueryParameter(_serializers, maxCapacity, const FullType(int)),
+      if (minMinimumRate != null) r'min_minimum_rate': encodeQueryParameter(_serializers, minMinimumRate, const FullType(int)),
+      if (maxMinimumRate != null) r'max_minimum_rate': encodeQueryParameter(_serializers, maxMinimumRate, const FullType(int)),
+      if (minPerKmRate != null) r'min_per_km_rate': encodeQueryParameter(_serializers, minPerKmRate, const FullType(int)),
+      if (maxPerKmRate != null) r'max_per_km_rate': encodeQueryParameter(_serializers, maxPerKmRate, const FullType(int)),
+      if (minKmForMinimumRate != null) r'min_km_for_minimum_rate': encodeQueryParameter(_serializers, minKmForMinimumRate, const FullType(int)),
+      if (maxKmForMinimumRate != null) r'max_km_for_minimum_rate': encodeQueryParameter(_serializers, maxKmForMinimumRate, const FullType(int)),
       if (limit != null) r'limit': encodeQueryParameter(_serializers, limit, const FullType(int)),
       if (offset != null) r'offset': encodeQueryParameter(_serializers, offset, const FullType(int)),
     };
@@ -300,14 +325,14 @@ class QueryApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    BuiltMap<String, JsonObject>? _responseData;
+    CabsList? _responseData;
 
     try {
       final rawResponse = _response.data;
       _responseData = rawResponse == null ? null : _serializers.deserialize(
         rawResponse,
-        specifiedType: const FullType(BuiltMap, [FullType(String), FullType(JsonObject)]),
-      ) as BuiltMap<String, JsonObject>;
+        specifiedType: const FullType(CabsList),
+      ) as CabsList;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -319,7 +344,7 @@ class QueryApi {
       );
     }
 
-    return Response<BuiltMap<String, JsonObject>>(
+    return Response<CabsList>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -332,13 +357,14 @@ class QueryApi {
   }
 
   /// Query Drivers
-  /// Query drivers with optional location-based provider filtering.  **Authorization**: Public (no authentication required).  **Filtering Logic**: - &#x60;provider_id&#x60;: Filter to a specific provider&#39;s drivers - &#x60;lat&#x60; + &#x60;lon&#x60;: Geographic search. If both provided:   - Uses bounding box around (lat, lon) with radius_km to find nearby providers   - Returns drivers from those nearby providers - &#x60;radius_km&#x60;: Controls the search radius when lat/lon are provided (default 5km)  **Response**: &#x60;{ data: List[DriverPublic], count: int }&#x60;
+  /// Query drivers with optional location-based provider filtering and capacity filtering.  **Authorization**: Public (no authentication required).  **Filtering Logic**: - &#x60;provider_id&#x60;: Filter to a specific provider&#39;s drivers - &#x60;lat&#x60; + &#x60;lon&#x60;: Geographic search. If both provided:   - Uses bounding box around (lat, lon) with radius_km to find nearby providers   - Returns drivers from those nearby providers - &#x60;radius_km&#x60;: Controls the search radius when lat/lon are provided (default 5km) - &#x60;min_capacity&#x60;: Filter drivers who have at least one cab with capacity &gt;&#x3D; min_capacity  **Response**: &#x60;{ data: List[DriverPublic], count: int }&#x60;
   ///
   /// Parameters:
   /// * [providerId] - Filter by specific driver provider
   /// * [lat] - Latitude: if provided with lon, filters drivers by provider location
   /// * [lon] - Longitude: if provided with lat, filters drivers by provider location
   /// * [radiusKm] - Search radius in kilometers (used with lat/lon)
+  /// * [minCapacity] - Minimum capacity of associated cabs filter
   /// * [limit] - Max results per page
   /// * [offset] - Results to skip (pagination)
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -348,13 +374,14 @@ class QueryApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future] containing a [Response] with a [BuiltMap<String, JsonObject>] as data
+  /// Returns a [Future] containing a [Response] with a [DriversList] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BuiltMap<String, JsonObject>>> queryQueryDrivers({ 
+  Future<Response<DriversList>> queryQueryDrivers({ 
     String? providerId,
     num? lat,
     num? lon,
     num? radiusKm = 5.0,
+    int? minCapacity,
     int? limit = 100,
     int? offset = 0,
     CancelToken? cancelToken,
@@ -382,6 +409,7 @@ class QueryApi {
       if (lat != null) r'lat': encodeQueryParameter(_serializers, lat, const FullType(num)),
       if (lon != null) r'lon': encodeQueryParameter(_serializers, lon, const FullType(num)),
       if (radiusKm != null) r'radius_km': encodeQueryParameter(_serializers, radiusKm, const FullType(num)),
+      if (minCapacity != null) r'min_capacity': encodeQueryParameter(_serializers, minCapacity, const FullType(int)),
       if (limit != null) r'limit': encodeQueryParameter(_serializers, limit, const FullType(int)),
       if (offset != null) r'offset': encodeQueryParameter(_serializers, offset, const FullType(int)),
     };
@@ -395,14 +423,14 @@ class QueryApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    BuiltMap<String, JsonObject>? _responseData;
+    DriversList? _responseData;
 
     try {
       final rawResponse = _response.data;
       _responseData = rawResponse == null ? null : _serializers.deserialize(
         rawResponse,
-        specifiedType: const FullType(BuiltMap, [FullType(String), FullType(JsonObject)]),
-      ) as BuiltMap<String, JsonObject>;
+        specifiedType: const FullType(DriversList),
+      ) as DriversList;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -414,7 +442,7 @@ class QueryApi {
       );
     }
 
-    return Response<BuiltMap<String, JsonObject>>(
+    return Response<DriversList>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,

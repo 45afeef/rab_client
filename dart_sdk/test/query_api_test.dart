@@ -27,18 +27,18 @@ void main() {
 
     // Query Cabs
     //
-    // Query cabs with optional vehicle type and location-based provider filtering.  **Authorization**: Public (no authentication required).  **Filtering Logic**: - `provider_id`: Filter to a specific provider's cabs - `vehicle_type`: Filter by vehicle type string (e.g., SEDAN, SUV, HATCHBACK, etc.) - `lat` + `lon`: Geographic search. If both provided:   - Uses bounding box around (lat, lon) with radius_km to find nearby providers   - Returns cabs from those nearby providers (not a haversine distance to individual cabs) - `radius_km`: Controls the search radius when lat/lon are provided (default 5km)  **Location-Based Search Note**:  This is a provider-level filter using provider location, not individual cab location. The bbox algorithm is fast but approximate (±0.1° accuracy per 11km).  **Response**: `{ data: List[CabPublic], count: int }`
+    // Query cabs with optional vehicle type, location-based provider filtering, and capacity/rate filters.  **Authorization**: Public (no authentication required).  **Filtering Logic**: - `provider_id`: Filter to a specific provider's cabs - `vehicle_type`: Filter by vehicle type string (e.g., SEDAN, SUV, HATCHBACK, etc.) - `lat` + `lon`: Geographic search. If both provided:   - Uses bounding box around (lat, lon) with radius_km to find nearby providers   - Returns cabs from those nearby providers (not a haversine distance to individual cabs) - `radius_km`: Controls the search radius when lat/lon are provided (default 5km) - `min_capacity` / `max_capacity`: Filter by passenger capacity (inclusive bounds) - `min_minimum_rate` / `max_minimum_rate`: Filter by minimum rate (inclusive bounds) - `min_per_km_rate` / `max_per_km_rate`: Filter by per km rate (inclusive bounds) - `min_km_for_minimum_rate` / `max_km_for_minimum_rate`: Filter by km for minimum rate (inclusive bounds)  **Location-Based Search Note**:  This is a provider-level filter using provider location, not individual cab location. The bbox algorithm is fast but approximate (±0.1° accuracy per 11km).  **Response**: `{ data: List[CabPublic], count: int }`
     //
-    //Future<BuiltMap<String, JsonObject>> queryQueryCabs({ String providerId, VehicleType vehicleType, num lat, num lon, num radiusKm, int limit, int offset }) async
+    //Future<CabsList> queryQueryCabs({ String providerId, VehicleType vehicleType, num lat, num lon, num radiusKm, int minCapacity, int maxCapacity, int minMinimumRate, int maxMinimumRate, int minPerKmRate, int maxPerKmRate, int minKmForMinimumRate, int maxKmForMinimumRate, int limit, int offset }) async
     test('test queryQueryCabs', () async {
       // TODO
     });
 
     // Query Drivers
     //
-    // Query drivers with optional location-based provider filtering.  **Authorization**: Public (no authentication required).  **Filtering Logic**: - `provider_id`: Filter to a specific provider's drivers - `lat` + `lon`: Geographic search. If both provided:   - Uses bounding box around (lat, lon) with radius_km to find nearby providers   - Returns drivers from those nearby providers - `radius_km`: Controls the search radius when lat/lon are provided (default 5km)  **Response**: `{ data: List[DriverPublic], count: int }`
+    // Query drivers with optional location-based provider filtering and capacity filtering.  **Authorization**: Public (no authentication required).  **Filtering Logic**: - `provider_id`: Filter to a specific provider's drivers - `lat` + `lon`: Geographic search. If both provided:   - Uses bounding box around (lat, lon) with radius_km to find nearby providers   - Returns drivers from those nearby providers - `radius_km`: Controls the search radius when lat/lon are provided (default 5km) - `min_capacity`: Filter drivers who have at least one cab with capacity >= min_capacity  **Response**: `{ data: List[DriverPublic], count: int }`
     //
-    //Future<BuiltMap<String, JsonObject>> queryQueryDrivers({ String providerId, num lat, num lon, num radiusKm, int limit, int offset }) async
+    //Future<DriversList> queryQueryDrivers({ String providerId, num lat, num lon, num radiusKm, int minCapacity, int limit, int offset }) async
     test('test queryQueryDrivers', () async {
       // TODO
     });

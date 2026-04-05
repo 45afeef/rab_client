@@ -23,8 +23,10 @@ doc/CabCreate.md
 doc/CabProviderCreate.md
 doc/CabProviderPublic.md
 doc/CabPublic.md
+doc/CabsList.md
 doc/DriverCreate.md
 doc/DriverPublic.md
+doc/DriversList.md
 doc/HTTPValidationError.md
 doc/LocationInner.md
 doc/LoginApi.md
@@ -106,9 +108,11 @@ lib/src/model/cab_create.dart
 lib/src/model/cab_provider_create.dart
 lib/src/model/cab_provider_public.dart
 lib/src/model/cab_public.dart
+lib/src/model/cabs_list.dart
 lib/src/model/date.dart
 lib/src/model/driver_create.dart
 lib/src/model/driver_public.dart
+lib/src/model/drivers_list.dart
 lib/src/model/http_validation_error.dart
 lib/src/model/location_inner.dart
 lib/src/model/message.dart
@@ -165,8 +169,10 @@ test/cab_create_test.dart
 test/cab_provider_create_test.dart
 test/cab_provider_public_test.dart
 test/cab_public_test.dart
+test/cabs_list_test.dart
 test/driver_create_test.dart
 test/driver_public_test.dart
+test/drivers_list_test.dart
 test/http_validation_error_test.dart
 test/location_inner_test.dart
 test/login_api_test.dart

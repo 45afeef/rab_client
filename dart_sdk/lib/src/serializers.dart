@@ -33,8 +33,10 @@ import 'package:rab_dio/src/model/cab_create.dart';
 import 'package:rab_dio/src/model/cab_provider_create.dart';
 import 'package:rab_dio/src/model/cab_provider_public.dart';
 import 'package:rab_dio/src/model/cab_public.dart';
+import 'package:rab_dio/src/model/cabs_list.dart';
 import 'package:rab_dio/src/model/driver_create.dart';
 import 'package:rab_dio/src/model/driver_public.dart';
+import 'package:rab_dio/src/model/drivers_list.dart';
 import 'package:rab_dio/src/model/http_validation_error.dart';
 import 'package:rab_dio/src/model/location_inner.dart';
 import 'package:rab_dio/src/model/message.dart';
@@ -91,8 +93,10 @@ part 'serializers.g.dart';
   CabProviderCreate,
   CabProviderPublic,
   CabPublic,
+  CabsList,
   DriverCreate,
   DriverPublic,
+  DriversList,
   HTTPValidationError,
   LocationInner,
   Message,
@@ -155,10 +159,6 @@ Serializers serializers = (_$serializers.toBuilder()
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(String)]),
         () => ListBuilder<String>(),
-      )
-      ..addBuilderFactory(
-        const FullType(BuiltMap, [FullType(String), FullType(JsonObject)]),
-        () => MapBuilder<String, JsonObject>(),
       )
       ..add(const OneOfSerializer())
       ..add(const AnyOfSerializer())
