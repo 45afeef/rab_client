@@ -15,6 +15,23 @@ part 'driver_public.g.dart';
 /// * [providerId] 
 /// * [profileId] 
 /// * [id] 
+/// * [firstName] 
+/// * [middleName] 
+/// * [lastName] 
+/// * [fullName] 
+/// * [primaryPhoneNumber] 
+/// * [secondaryPhoneNumber] 
+/// * [primaryEmail] 
+/// * [secondaryEmail] 
+/// * [profilePicture] 
+/// * [bio] 
+/// * [address] 
+/// * [city] 
+/// * [state] 
+/// * [zipCode] 
+/// * [country] 
+/// * [createdAt] 
+/// * [updatedAt] 
 @BuiltValue()
 abstract class DriverPublic implements Built<DriverPublic, DriverPublicBuilder> {
   @BuiltValueField(wireName: r'user_id')
@@ -28,6 +45,57 @@ abstract class DriverPublic implements Built<DriverPublic, DriverPublicBuilder> 
 
   @BuiltValueField(wireName: r'id')
   String? get id;
+
+  @BuiltValueField(wireName: r'first_name')
+  String? get firstName;
+
+  @BuiltValueField(wireName: r'middle_name')
+  String? get middleName;
+
+  @BuiltValueField(wireName: r'last_name')
+  String? get lastName;
+
+  @BuiltValueField(wireName: r'full_name')
+  String? get fullName;
+
+  @BuiltValueField(wireName: r'primary_phone_number')
+  String? get primaryPhoneNumber;
+
+  @BuiltValueField(wireName: r'secondary_phone_number')
+  String? get secondaryPhoneNumber;
+
+  @BuiltValueField(wireName: r'primary_email')
+  String? get primaryEmail;
+
+  @BuiltValueField(wireName: r'secondary_email')
+  String? get secondaryEmail;
+
+  @BuiltValueField(wireName: r'profile_picture')
+  String? get profilePicture;
+
+  @BuiltValueField(wireName: r'bio')
+  String? get bio;
+
+  @BuiltValueField(wireName: r'address')
+  String? get address;
+
+  @BuiltValueField(wireName: r'city')
+  String? get city;
+
+  @BuiltValueField(wireName: r'state')
+  String? get state;
+
+  @BuiltValueField(wireName: r'zip_code')
+  String? get zipCode;
+
+  @BuiltValueField(wireName: r'country')
+  String? get country;
+
+  @BuiltValueField(wireName: r'created_at')
+  DateTime? get createdAt;
+
+  @BuiltValueField(wireName: r'updated_at')
+  DateTime? get updatedAt;
 
   DriverPublic._();
 
@@ -69,11 +137,132 @@ class _$DriverPublicSerializer implements PrimitiveSerializer<DriverPublic> {
       object.profileId,
       specifiedType: const FullType(String),
     );
-    yield r'id';
-    yield object.id == null ? null : serializers.serialize(
-      object.id,
-      specifiedType: const FullType.nullable(String),
-    );
+    if (object.id != null) {
+      yield r'id';
+      yield serializers.serialize(
+        object.id,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
+    if (object.firstName != null) {
+      yield r'first_name';
+      yield serializers.serialize(
+        object.firstName,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
+    if (object.middleName != null) {
+      yield r'middle_name';
+      yield serializers.serialize(
+        object.middleName,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
+    if (object.lastName != null) {
+      yield r'last_name';
+      yield serializers.serialize(
+        object.lastName,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
+    if (object.fullName != null) {
+      yield r'full_name';
+      yield serializers.serialize(
+        object.fullName,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
+    if (object.primaryPhoneNumber != null) {
+      yield r'primary_phone_number';
+      yield serializers.serialize(
+        object.primaryPhoneNumber,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
+    if (object.secondaryPhoneNumber != null) {
+      yield r'secondary_phone_number';
+      yield serializers.serialize(
+        object.secondaryPhoneNumber,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
+    if (object.primaryEmail != null) {
+      yield r'primary_email';
+      yield serializers.serialize(
+        object.primaryEmail,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
+    if (object.secondaryEmail != null) {
+      yield r'secondary_email';
+      yield serializers.serialize(
+        object.secondaryEmail,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
+    if (object.profilePicture != null) {
+      yield r'profile_picture';
+      yield serializers.serialize(
+        object.profilePicture,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
+    if (object.bio != null) {
+      yield r'bio';
+      yield serializers.serialize(
+        object.bio,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
+    if (object.address != null) {
+      yield r'address';
+      yield serializers.serialize(
+        object.address,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
+    if (object.city != null) {
+      yield r'city';
+      yield serializers.serialize(
+        object.city,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
+    if (object.state != null) {
+      yield r'state';
+      yield serializers.serialize(
+        object.state,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
+    if (object.zipCode != null) {
+      yield r'zip_code';
+      yield serializers.serialize(
+        object.zipCode,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
+    if (object.country != null) {
+      yield r'country';
+      yield serializers.serialize(
+        object.country,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
+    if (object.createdAt != null) {
+      yield r'created_at';
+      yield serializers.serialize(
+        object.createdAt,
+        specifiedType: const FullType.nullable(DateTime),
+      );
+    }
+    if (object.updatedAt != null) {
+      yield r'updated_at';
+      yield serializers.serialize(
+        object.updatedAt,
+        specifiedType: const FullType.nullable(DateTime),
+      );
+    }
   }
 
   @override
@@ -126,6 +315,142 @@ class _$DriverPublicSerializer implements PrimitiveSerializer<DriverPublic> {
           ) as String?;
           if (valueDes == null) continue;
           result.id = valueDes;
+          break;
+        case r'first_name':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.firstName = valueDes;
+          break;
+        case r'middle_name':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.middleName = valueDes;
+          break;
+        case r'last_name':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.lastName = valueDes;
+          break;
+        case r'full_name':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.fullName = valueDes;
+          break;
+        case r'primary_phone_number':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.primaryPhoneNumber = valueDes;
+          break;
+        case r'secondary_phone_number':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.secondaryPhoneNumber = valueDes;
+          break;
+        case r'primary_email':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.primaryEmail = valueDes;
+          break;
+        case r'secondary_email':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.secondaryEmail = valueDes;
+          break;
+        case r'profile_picture':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.profilePicture = valueDes;
+          break;
+        case r'bio':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.bio = valueDes;
+          break;
+        case r'address':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.address = valueDes;
+          break;
+        case r'city':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.city = valueDes;
+          break;
+        case r'state':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.state = valueDes;
+          break;
+        case r'zip_code':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.zipCode = valueDes;
+          break;
+        case r'country':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.country = valueDes;
+          break;
+        case r'created_at':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(DateTime),
+          ) as DateTime?;
+          if (valueDes == null) continue;
+          result.createdAt = valueDes;
+          break;
+        case r'updated_at':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(DateTime),
+          ) as DateTime?;
+          if (valueDes == null) continue;
+          result.updatedAt = valueDes;
           break;
         default:
           unhandled.add(key);

@@ -33,6 +33,7 @@ class QueryApi {
   /// * [minPrice] - Minimum room rate to filter units
   /// * [maxPrice] - Maximum room rate to filter units
   /// * [paxCount] - Minimum occupancy required: filters providers with units that can accommodate pax_count guests
+  /// * [roomCount] - Minimum number of rooms required: filters providers with at least this many rooms
   /// * [amenities] - List of required amenities (AND semantics: provider units must have ALL listed amenities)
   /// * [minRating] - Minimum average rating filter (reserved for future use)
   /// * [limit] - Max results per page
@@ -51,6 +52,7 @@ class QueryApi {
     int? minPrice,
     int? maxPrice,
     int? paxCount,
+    int? roomCount,
     BuiltList<String>? amenities,
     num? minRating,
     int? limit = 100,
@@ -85,6 +87,7 @@ class QueryApi {
       if (minPrice != null) r'min_price': encodeQueryParameter(_serializers, minPrice, const FullType(int)),
       if (maxPrice != null) r'max_price': encodeQueryParameter(_serializers, maxPrice, const FullType(int)),
       if (paxCount != null) r'pax_count': encodeQueryParameter(_serializers, paxCount, const FullType(int)),
+      if (roomCount != null) r'room_count': encodeQueryParameter(_serializers, roomCount, const FullType(int)),
       if (amenities != null) r'amenities': encodeCollectionQueryParameter<String>(_serializers, amenities, const FullType(BuiltList, [FullType(String)]), format: ListFormat.multi,),
       if (minRating != null) r'min_rating': encodeQueryParameter(_serializers, minRating, const FullType(num)),
       if (limit != null) r'limit': encodeQueryParameter(_serializers, limit, const FullType(int)),
@@ -132,7 +135,7 @@ class QueryApi {
   }
 
   /// List Stay Units
-  /// List available stay units with optional filtering and pagination.  **Authorization**: superuser or agency staff only.  **Filtering &amp; Query Logic**: - &#x60;provider_id&#x60;: If provided, returns only units from that specific provider - &#x60;min_price&#x60; / &#x60;max_price&#x60;: Filters units by room_rate (inclusive bounds) - &#x60;pax_count&#x60;: Filters units with sufficient capacity. A unit matches if:   - Its max_occupancy &gt;&#x3D; pax_count, OR   - The sum of all units in the provider has total_capacity &gt;&#x3D; pax_count - &#x60;amenities&#x60;: AND semantics. Unit must have ALL listed amenities to match.   - Examples:      - &#x60;?amenities&#x3D;wifi&amp;amenities&#x3D;ac&#x60; → units with both wifi AND ac     - &#x60;?amenities&#x3D;wifi,pool&#x60; → units with both wifi AND pool (auto-parsed)   - Handles duplicates and whitespace gracefully  **Pagination**: Use &#x60;limit&#x60; and &#x60;offset&#x60; together for cursor-based pagination.  **Response**: Returns &#x60;{ data: List[StayUnit], count: int }&#x60; where count is total matching units.
+  /// List available stay units with optional filtering and pagination.  **Authorization**: superuser or agency staff only.  **Filtering &amp; Query Logic**: - &#x60;provider_id&#x60;: If provided, returns only units from that specific provider - &#x60;min_price&#x60; / &#x60;max_price&#x60;: Filters units by room_rate (inclusive bounds) - &#x60;pax_count&#x60;: Filters units with sufficient capacity. A unit matches if:   - Its max_occupancy &gt;&#x3D; pax_count, OR   - The sum of all units in the provider has total_capacity &gt;&#x3D; pax_count - &#x60;amenities&#x60;: AND semantics. Unit must have ALL listed amenities to match.   - Examples:      - &#x60;?amenities&#x3D;wifi&amp;amenities&#x3D;ac&#x60; → units with both wifi AND ac     - &#x60;?amenities&#x3D;wifi,pool&#x60; → units with both wifi AND pool (auto-parsed)   - Handles duplicates and whitespace gracefully - &#x60;room_count&#x60;: Filters units from providers with at least this many rooms  **Pagination**: Use &#x60;limit&#x60; and &#x60;offset&#x60; together for cursor-based pagination.  **Response**: Returns &#x60;{ data: List[StayUnit], count: int }&#x60; where count is total matching units.
   ///
   /// Parameters:
   /// * [providerId] - Filter by specific provider (optional)
@@ -140,6 +143,7 @@ class QueryApi {
   /// * [maxPrice] - Maximum room rate filter
   /// * [paxCount] - Minimum occupancy required: filters units with max_occupancy >= pax_count OR total provider capacity >= pax_count
   /// * [amenities] - List of required amenities (AND semantics: unit must have ALL listed amenities)
+  /// * [roomCount] - Minimum number of rooms required: filters units from providers with at least this many rooms
   /// * [limit] - Max number of results per page
   /// * [offset] - Number of results to skip (for pagination)
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -157,6 +161,7 @@ class QueryApi {
     int? maxPrice,
     int? paxCount,
     BuiltList<String>? amenities,
+    int? roomCount,
     int? limit = 100,
     int? offset = 0,
     CancelToken? cancelToken,
@@ -190,6 +195,7 @@ class QueryApi {
       if (maxPrice != null) r'max_price': encodeQueryParameter(_serializers, maxPrice, const FullType(int)),
       if (paxCount != null) r'pax_count': encodeQueryParameter(_serializers, paxCount, const FullType(int)),
       if (amenities != null) r'amenities': encodeCollectionQueryParameter<String>(_serializers, amenities, const FullType(BuiltList, [FullType(String)]), format: ListFormat.multi,),
+      if (roomCount != null) r'room_count': encodeQueryParameter(_serializers, roomCount, const FullType(int)),
       if (limit != null) r'limit': encodeQueryParameter(_serializers, limit, const FullType(int)),
       if (offset != null) r'offset': encodeQueryParameter(_serializers, offset, const FullType(int)),
     };
@@ -357,7 +363,7 @@ class QueryApi {
   }
 
   /// Query Drivers
-  /// Query drivers with optional location-based provider filtering and capacity filtering.  **Authorization**: Public (no authentication required).  **Filtering Logic**: - &#x60;provider_id&#x60;: Filter to a specific provider&#39;s drivers - &#x60;lat&#x60; + &#x60;lon&#x60;: Geographic search. If both provided:   - Uses bounding box around (lat, lon) with radius_km to find nearby providers   - Returns drivers from those nearby providers - &#x60;radius_km&#x60;: Controls the search radius when lat/lon are provided (default 5km) - &#x60;min_capacity&#x60;: Filter drivers who have at least one cab with capacity &gt;&#x3D; min_capacity  **Response**: &#x60;{ data: List[DriverPublic], count: int }&#x60;
+  /// Query drivers with optional location-based provider filtering and capacity filtering.  **Authorization**: Public (no authentication required).  **Filtering Logic**: - &#x60;provider_id&#x60;: Filter to a specific provider&#39;s drivers - &#x60;lat&#x60; + &#x60;lon&#x60;: Geographic search. If both provided:   - Uses bounding box around (lat, lon) with radius_km to find nearby providers   - Returns drivers from those nearby providers - &#x60;radius_km&#x60;: Controls the search radius when lat/lon are provided (default 5km) - &#x60;min_capacity&#x60;: Filter drivers who have at least one cab with capacity &gt;&#x3D; min_capacity  **Response**: &#x60;{ data: List[DriverPublic], count: int }&#x60; - Each driver object includes flattened profile/contact fields such as full_name, primary_phone_number, primary_email, and other profile details.
   ///
   /// Parameters:
   /// * [providerId] - Filter by specific driver provider

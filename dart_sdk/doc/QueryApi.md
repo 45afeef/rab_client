@@ -17,7 +17,7 @@ Method | HTTP request | Description
 
 
 # **queryListStayProviders**
-> PublicStayProviderList queryListStayProviders(locationId, minPrice, maxPrice, paxCount, amenities, minRating, limit, offset)
+> PublicStayProviderList queryListStayProviders(locationId, minPrice, maxPrice, paxCount, roomCount, amenities, minRating, limit, offset)
 
 List Stay Providers
 
@@ -34,13 +34,14 @@ final String locationId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | Filt
 final int minPrice = 56; // int | Minimum room rate to filter units
 final int maxPrice = 56; // int | Maximum room rate to filter units
 final int paxCount = 56; // int | Minimum occupancy required: filters providers with units that can accommodate pax_count guests
+final int roomCount = 56; // int | Minimum number of rooms required: filters providers with at least this many rooms
 final BuiltList<String> amenities = ; // BuiltList<String> | List of required amenities (AND semantics: provider units must have ALL listed amenities)
 final num minRating = 8.14; // num | Minimum average rating filter (reserved for future use)
 final int limit = 56; // int | Max results per page
 final int offset = 56; // int | Results to skip (pagination)
 
 try {
-    final response = api.queryListStayProviders(locationId, minPrice, maxPrice, paxCount, amenities, minRating, limit, offset);
+    final response = api.queryListStayProviders(locationId, minPrice, maxPrice, paxCount, roomCount, amenities, minRating, limit, offset);
     print(response);
 } on DioException catch (e) {
     print('Exception when calling QueryApi->queryListStayProviders: $e\n');
@@ -55,6 +56,7 @@ Name | Type | Description  | Notes
  **minPrice** | **int**| Minimum room rate to filter units | [optional] 
  **maxPrice** | **int**| Maximum room rate to filter units | [optional] 
  **paxCount** | **int**| Minimum occupancy required: filters providers with units that can accommodate pax_count guests | [optional] 
+ **roomCount** | **int**| Minimum number of rooms required: filters providers with at least this many rooms | [optional] 
  **amenities** | [**BuiltList&lt;String&gt;**](String.md)| List of required amenities (AND semantics: provider units must have ALL listed amenities) | [optional] 
  **minRating** | **num**| Minimum average rating filter (reserved for future use) | [optional] 
  **limit** | **int**| Max results per page | [optional] [default to 100]
@@ -76,11 +78,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **queryListStayUnits**
-> UnitsList queryListStayUnits(providerId, minPrice, maxPrice, paxCount, amenities, limit, offset)
+> UnitsList queryListStayUnits(providerId, minPrice, maxPrice, paxCount, amenities, roomCount, limit, offset)
 
 List Stay Units
 
-List available stay units with optional filtering and pagination.  **Authorization**: superuser or agency staff only.  **Filtering & Query Logic**: - `provider_id`: If provided, returns only units from that specific provider - `min_price` / `max_price`: Filters units by room_rate (inclusive bounds) - `pax_count`: Filters units with sufficient capacity. A unit matches if:   - Its max_occupancy >= pax_count, OR   - The sum of all units in the provider has total_capacity >= pax_count - `amenities`: AND semantics. Unit must have ALL listed amenities to match.   - Examples:      - `?amenities=wifi&amenities=ac` → units with both wifi AND ac     - `?amenities=wifi,pool` → units with both wifi AND pool (auto-parsed)   - Handles duplicates and whitespace gracefully  **Pagination**: Use `limit` and `offset` together for cursor-based pagination.  **Response**: Returns `{ data: List[StayUnit], count: int }` where count is total matching units.
+List available stay units with optional filtering and pagination.  **Authorization**: superuser or agency staff only.  **Filtering & Query Logic**: - `provider_id`: If provided, returns only units from that specific provider - `min_price` / `max_price`: Filters units by room_rate (inclusive bounds) - `pax_count`: Filters units with sufficient capacity. A unit matches if:   - Its max_occupancy >= pax_count, OR   - The sum of all units in the provider has total_capacity >= pax_count - `amenities`: AND semantics. Unit must have ALL listed amenities to match.   - Examples:      - `?amenities=wifi&amenities=ac` → units with both wifi AND ac     - `?amenities=wifi,pool` → units with both wifi AND pool (auto-parsed)   - Handles duplicates and whitespace gracefully - `room_count`: Filters units from providers with at least this many rooms  **Pagination**: Use `limit` and `offset` together for cursor-based pagination.  **Response**: Returns `{ data: List[StayUnit], count: int }` where count is total matching units.
 
 ### Example
 ```dart
@@ -94,11 +96,12 @@ final int minPrice = 56; // int | Minimum room rate filter
 final int maxPrice = 56; // int | Maximum room rate filter
 final int paxCount = 56; // int | Minimum occupancy required: filters units with max_occupancy >= pax_count OR total provider capacity >= pax_count
 final BuiltList<String> amenities = ; // BuiltList<String> | List of required amenities (AND semantics: unit must have ALL listed amenities)
+final int roomCount = 56; // int | Minimum number of rooms required: filters units from providers with at least this many rooms
 final int limit = 56; // int | Max number of results per page
 final int offset = 56; // int | Number of results to skip (for pagination)
 
 try {
-    final response = api.queryListStayUnits(providerId, minPrice, maxPrice, paxCount, amenities, limit, offset);
+    final response = api.queryListStayUnits(providerId, minPrice, maxPrice, paxCount, amenities, roomCount, limit, offset);
     print(response);
 } on DioException catch (e) {
     print('Exception when calling QueryApi->queryListStayUnits: $e\n');
@@ -114,6 +117,7 @@ Name | Type | Description  | Notes
  **maxPrice** | **int**| Maximum room rate filter | [optional] 
  **paxCount** | **int**| Minimum occupancy required: filters units with max_occupancy >= pax_count OR total provider capacity >= pax_count | [optional] 
  **amenities** | [**BuiltList&lt;String&gt;**](String.md)| List of required amenities (AND semantics: unit must have ALL listed amenities) | [optional] 
+ **roomCount** | **int**| Minimum number of rooms required: filters units from providers with at least this many rooms | [optional] 
  **limit** | **int**| Max number of results per page | [optional] [default to 100]
  **offset** | **int**| Number of results to skip (for pagination) | [optional] [default to 0]
 
@@ -208,7 +212,7 @@ No authorization required
 
 Query Drivers
 
-Query drivers with optional location-based provider filtering and capacity filtering.  **Authorization**: Public (no authentication required).  **Filtering Logic**: - `provider_id`: Filter to a specific provider's drivers - `lat` + `lon`: Geographic search. If both provided:   - Uses bounding box around (lat, lon) with radius_km to find nearby providers   - Returns drivers from those nearby providers - `radius_km`: Controls the search radius when lat/lon are provided (default 5km) - `min_capacity`: Filter drivers who have at least one cab with capacity >= min_capacity  **Response**: `{ data: List[DriverPublic], count: int }`
+Query drivers with optional location-based provider filtering and capacity filtering.  **Authorization**: Public (no authentication required).  **Filtering Logic**: - `provider_id`: Filter to a specific provider's drivers - `lat` + `lon`: Geographic search. If both provided:   - Uses bounding box around (lat, lon) with radius_km to find nearby providers   - Returns drivers from those nearby providers - `radius_km`: Controls the search radius when lat/lon are provided (default 5km) - `min_capacity`: Filter drivers who have at least one cab with capacity >= min_capacity  **Response**: `{ data: List[DriverPublic], count: int }` - Each driver object includes flattened profile/contact fields such as full_name, primary_phone_number, primary_email, and other profile details.
 
 ### Example
 ```dart
