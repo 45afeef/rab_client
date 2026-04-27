@@ -17,11 +17,11 @@ Method | HTTP request | Description
 
 
 # **queryListStayProviders**
-> PublicStayProviderList queryListStayProviders(locationId, minPrice, maxPrice, paxCount, roomCount, amenities, minRating, limit, offset)
+> PublicStayProviderList queryListStayProviders(location, lat, lon, radiusKm, minPrice, maxPrice, paxCount, roomCount, amenities, limit, offset)
 
 List Stay Providers
 
-List stay providers with optional filtering by location, price, capacity, amenities, and more.  **Authorization**: superuser or agency staff only.  **Filtering Logic** (all optional, combined with AND logic): - `location_id`: Filter providers by their location ID - `min_price` / `max_price`: Filter providers by unit room_rate (inclusive bounds) - `pax_count`: Filter providers with units that have sufficient capacity. A provider matches if:   - Any of its units has max_occupancy >= pax_count, OR   - The sum of all its units' max_occupancy >= pax_count - `amenities`: AND semantics. Provider must have units with ALL listed amenities to match.   - Examples:      - `?amenities=wifi&amenities=ac` → providers whose units have both wifi AND ac     - `?amenities=wifi,pool` → providers whose units have both wifi AND pool (auto-parsed)     - Handles duplicates and whitespace gracefully - `min_rating`: Filter providers with average rating >= min_rating (reserved for future rating system)  **Pagination**: Use `limit` and `offset` together for cursor-based pagination.  **Response**: Returns `{ data: List[StayProviderPublic], count: int }` where count is matched providers on this page.  **Example Queries**: ``` GET /query/stay-providers?location_id=abc-123&min_price=100&max_price=500&pax_count=4 GET /query/stay-providers?amenities=wifi&amenities=pool&amenities=parking GET /query/stay-providers?amenities=wifi,pool,parking ```
+List stay providers with optional filtering by location, price, capacity, amenities, and more.  **Authorization**: superuser or agency staff only.  **Location-Based Search** (optional): - `location`: Place name (e.g., \"Bangalore\"). Automatically resolves to coordinates. - `lat` + `lon`: Direct coordinates. If provided, filters providers by location. - `radius_km`: Search radius in kilometers (default 10km, used with location or lat/lon)  **Filtering Logic** (all optional, combined with AND logic): - `min_price` / `max_price`: Filter providers by unit room_rate (inclusive bounds) - `pax_count`: Filter providers with units that have sufficient capacity. A provider matches if:   - Any of its units has max_occupancy >= pax_count, OR   - The sum of all its units' max_occupancy >= pax_count - `room_count`: Filter providers that have at least this many rooms across all their units. - `amenities`: AND semantics. Provider must have units with ALL listed amenities to match.   - Examples:      - `?amenities=wifi&amenities=ac` → providers whose units have both wifi AND ac     - `?amenities=wifi,pool` → providers whose units have both wifi AND pool (auto-parsed)     - Handles duplicates and whitespace gracefully  **Pagination**: Use `limit` and `offset` together for cursor-based pagination.  **Response**: Returns `{ data: List[StayProviderPublic], count: int }` where count is matched providers on this page.  **Example Queries**: ``` GET /query/stay-providers?location=Bangalore&radius_km=15&min_price=100&max_price=500&sort_by_distance=true GET /query/stay-providers?lat=12.97&lon=77.59&radius_km=10&min_price=100&max_price=500 GET /query/stay-providers?location=bangalore&amenities=wifi&amenities=pool GET /query/stay-providers?amenities=wifi&amenities=pool&amenities=parking GET /query/stay-providers?amenities=wifi,pool,parking ```
 
 ### Example
 ```dart
@@ -30,18 +30,20 @@ import 'package:rab_dio/api.dart';
 //defaultApiClient.getAuthentication<OAuth>('OAuth2PasswordBearer').accessToken = 'YOUR_ACCESS_TOKEN';
 
 final api = RabDio().getQueryApi();
-final String locationId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | Filter by location ID
+final String location = location_example; // String | Place name to search near (e.g., 'Bangalore', 'New York'). If provided with radius_km, performs geo-filtered search.
+final num lat = 8.14; // num | Latitude: if provided with lon and radius_km, performs geo-filtered search
+final num lon = 8.14; // num | Longitude: if provided with lat and radius_km, performs geo-filtered search
+final num radiusKm = 8.14; // num | Search radius in kilometers when `location` or `lat`/`lon` is provided
 final int minPrice = 56; // int | Minimum room rate to filter units
 final int maxPrice = 56; // int | Maximum room rate to filter units
 final int paxCount = 56; // int | Minimum occupancy required: filters providers with units that can accommodate pax_count guests
 final int roomCount = 56; // int | Minimum number of rooms required: filters providers with at least this many rooms
 final BuiltList<String> amenities = ; // BuiltList<String> | List of required amenities (AND semantics: provider units must have ALL listed amenities)
-final num minRating = 8.14; // num | Minimum average rating filter (reserved for future use)
 final int limit = 56; // int | Max results per page
 final int offset = 56; // int | Results to skip (pagination)
 
 try {
-    final response = api.queryListStayProviders(locationId, minPrice, maxPrice, paxCount, roomCount, amenities, minRating, limit, offset);
+    final response = api.queryListStayProviders(location, lat, lon, radiusKm, minPrice, maxPrice, paxCount, roomCount, amenities, limit, offset);
     print(response);
 } on DioException catch (e) {
     print('Exception when calling QueryApi->queryListStayProviders: $e\n');
@@ -52,13 +54,15 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **locationId** | **String**| Filter by location ID | [optional] 
+ **location** | **String**| Place name to search near (e.g., 'Bangalore', 'New York'). If provided with radius_km, performs geo-filtered search. | [optional] 
+ **lat** | **num**| Latitude: if provided with lon and radius_km, performs geo-filtered search | [optional] 
+ **lon** | **num**| Longitude: if provided with lat and radius_km, performs geo-filtered search | [optional] 
+ **radiusKm** | **num**| Search radius in kilometers when `location` or `lat`/`lon` is provided | [optional] [default to 10.0]
  **minPrice** | **int**| Minimum room rate to filter units | [optional] 
  **maxPrice** | **int**| Maximum room rate to filter units | [optional] 
  **paxCount** | **int**| Minimum occupancy required: filters providers with units that can accommodate pax_count guests | [optional] 
  **roomCount** | **int**| Minimum number of rooms required: filters providers with at least this many rooms | [optional] 
  **amenities** | [**BuiltList&lt;String&gt;**](String.md)| List of required amenities (AND semantics: provider units must have ALL listed amenities) | [optional] 
- **minRating** | **num**| Minimum average rating filter (reserved for future use) | [optional] 
  **limit** | **int**| Max results per page | [optional] [default to 100]
  **offset** | **int**| Results to skip (pagination) | [optional] [default to 0]
 

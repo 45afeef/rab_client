@@ -26,16 +26,18 @@ class QueryApi {
   const QueryApi(this._dio, this._serializers);
 
   /// List Stay Providers
-  /// List stay providers with optional filtering by location, price, capacity, amenities, and more.  **Authorization**: superuser or agency staff only.  **Filtering Logic** (all optional, combined with AND logic): - &#x60;location_id&#x60;: Filter providers by their location ID - &#x60;min_price&#x60; / &#x60;max_price&#x60;: Filter providers by unit room_rate (inclusive bounds) - &#x60;pax_count&#x60;: Filter providers with units that have sufficient capacity. A provider matches if:   - Any of its units has max_occupancy &gt;&#x3D; pax_count, OR   - The sum of all its units&#39; max_occupancy &gt;&#x3D; pax_count - &#x60;amenities&#x60;: AND semantics. Provider must have units with ALL listed amenities to match.   - Examples:      - &#x60;?amenities&#x3D;wifi&amp;amenities&#x3D;ac&#x60; → providers whose units have both wifi AND ac     - &#x60;?amenities&#x3D;wifi,pool&#x60; → providers whose units have both wifi AND pool (auto-parsed)     - Handles duplicates and whitespace gracefully - &#x60;min_rating&#x60;: Filter providers with average rating &gt;&#x3D; min_rating (reserved for future rating system)  **Pagination**: Use &#x60;limit&#x60; and &#x60;offset&#x60; together for cursor-based pagination.  **Response**: Returns &#x60;{ data: List[StayProviderPublic], count: int }&#x60; where count is matched providers on this page.  **Example Queries**: &#x60;&#x60;&#x60; GET /query/stay-providers?location_id&#x3D;abc-123&amp;min_price&#x3D;100&amp;max_price&#x3D;500&amp;pax_count&#x3D;4 GET /query/stay-providers?amenities&#x3D;wifi&amp;amenities&#x3D;pool&amp;amenities&#x3D;parking GET /query/stay-providers?amenities&#x3D;wifi,pool,parking &#x60;&#x60;&#x60;
+  /// List stay providers with optional filtering by location, price, capacity, amenities, and more.  **Authorization**: superuser or agency staff only.  **Location-Based Search** (optional): - &#x60;location&#x60;: Place name (e.g., \&quot;Bangalore\&quot;). Automatically resolves to coordinates. - &#x60;lat&#x60; + &#x60;lon&#x60;: Direct coordinates. If provided, filters providers by location. - &#x60;radius_km&#x60;: Search radius in kilometers (default 10km, used with location or lat/lon)  **Filtering Logic** (all optional, combined with AND logic): - &#x60;min_price&#x60; / &#x60;max_price&#x60;: Filter providers by unit room_rate (inclusive bounds) - &#x60;pax_count&#x60;: Filter providers with units that have sufficient capacity. A provider matches if:   - Any of its units has max_occupancy &gt;&#x3D; pax_count, OR   - The sum of all its units&#39; max_occupancy &gt;&#x3D; pax_count - &#x60;room_count&#x60;: Filter providers that have at least this many rooms across all their units. - &#x60;amenities&#x60;: AND semantics. Provider must have units with ALL listed amenities to match.   - Examples:      - &#x60;?amenities&#x3D;wifi&amp;amenities&#x3D;ac&#x60; → providers whose units have both wifi AND ac     - &#x60;?amenities&#x3D;wifi,pool&#x60; → providers whose units have both wifi AND pool (auto-parsed)     - Handles duplicates and whitespace gracefully  **Pagination**: Use &#x60;limit&#x60; and &#x60;offset&#x60; together for cursor-based pagination.  **Response**: Returns &#x60;{ data: List[StayProviderPublic], count: int }&#x60; where count is matched providers on this page.  **Example Queries**: &#x60;&#x60;&#x60; GET /query/stay-providers?location&#x3D;Bangalore&amp;radius_km&#x3D;15&amp;min_price&#x3D;100&amp;max_price&#x3D;500&amp;sort_by_distance&#x3D;true GET /query/stay-providers?lat&#x3D;12.97&amp;lon&#x3D;77.59&amp;radius_km&#x3D;10&amp;min_price&#x3D;100&amp;max_price&#x3D;500 GET /query/stay-providers?location&#x3D;bangalore&amp;amenities&#x3D;wifi&amp;amenities&#x3D;pool GET /query/stay-providers?amenities&#x3D;wifi&amp;amenities&#x3D;pool&amp;amenities&#x3D;parking GET /query/stay-providers?amenities&#x3D;wifi,pool,parking &#x60;&#x60;&#x60;
   ///
   /// Parameters:
-  /// * [locationId] - Filter by location ID
+  /// * [location] - Place name to search near (e.g., 'Bangalore', 'New York'). If provided with radius_km, performs geo-filtered search.
+  /// * [lat] - Latitude: if provided with lon and radius_km, performs geo-filtered search
+  /// * [lon] - Longitude: if provided with lat and radius_km, performs geo-filtered search
+  /// * [radiusKm] - Search radius in kilometers when `location` or `lat`/`lon` is provided
   /// * [minPrice] - Minimum room rate to filter units
   /// * [maxPrice] - Maximum room rate to filter units
   /// * [paxCount] - Minimum occupancy required: filters providers with units that can accommodate pax_count guests
   /// * [roomCount] - Minimum number of rooms required: filters providers with at least this many rooms
   /// * [amenities] - List of required amenities (AND semantics: provider units must have ALL listed amenities)
-  /// * [minRating] - Minimum average rating filter (reserved for future use)
   /// * [limit] - Max results per page
   /// * [offset] - Results to skip (pagination)
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -48,13 +50,15 @@ class QueryApi {
   /// Returns a [Future] containing a [Response] with a [PublicStayProviderList] as data
   /// Throws [DioException] if API call or serialization fails
   Future<Response<PublicStayProviderList>> queryListStayProviders({ 
-    String? locationId,
+    String? location,
+    num? lat,
+    num? lon,
+    num? radiusKm = 10.0,
     int? minPrice,
     int? maxPrice,
     int? paxCount,
     int? roomCount,
     BuiltList<String>? amenities,
-    num? minRating,
     int? limit = 100,
     int? offset = 0,
     CancelToken? cancelToken,
@@ -83,13 +87,15 @@ class QueryApi {
     );
 
     final _queryParameters = <String, dynamic>{
-      if (locationId != null) r'location_id': encodeQueryParameter(_serializers, locationId, const FullType(String)),
+      if (location != null) r'location': encodeQueryParameter(_serializers, location, const FullType(String)),
+      if (lat != null) r'lat': encodeQueryParameter(_serializers, lat, const FullType(num)),
+      if (lon != null) r'lon': encodeQueryParameter(_serializers, lon, const FullType(num)),
+      if (radiusKm != null) r'radius_km': encodeQueryParameter(_serializers, radiusKm, const FullType(num)),
       if (minPrice != null) r'min_price': encodeQueryParameter(_serializers, minPrice, const FullType(int)),
       if (maxPrice != null) r'max_price': encodeQueryParameter(_serializers, maxPrice, const FullType(int)),
       if (paxCount != null) r'pax_count': encodeQueryParameter(_serializers, paxCount, const FullType(int)),
       if (roomCount != null) r'room_count': encodeQueryParameter(_serializers, roomCount, const FullType(int)),
       if (amenities != null) r'amenities': encodeCollectionQueryParameter<String>(_serializers, amenities, const FullType(BuiltList, [FullType(String)]), format: ListFormat.multi,),
-      if (minRating != null) r'min_rating': encodeQueryParameter(_serializers, minRating, const FullType(num)),
       if (limit != null) r'limit': encodeQueryParameter(_serializers, limit, const FullType(int)),
       if (offset != null) r'offset': encodeQueryParameter(_serializers, offset, const FullType(int)),
     };
