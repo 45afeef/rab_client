@@ -12,8 +12,13 @@ void main() {
       // TODO
     });
 
-    // String locationId
-    test('to test the property `locationId`', () async {
+    // num latitude
+    test('to test the property `latitude`', () async {
+      // TODO
+    });
+
+    // num longitude
+    test('to test the property `longitude`', () async {
       // TODO
     });
 

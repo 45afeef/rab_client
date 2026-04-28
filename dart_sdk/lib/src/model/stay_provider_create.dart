@@ -13,7 +13,8 @@ part 'stay_provider_create.g.dart';
 ///
 /// Properties:
 /// * [providerName] 
-/// * [locationId] 
+/// * [latitude] 
+/// * [longitude] 
 /// * [ownerId] 
 /// * [createdBy] 
 /// * [providerType] 
@@ -26,8 +27,11 @@ abstract class StayProviderCreate implements Built<StayProviderCreate, StayProvi
   @BuiltValueField(wireName: r'provider_name')
   String get providerName;
 
-  @BuiltValueField(wireName: r'location_id')
-  String? get locationId;
+  @BuiltValueField(wireName: r'latitude')
+  num get latitude;
+
+  @BuiltValueField(wireName: r'longitude')
+  num get longitude;
 
   @BuiltValueField(wireName: r'owner_id')
   String get ownerId;
@@ -79,13 +83,16 @@ class _$StayProviderCreateSerializer implements PrimitiveSerializer<StayProvider
       object.providerName,
       specifiedType: const FullType(String),
     );
-    if (object.locationId != null) {
-      yield r'location_id';
-      yield serializers.serialize(
-        object.locationId,
-        specifiedType: const FullType.nullable(String),
-      );
-    }
+    yield r'latitude';
+    yield serializers.serialize(
+      object.latitude,
+      specifiedType: const FullType(num),
+    );
+    yield r'longitude';
+    yield serializers.serialize(
+      object.longitude,
+      specifiedType: const FullType(num),
+    );
     yield r'owner_id';
     yield serializers.serialize(
       object.ownerId,
@@ -159,13 +166,19 @@ class _$StayProviderCreateSerializer implements PrimitiveSerializer<StayProvider
           ) as String;
           result.providerName = valueDes;
           break;
-        case r'location_id':
+        case r'latitude':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
-          result.locationId = valueDes;
+            specifiedType: const FullType(num),
+          ) as num;
+          result.latitude = valueDes;
+          break;
+        case r'longitude':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(num),
+          ) as num;
+          result.longitude = valueDes;
           break;
         case r'owner_id':
           final valueDes = serializers.deserialize(

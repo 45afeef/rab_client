@@ -9,7 +9,8 @@ import 'package:rab_dio/api.dart';
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **providerName** | **String** |  | 
-**locationId** | **String** |  | [optional] 
+**latitude** | **num** |  | 
+**longitude** | **num** |  | 
 **ownerId** | **String** |  | 
 **createdBy** | **String** |  | 
 **providerType** | **String** |  | 

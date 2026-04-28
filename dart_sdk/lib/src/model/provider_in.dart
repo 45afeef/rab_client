@@ -16,7 +16,8 @@ part 'provider_in.g.dart';
 ///
 /// Properties:
 /// * [providerName] 
-/// * [locationId] 
+/// * [latitude] 
+/// * [longitude] 
 /// * [ownerId] 
 /// * [createdBy] 
 /// * [providerType] 

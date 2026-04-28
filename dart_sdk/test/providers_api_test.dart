@@ -9,7 +9,7 @@ void main() {
   group(ProvidersApi, () {
     // Create Provider
     //
-    // Superuser: create a service provider.  Service provider can be any of the follwoing two 1. Cab Service Provider 2. Stay Service Provider
+    // Superuser: create a service provider.  Service provider can be any of the follwoing two 1. Cab Service Provider 2. Stay Service Provider  Requires latitude and longitude to create a location.
     //
     //Future<ResponseProvidersCreateProvider> providersCreateProvider(ProviderIn providerIn) async
     test('test providersCreateProvider', () async {

@@ -62,7 +62,9 @@ class _$StayProviderCreate extends StayProviderCreate {
   @override
   final String providerName;
   @override
-  final String? locationId;
+  final num latitude;
+  @override
+  final num longitude;
   @override
   final String ownerId;
   @override
@@ -84,7 +86,8 @@ class _$StayProviderCreate extends StayProviderCreate {
 
   _$StayProviderCreate._(
       {required this.providerName,
-      this.locationId,
+      required this.latitude,
+      required this.longitude,
       required this.ownerId,
       required this.createdBy,
       required this.providerType,
@@ -107,7 +110,8 @@ class _$StayProviderCreate extends StayProviderCreate {
     if (identical(other, this)) return true;
     return other is StayProviderCreate &&
         providerName == other.providerName &&
-        locationId == other.locationId &&
+        latitude == other.latitude &&
+        longitude == other.longitude &&
         ownerId == other.ownerId &&
         createdBy == other.createdBy &&
         providerType == other.providerType &&
@@ -121,7 +125,8 @@ class _$StayProviderCreate extends StayProviderCreate {
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, providerName.hashCode);
-    _$hash = $jc(_$hash, locationId.hashCode);
+    _$hash = $jc(_$hash, latitude.hashCode);
+    _$hash = $jc(_$hash, longitude.hashCode);
     _$hash = $jc(_$hash, ownerId.hashCode);
     _$hash = $jc(_$hash, createdBy.hashCode);
     _$hash = $jc(_$hash, providerType.hashCode);
@@ -137,7 +142,8 @@ class _$StayProviderCreate extends StayProviderCreate {
   String toString() {
     return (newBuiltValueToStringHelper(r'StayProviderCreate')
           ..add('providerName', providerName)
-          ..add('locationId', locationId)
+          ..add('latitude', latitude)
+          ..add('longitude', longitude)
           ..add('ownerId', ownerId)
           ..add('createdBy', createdBy)
           ..add('providerType', providerType)
@@ -157,9 +163,13 @@ class StayProviderCreateBuilder
   String? get providerName => _$this._providerName;
   set providerName(String? providerName) => _$this._providerName = providerName;
 
-  String? _locationId;
-  String? get locationId => _$this._locationId;
-  set locationId(String? locationId) => _$this._locationId = locationId;
+  num? _latitude;
+  num? get latitude => _$this._latitude;
+  set latitude(num? latitude) => _$this._latitude = latitude;
+
+  num? _longitude;
+  num? get longitude => _$this._longitude;
+  set longitude(num? longitude) => _$this._longitude = longitude;
 
   String? _ownerId;
   String? get ownerId => _$this._ownerId;
@@ -199,7 +209,8 @@ class StayProviderCreateBuilder
     final $v = _$v;
     if ($v != null) {
       _providerName = $v.providerName;
-      _locationId = $v.locationId;
+      _latitude = $v.latitude;
+      _longitude = $v.longitude;
       _ownerId = $v.ownerId;
       _createdBy = $v.createdBy;
       _providerType = $v.providerType;
@@ -230,7 +241,10 @@ class StayProviderCreateBuilder
         _$StayProviderCreate._(
           providerName: BuiltValueNullFieldError.checkNotNull(
               providerName, r'StayProviderCreate', 'providerName'),
-          locationId: locationId,
+          latitude: BuiltValueNullFieldError.checkNotNull(
+              latitude, r'StayProviderCreate', 'latitude'),
+          longitude: BuiltValueNullFieldError.checkNotNull(
+              longitude, r'StayProviderCreate', 'longitude'),
           ownerId: BuiltValueNullFieldError.checkNotNull(
               ownerId, r'StayProviderCreate', 'ownerId'),
           createdBy: BuiltValueNullFieldError.checkNotNull(

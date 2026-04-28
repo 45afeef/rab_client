@@ -62,7 +62,9 @@ class _$CabProviderCreate extends CabProviderCreate {
   @override
   final String providerName;
   @override
-  final String? locationId;
+  final num latitude;
+  @override
+  final num longitude;
   @override
   final String ownerId;
   @override
@@ -76,7 +78,8 @@ class _$CabProviderCreate extends CabProviderCreate {
 
   _$CabProviderCreate._(
       {required this.providerName,
-      this.locationId,
+      required this.latitude,
+      required this.longitude,
       required this.ownerId,
       required this.createdBy,
       required this.providerType})
@@ -94,7 +97,8 @@ class _$CabProviderCreate extends CabProviderCreate {
     if (identical(other, this)) return true;
     return other is CabProviderCreate &&
         providerName == other.providerName &&
-        locationId == other.locationId &&
+        latitude == other.latitude &&
+        longitude == other.longitude &&
         ownerId == other.ownerId &&
         createdBy == other.createdBy &&
         providerType == other.providerType;
@@ -104,7 +108,8 @@ class _$CabProviderCreate extends CabProviderCreate {
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, providerName.hashCode);
-    _$hash = $jc(_$hash, locationId.hashCode);
+    _$hash = $jc(_$hash, latitude.hashCode);
+    _$hash = $jc(_$hash, longitude.hashCode);
     _$hash = $jc(_$hash, ownerId.hashCode);
     _$hash = $jc(_$hash, createdBy.hashCode);
     _$hash = $jc(_$hash, providerType.hashCode);
@@ -116,7 +121,8 @@ class _$CabProviderCreate extends CabProviderCreate {
   String toString() {
     return (newBuiltValueToStringHelper(r'CabProviderCreate')
           ..add('providerName', providerName)
-          ..add('locationId', locationId)
+          ..add('latitude', latitude)
+          ..add('longitude', longitude)
           ..add('ownerId', ownerId)
           ..add('createdBy', createdBy)
           ..add('providerType', providerType))
@@ -132,9 +138,13 @@ class CabProviderCreateBuilder
   String? get providerName => _$this._providerName;
   set providerName(String? providerName) => _$this._providerName = providerName;
 
-  String? _locationId;
-  String? get locationId => _$this._locationId;
-  set locationId(String? locationId) => _$this._locationId = locationId;
+  num? _latitude;
+  num? get latitude => _$this._latitude;
+  set latitude(num? latitude) => _$this._latitude = latitude;
+
+  num? _longitude;
+  num? get longitude => _$this._longitude;
+  set longitude(num? longitude) => _$this._longitude = longitude;
 
   String? _ownerId;
   String? get ownerId => _$this._ownerId;
@@ -157,7 +167,8 @@ class CabProviderCreateBuilder
     final $v = _$v;
     if ($v != null) {
       _providerName = $v.providerName;
-      _locationId = $v.locationId;
+      _latitude = $v.latitude;
+      _longitude = $v.longitude;
       _ownerId = $v.ownerId;
       _createdBy = $v.createdBy;
       _providerType = $v.providerType;
@@ -184,7 +195,10 @@ class CabProviderCreateBuilder
         _$CabProviderCreate._(
           providerName: BuiltValueNullFieldError.checkNotNull(
               providerName, r'CabProviderCreate', 'providerName'),
-          locationId: locationId,
+          latitude: BuiltValueNullFieldError.checkNotNull(
+              latitude, r'CabProviderCreate', 'latitude'),
+          longitude: BuiltValueNullFieldError.checkNotNull(
+              longitude, r'CabProviderCreate', 'longitude'),
           ownerId: BuiltValueNullFieldError.checkNotNull(
               ownerId, r'CabProviderCreate', 'ownerId'),
           createdBy: BuiltValueNullFieldError.checkNotNull(
