@@ -3,6 +3,10 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:rab_dio/src/model/booking_stay_update.dart';
+import 'package:built_collection/built_collection.dart';
+import 'package:rab_dio/src/model/booking_traveller_update.dart';
+import 'package:rab_dio/src/model/booking_cab_update.dart';
 import 'package:rab_dio/src/model/booking_status.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
@@ -15,6 +19,9 @@ part 'booking_update.g.dart';
 /// * [bookingDate] 
 /// * [status] 
 /// * [totalAmount] 
+/// * [travellers] 
+/// * [cabs] 
+/// * [stays] 
 @BuiltValue()
 abstract class BookingUpdate implements Built<BookingUpdate, BookingUpdateBuilder> {
   @BuiltValueField(wireName: r'booking_date')
@@ -26,6 +33,15 @@ abstract class BookingUpdate implements Built<BookingUpdate, BookingUpdateBuilde
 
   @BuiltValueField(wireName: r'total_amount')
   int? get totalAmount;
+
+  @BuiltValueField(wireName: r'travellers')
+  BuiltList<BookingTravellerUpdate>? get travellers;
+
+  @BuiltValueField(wireName: r'cabs')
+  BuiltList<BookingCabUpdate>? get cabs;
+
+  @BuiltValueField(wireName: r'stays')
+  BuiltList<BookingStayUpdate>? get stays;
 
   BookingUpdate._();
 
@@ -69,6 +85,27 @@ class _$BookingUpdateSerializer implements PrimitiveSerializer<BookingUpdate> {
       yield serializers.serialize(
         object.totalAmount,
         specifiedType: const FullType.nullable(int),
+      );
+    }
+    if (object.travellers != null) {
+      yield r'travellers';
+      yield serializers.serialize(
+        object.travellers,
+        specifiedType: const FullType.nullable(BuiltList, [FullType(BookingTravellerUpdate)]),
+      );
+    }
+    if (object.cabs != null) {
+      yield r'cabs';
+      yield serializers.serialize(
+        object.cabs,
+        specifiedType: const FullType.nullable(BuiltList, [FullType(BookingCabUpdate)]),
+      );
+    }
+    if (object.stays != null) {
+      yield r'stays';
+      yield serializers.serialize(
+        object.stays,
+        specifiedType: const FullType.nullable(BuiltList, [FullType(BookingStayUpdate)]),
       );
     }
   }
@@ -117,6 +154,30 @@ class _$BookingUpdateSerializer implements PrimitiveSerializer<BookingUpdate> {
           ) as int?;
           if (valueDes == null) continue;
           result.totalAmount = valueDes;
+          break;
+        case r'travellers':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(BuiltList, [FullType(BookingTravellerUpdate)]),
+          ) as BuiltList<BookingTravellerUpdate>?;
+          if (valueDes == null) continue;
+          result.travellers.replace(valueDes);
+          break;
+        case r'cabs':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(BuiltList, [FullType(BookingCabUpdate)]),
+          ) as BuiltList<BookingCabUpdate>?;
+          if (valueDes == null) continue;
+          result.cabs.replace(valueDes);
+          break;
+        case r'stays':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(BuiltList, [FullType(BookingStayUpdate)]),
+          ) as BuiltList<BookingStayUpdate>?;
+          if (valueDes == null) continue;
+          result.stays.replace(valueDes);
           break;
         default:
           unhandled.add(key);

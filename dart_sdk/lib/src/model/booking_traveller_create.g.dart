@@ -8,13 +8,19 @@ part of 'booking_traveller_create.dart';
 
 class _$BookingTravellerCreate extends BookingTravellerCreate {
   @override
-  final String travellerId;
+  final String? travellerId;
+  @override
+  final String? travellerName;
+  @override
+  final String? travellerPhone;
 
   factory _$BookingTravellerCreate(
           [void Function(BookingTravellerCreateBuilder)? updates]) =>
       (BookingTravellerCreateBuilder()..update(updates))._build();
 
-  _$BookingTravellerCreate._({required this.travellerId}) : super._();
+  _$BookingTravellerCreate._(
+      {this.travellerId, this.travellerName, this.travellerPhone})
+      : super._();
   @override
   BookingTravellerCreate rebuild(
           void Function(BookingTravellerCreateBuilder) updates) =>
@@ -27,13 +33,18 @@ class _$BookingTravellerCreate extends BookingTravellerCreate {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is BookingTravellerCreate && travellerId == other.travellerId;
+    return other is BookingTravellerCreate &&
+        travellerId == other.travellerId &&
+        travellerName == other.travellerName &&
+        travellerPhone == other.travellerPhone;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, travellerId.hashCode);
+    _$hash = $jc(_$hash, travellerName.hashCode);
+    _$hash = $jc(_$hash, travellerPhone.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -41,7 +52,9 @@ class _$BookingTravellerCreate extends BookingTravellerCreate {
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'BookingTravellerCreate')
-          ..add('travellerId', travellerId))
+          ..add('travellerId', travellerId)
+          ..add('travellerName', travellerName)
+          ..add('travellerPhone', travellerPhone))
         .toString();
   }
 }
@@ -54,6 +67,16 @@ class BookingTravellerCreateBuilder
   String? get travellerId => _$this._travellerId;
   set travellerId(String? travellerId) => _$this._travellerId = travellerId;
 
+  String? _travellerName;
+  String? get travellerName => _$this._travellerName;
+  set travellerName(String? travellerName) =>
+      _$this._travellerName = travellerName;
+
+  String? _travellerPhone;
+  String? get travellerPhone => _$this._travellerPhone;
+  set travellerPhone(String? travellerPhone) =>
+      _$this._travellerPhone = travellerPhone;
+
   BookingTravellerCreateBuilder() {
     BookingTravellerCreate._defaults(this);
   }
@@ -62,6 +85,8 @@ class BookingTravellerCreateBuilder
     final $v = _$v;
     if ($v != null) {
       _travellerId = $v.travellerId;
+      _travellerName = $v.travellerName;
+      _travellerPhone = $v.travellerPhone;
       _$v = null;
     }
     return this;
@@ -83,8 +108,9 @@ class BookingTravellerCreateBuilder
   _$BookingTravellerCreate _build() {
     final _$result = _$v ??
         _$BookingTravellerCreate._(
-          travellerId: BuiltValueNullFieldError.checkNotNull(
-              travellerId, r'BookingTravellerCreate', 'travellerId'),
+          travellerId: travellerId,
+          travellerName: travellerName,
+          travellerPhone: travellerPhone,
         );
     replace(_$result);
     return _$result;

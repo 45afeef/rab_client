@@ -22,7 +22,7 @@ part 'booking_stay_create.g.dart';
 @BuiltValue()
 abstract class BookingStayCreate implements Built<BookingStayCreate, BookingStayCreateBuilder> {
   @BuiltValueField(wireName: r'stayunit_id')
-  String get stayunitId;
+  String? get stayunitId;
 
   @BuiltValueField(wireName: r'stay_provider_id')
   String? get stayProviderId;
@@ -66,11 +66,13 @@ class _$BookingStayCreateSerializer implements PrimitiveSerializer<BookingStayCr
     BookingStayCreate object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
-    yield r'stayunit_id';
-    yield serializers.serialize(
-      object.stayunitId,
-      specifiedType: const FullType(String),
-    );
+    if (object.stayunitId != null) {
+      yield r'stayunit_id';
+      yield serializers.serialize(
+        object.stayunitId,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
     if (object.stayProviderId != null) {
       yield r'stay_provider_id';
       yield serializers.serialize(
@@ -139,8 +141,9 @@ class _$BookingStayCreateSerializer implements PrimitiveSerializer<BookingStayCr
         case r'stayunit_id':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.stayunitId = valueDes;
           break;
         case r'stay_provider_id':

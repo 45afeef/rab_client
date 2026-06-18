@@ -12,10 +12,18 @@ part 'booking_traveller_create.g.dart';
 ///
 /// Properties:
 /// * [travellerId] 
+/// * [travellerName] 
+/// * [travellerPhone] 
 @BuiltValue()
 abstract class BookingTravellerCreate implements Built<BookingTravellerCreate, BookingTravellerCreateBuilder> {
   @BuiltValueField(wireName: r'traveller_id')
-  String get travellerId;
+  String? get travellerId;
+
+  @BuiltValueField(wireName: r'traveller_name')
+  String? get travellerName;
+
+  @BuiltValueField(wireName: r'traveller_phone')
+  String? get travellerPhone;
 
   BookingTravellerCreate._();
 
@@ -40,11 +48,27 @@ class _$BookingTravellerCreateSerializer implements PrimitiveSerializer<BookingT
     BookingTravellerCreate object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
-    yield r'traveller_id';
-    yield serializers.serialize(
-      object.travellerId,
-      specifiedType: const FullType(String),
-    );
+    if (object.travellerId != null) {
+      yield r'traveller_id';
+      yield serializers.serialize(
+        object.travellerId,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
+    if (object.travellerName != null) {
+      yield r'traveller_name';
+      yield serializers.serialize(
+        object.travellerName,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
+    if (object.travellerPhone != null) {
+      yield r'traveller_phone';
+      yield serializers.serialize(
+        object.travellerPhone,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
   }
 
   @override
@@ -71,9 +95,26 @@ class _$BookingTravellerCreateSerializer implements PrimitiveSerializer<BookingT
         case r'traveller_id':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.travellerId = valueDes;
+          break;
+        case r'traveller_name':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.travellerName = valueDes;
+          break;
+        case r'traveller_phone':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.travellerPhone = valueDes;
           break;
         default:
           unhandled.add(key);

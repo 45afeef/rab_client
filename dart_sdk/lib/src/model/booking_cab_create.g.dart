@@ -8,7 +8,7 @@ part of 'booking_cab_create.dart';
 
 class _$BookingCabCreate extends BookingCabCreate {
   @override
-  final String cabId;
+  final String? cabId;
   @override
   final String? cabProviderId;
   @override
@@ -25,15 +25,13 @@ class _$BookingCabCreate extends BookingCabCreate {
   final int? rate;
   @override
   final BookingStatus? status;
-  @override
-  final String? notes;
 
   factory _$BookingCabCreate(
           [void Function(BookingCabCreateBuilder)? updates]) =>
       (BookingCabCreateBuilder()..update(updates))._build();
 
   _$BookingCabCreate._(
-      {required this.cabId,
+      {this.cabId,
       this.cabProviderId,
       this.pickupTime,
       this.pickupLocation,
@@ -41,8 +39,7 @@ class _$BookingCabCreate extends BookingCabCreate {
       this.dropLocation,
       this.driverId,
       this.rate,
-      this.status,
-      this.notes})
+      this.status})
       : super._();
   @override
   BookingCabCreate rebuild(void Function(BookingCabCreateBuilder) updates) =>
@@ -64,8 +61,7 @@ class _$BookingCabCreate extends BookingCabCreate {
         dropLocation == other.dropLocation &&
         driverId == other.driverId &&
         rate == other.rate &&
-        status == other.status &&
-        notes == other.notes;
+        status == other.status;
   }
 
   @override
@@ -80,7 +76,6 @@ class _$BookingCabCreate extends BookingCabCreate {
     _$hash = $jc(_$hash, driverId.hashCode);
     _$hash = $jc(_$hash, rate.hashCode);
     _$hash = $jc(_$hash, status.hashCode);
-    _$hash = $jc(_$hash, notes.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -96,8 +91,7 @@ class _$BookingCabCreate extends BookingCabCreate {
           ..add('dropLocation', dropLocation)
           ..add('driverId', driverId)
           ..add('rate', rate)
-          ..add('status', status)
-          ..add('notes', notes))
+          ..add('status', status))
         .toString();
   }
 }
@@ -144,10 +138,6 @@ class BookingCabCreateBuilder
   BookingStatus? get status => _$this._status;
   set status(BookingStatus? status) => _$this._status = status;
 
-  String? _notes;
-  String? get notes => _$this._notes;
-  set notes(String? notes) => _$this._notes = notes;
-
   BookingCabCreateBuilder() {
     BookingCabCreate._defaults(this);
   }
@@ -164,7 +154,6 @@ class BookingCabCreateBuilder
       _driverId = $v.driverId;
       _rate = $v.rate;
       _status = $v.status;
-      _notes = $v.notes;
       _$v = null;
     }
     return this;
@@ -186,8 +175,7 @@ class BookingCabCreateBuilder
   _$BookingCabCreate _build() {
     final _$result = _$v ??
         _$BookingCabCreate._(
-          cabId: BuiltValueNullFieldError.checkNotNull(
-              cabId, r'BookingCabCreate', 'cabId'),
+          cabId: cabId,
           cabProviderId: cabProviderId,
           pickupTime: pickupTime,
           pickupLocation: pickupLocation,
@@ -196,7 +184,6 @@ class BookingCabCreateBuilder
           driverId: driverId,
           rate: rate,
           status: status,
-          notes: notes,
         );
     replace(_$result);
     return _$result;

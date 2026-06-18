@@ -1,16 +1,14 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'booking.dart';
+part of 'booking_read.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
 // **************************************************************************
 
-class _$Booking extends Booking {
+class _$BookingRead extends BookingRead {
   @override
-  final String? id;
-  @override
-  final String travelerId;
+  final String id;
   @override
   final String? travelAgencyId;
   @override
@@ -27,13 +25,18 @@ class _$Booking extends Booking {
   final DateTime? createdAt;
   @override
   final DateTime? updatedAt;
+  @override
+  final BuiltList<BookingTravellerRead>? travellers;
+  @override
+  final BuiltList<BookingCabRead>? cabs;
+  @override
+  final BuiltList<BookingStayRead>? stays;
 
-  factory _$Booking([void Function(BookingBuilder)? updates]) =>
-      (BookingBuilder()..update(updates))._build();
+  factory _$BookingRead([void Function(BookingReadBuilder)? updates]) =>
+      (BookingReadBuilder()..update(updates))._build();
 
-  _$Booking._(
-      {this.id,
-      required this.travelerId,
+  _$BookingRead._(
+      {required this.id,
       this.travelAgencyId,
       this.travelAgencyStaffId,
       this.enquiryId,
@@ -41,21 +44,23 @@ class _$Booking extends Booking {
       this.status,
       this.totalAmount,
       this.createdAt,
-      this.updatedAt})
+      this.updatedAt,
+      this.travellers,
+      this.cabs,
+      this.stays})
       : super._();
   @override
-  Booking rebuild(void Function(BookingBuilder) updates) =>
+  BookingRead rebuild(void Function(BookingReadBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  BookingBuilder toBuilder() => BookingBuilder()..replace(this);
+  BookingReadBuilder toBuilder() => BookingReadBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is Booking &&
+    return other is BookingRead &&
         id == other.id &&
-        travelerId == other.travelerId &&
         travelAgencyId == other.travelAgencyId &&
         travelAgencyStaffId == other.travelAgencyStaffId &&
         enquiryId == other.enquiryId &&
@@ -63,14 +68,16 @@ class _$Booking extends Booking {
         status == other.status &&
         totalAmount == other.totalAmount &&
         createdAt == other.createdAt &&
-        updatedAt == other.updatedAt;
+        updatedAt == other.updatedAt &&
+        travellers == other.travellers &&
+        cabs == other.cabs &&
+        stays == other.stays;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, id.hashCode);
-    _$hash = $jc(_$hash, travelerId.hashCode);
     _$hash = $jc(_$hash, travelAgencyId.hashCode);
     _$hash = $jc(_$hash, travelAgencyStaffId.hashCode);
     _$hash = $jc(_$hash, enquiryId.hashCode);
@@ -79,15 +86,17 @@ class _$Booking extends Booking {
     _$hash = $jc(_$hash, totalAmount.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
     _$hash = $jc(_$hash, updatedAt.hashCode);
+    _$hash = $jc(_$hash, travellers.hashCode);
+    _$hash = $jc(_$hash, cabs.hashCode);
+    _$hash = $jc(_$hash, stays.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper(r'Booking')
+    return (newBuiltValueToStringHelper(r'BookingRead')
           ..add('id', id)
-          ..add('travelerId', travelerId)
           ..add('travelAgencyId', travelAgencyId)
           ..add('travelAgencyStaffId', travelAgencyStaffId)
           ..add('enquiryId', enquiryId)
@@ -95,21 +104,20 @@ class _$Booking extends Booking {
           ..add('status', status)
           ..add('totalAmount', totalAmount)
           ..add('createdAt', createdAt)
-          ..add('updatedAt', updatedAt))
+          ..add('updatedAt', updatedAt)
+          ..add('travellers', travellers)
+          ..add('cabs', cabs)
+          ..add('stays', stays))
         .toString();
   }
 }
 
-class BookingBuilder implements Builder<Booking, BookingBuilder> {
-  _$Booking? _$v;
+class BookingReadBuilder implements Builder<BookingRead, BookingReadBuilder> {
+  _$BookingRead? _$v;
 
   String? _id;
   String? get id => _$this._id;
   set id(String? id) => _$this._id = id;
-
-  String? _travelerId;
-  String? get travelerId => _$this._travelerId;
-  set travelerId(String? travelerId) => _$this._travelerId = travelerId;
 
   String? _travelAgencyId;
   String? get travelAgencyId => _$this._travelAgencyId;
@@ -145,15 +153,30 @@ class BookingBuilder implements Builder<Booking, BookingBuilder> {
   DateTime? get updatedAt => _$this._updatedAt;
   set updatedAt(DateTime? updatedAt) => _$this._updatedAt = updatedAt;
 
-  BookingBuilder() {
-    Booking._defaults(this);
+  ListBuilder<BookingTravellerRead>? _travellers;
+  ListBuilder<BookingTravellerRead> get travellers =>
+      _$this._travellers ??= ListBuilder<BookingTravellerRead>();
+  set travellers(ListBuilder<BookingTravellerRead>? travellers) =>
+      _$this._travellers = travellers;
+
+  ListBuilder<BookingCabRead>? _cabs;
+  ListBuilder<BookingCabRead> get cabs =>
+      _$this._cabs ??= ListBuilder<BookingCabRead>();
+  set cabs(ListBuilder<BookingCabRead>? cabs) => _$this._cabs = cabs;
+
+  ListBuilder<BookingStayRead>? _stays;
+  ListBuilder<BookingStayRead> get stays =>
+      _$this._stays ??= ListBuilder<BookingStayRead>();
+  set stays(ListBuilder<BookingStayRead>? stays) => _$this._stays = stays;
+
+  BookingReadBuilder() {
+    BookingRead._defaults(this);
   }
 
-  BookingBuilder get _$this {
+  BookingReadBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
       _id = $v.id;
-      _travelerId = $v.travelerId;
       _travelAgencyId = $v.travelAgencyId;
       _travelAgencyStaffId = $v.travelAgencyStaffId;
       _enquiryId = $v.enquiryId;
@@ -162,39 +185,60 @@ class BookingBuilder implements Builder<Booking, BookingBuilder> {
       _totalAmount = $v.totalAmount;
       _createdAt = $v.createdAt;
       _updatedAt = $v.updatedAt;
+      _travellers = $v.travellers?.toBuilder();
+      _cabs = $v.cabs?.toBuilder();
+      _stays = $v.stays?.toBuilder();
       _$v = null;
     }
     return this;
   }
 
   @override
-  void replace(Booking other) {
-    _$v = other as _$Booking;
+  void replace(BookingRead other) {
+    _$v = other as _$BookingRead;
   }
 
   @override
-  void update(void Function(BookingBuilder)? updates) {
+  void update(void Function(BookingReadBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  Booking build() => _build();
+  BookingRead build() => _build();
 
-  _$Booking _build() {
-    final _$result = _$v ??
-        _$Booking._(
-          id: id,
-          travelerId: BuiltValueNullFieldError.checkNotNull(
-              travelerId, r'Booking', 'travelerId'),
-          travelAgencyId: travelAgencyId,
-          travelAgencyStaffId: travelAgencyStaffId,
-          enquiryId: enquiryId,
-          bookingDate: bookingDate,
-          status: status,
-          totalAmount: totalAmount,
-          createdAt: createdAt,
-          updatedAt: updatedAt,
-        );
+  _$BookingRead _build() {
+    _$BookingRead _$result;
+    try {
+      _$result = _$v ??
+          _$BookingRead._(
+            id: BuiltValueNullFieldError.checkNotNull(id, r'BookingRead', 'id'),
+            travelAgencyId: travelAgencyId,
+            travelAgencyStaffId: travelAgencyStaffId,
+            enquiryId: enquiryId,
+            bookingDate: bookingDate,
+            status: status,
+            totalAmount: totalAmount,
+            createdAt: createdAt,
+            updatedAt: updatedAt,
+            travellers: _travellers?.build(),
+            cabs: _cabs?.build(),
+            stays: _stays?.build(),
+          );
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'travellers';
+        _travellers?.build();
+        _$failedField = 'cabs';
+        _cabs?.build();
+        _$failedField = 'stays';
+        _stays?.build();
+      } catch (e) {
+        throw BuiltValueNestedFieldError(
+            r'BookingRead', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }

@@ -22,20 +22,37 @@ import 'package:rab_dio/src/model/agency_staff_public.dart';
 import 'package:rab_dio/src/model/agency_staff_update.dart';
 import 'package:rab_dio/src/model/agency_update.dart';
 import 'package:rab_dio/src/model/amenity_scope.dart';
-import 'package:rab_dio/src/model/booking.dart';
 import 'package:rab_dio/src/model/booking_cab_create.dart';
+import 'package:rab_dio/src/model/booking_cab_item_public.dart';
+import 'package:rab_dio/src/model/booking_cab_provider_public.dart';
+import 'package:rab_dio/src/model/booking_cab_public.dart';
+import 'package:rab_dio/src/model/booking_cab_read.dart';
+import 'package:rab_dio/src/model/booking_cab_update.dart';
 import 'package:rab_dio/src/model/booking_create.dart';
+import 'package:rab_dio/src/model/booking_driver_public.dart';
+import 'package:rab_dio/src/model/booking_read.dart';
+import 'package:rab_dio/src/model/booking_response.dart';
 import 'package:rab_dio/src/model/booking_status.dart';
 import 'package:rab_dio/src/model/booking_stay_create.dart';
+import 'package:rab_dio/src/model/booking_stay_provider_public.dart';
+import 'package:rab_dio/src/model/booking_stay_public.dart';
+import 'package:rab_dio/src/model/booking_stay_read.dart';
+import 'package:rab_dio/src/model/booking_stay_unit_public.dart';
+import 'package:rab_dio/src/model/booking_stay_update.dart';
 import 'package:rab_dio/src/model/booking_traveller_create.dart';
+import 'package:rab_dio/src/model/booking_traveller_public.dart';
+import 'package:rab_dio/src/model/booking_traveller_read.dart';
+import 'package:rab_dio/src/model/booking_traveller_update.dart';
 import 'package:rab_dio/src/model/booking_update.dart';
 import 'package:rab_dio/src/model/cab_create.dart';
 import 'package:rab_dio/src/model/cab_provider_create.dart';
 import 'package:rab_dio/src/model/cab_provider_public.dart';
 import 'package:rab_dio/src/model/cab_public.dart';
+import 'package:rab_dio/src/model/cab_read.dart';
 import 'package:rab_dio/src/model/cabs_list.dart';
 import 'package:rab_dio/src/model/driver_create.dart';
 import 'package:rab_dio/src/model/driver_public.dart';
+import 'package:rab_dio/src/model/driver_read.dart';
 import 'package:rab_dio/src/model/drivers_list.dart';
 import 'package:rab_dio/src/model/http_validation_error.dart';
 import 'package:rab_dio/src/model/location_inner.dart';
@@ -45,6 +62,7 @@ import 'package:rab_dio/src/model/private_user_create.dart';
 import 'package:rab_dio/src/model/profile.dart';
 import 'package:rab_dio/src/model/profile_create.dart';
 import 'package:rab_dio/src/model/profile_public.dart';
+import 'package:rab_dio/src/model/profile_read.dart';
 import 'package:rab_dio/src/model/profile_update.dart';
 import 'package:rab_dio/src/model/provider_in.dart';
 import 'package:rab_dio/src/model/public_stay_provider_list.dart';
@@ -60,6 +78,7 @@ import 'package:rab_dio/src/model/stay_provider_create.dart';
 import 'package:rab_dio/src/model/stay_provider_public.dart';
 import 'package:rab_dio/src/model/stay_unit_create.dart';
 import 'package:rab_dio/src/model/stay_unit_public.dart';
+import 'package:rab_dio/src/model/stay_unit_read.dart';
 import 'package:rab_dio/src/model/token.dart';
 import 'package:rab_dio/src/model/units_list.dart';
 import 'package:rab_dio/src/model/update_password.dart';
@@ -82,20 +101,37 @@ part 'serializers.g.dart';
   AgencyStaffUpdate,
   AgencyUpdate,
   AmenityScope,
-  Booking,
   BookingCabCreate,
+  BookingCabItemPublic,
+  BookingCabProviderPublic,
+  BookingCabPublic,
+  BookingCabRead,
+  BookingCabUpdate,
   BookingCreate,
+  BookingDriverPublic,
+  BookingRead,
+  BookingResponse,
   BookingStatus,
   BookingStayCreate,
+  BookingStayProviderPublic,
+  BookingStayPublic,
+  BookingStayRead,
+  BookingStayUnitPublic,
+  BookingStayUpdate,
   BookingTravellerCreate,
+  BookingTravellerPublic,
+  BookingTravellerRead,
+  BookingTravellerUpdate,
   BookingUpdate,
   CabCreate,
   CabProviderCreate,
   CabProviderPublic,
   CabPublic,
+  CabRead,
   CabsList,
   DriverCreate,
   DriverPublic,
+  DriverRead,
   DriversList,
   HTTPValidationError,
   LocationInner,
@@ -105,6 +141,7 @@ part 'serializers.g.dart';
   Profile,
   ProfileCreate,
   ProfilePublic,
+  ProfileRead,
   ProfileUpdate,
   ProviderIn,
   PublicStayProviderList,
@@ -120,6 +157,7 @@ part 'serializers.g.dart';
   StayProviderPublic,
   StayUnitCreate,
   StayUnitPublic,
+  StayUnitRead,
   Token,
   UnitsList,
   UpdatePassword,
@@ -137,10 +175,6 @@ Serializers serializers = (_$serializers.toBuilder()
         () => ListBuilder<AgencyPublic>(),
       )
       ..addBuilderFactory(
-        const FullType(BuiltList, [FullType(Booking)]),
-        () => ListBuilder<Booking>(),
-      )
-      ..addBuilderFactory(
         const FullType(BuiltList, [FullType(DriverPublic)]),
         () => ListBuilder<DriverPublic>(),
       )
@@ -155,6 +189,10 @@ Serializers serializers = (_$serializers.toBuilder()
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(AgencyStaffPublic)]),
         () => ListBuilder<AgencyStaffPublic>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(BookingResponse)]),
+        () => ListBuilder<BookingResponse>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(String)]),

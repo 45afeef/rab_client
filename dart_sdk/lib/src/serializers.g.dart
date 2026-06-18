@@ -15,12 +15,27 @@ Serializers _$serializers = (Serializers().toBuilder()
       ..add(AgencyStaffUpdate.serializer)
       ..add(AgencyUpdate.serializer)
       ..add(AmenityScope.serializer)
-      ..add(Booking.serializer)
       ..add(BookingCabCreate.serializer)
+      ..add(BookingCabItemPublic.serializer)
+      ..add(BookingCabProviderPublic.serializer)
+      ..add(BookingCabPublic.serializer)
+      ..add(BookingCabRead.serializer)
+      ..add(BookingCabUpdate.serializer)
       ..add(BookingCreate.serializer)
+      ..add(BookingDriverPublic.serializer)
+      ..add(BookingRead.serializer)
+      ..add(BookingResponse.serializer)
       ..add(BookingStatus.serializer)
       ..add(BookingStayCreate.serializer)
+      ..add(BookingStayProviderPublic.serializer)
+      ..add(BookingStayPublic.serializer)
+      ..add(BookingStayRead.serializer)
+      ..add(BookingStayUnitPublic.serializer)
+      ..add(BookingStayUpdate.serializer)
       ..add(BookingTravellerCreate.serializer)
+      ..add(BookingTravellerPublic.serializer)
+      ..add(BookingTravellerRead.serializer)
+      ..add(BookingTravellerUpdate.serializer)
       ..add(BookingUpdate.serializer)
       ..add(CabCreate.serializer)
       ..add(CabProviderCreate.serializer)
@@ -28,9 +43,11 @@ Serializers _$serializers = (Serializers().toBuilder()
       ..add(CabProviderPublic.serializer)
       ..add(CabProviderPublicProviderTypeEnum.serializer)
       ..add(CabPublic.serializer)
+      ..add(CabRead.serializer)
       ..add(CabsList.serializer)
       ..add(DriverCreate.serializer)
       ..add(DriverPublic.serializer)
+      ..add(DriverRead.serializer)
       ..add(DriversList.serializer)
       ..add(HTTPValidationError.serializer)
       ..add(LocationInner.serializer)
@@ -40,6 +57,7 @@ Serializers _$serializers = (Serializers().toBuilder()
       ..add(Profile.serializer)
       ..add(ProfileCreate.serializer)
       ..add(ProfilePublic.serializer)
+      ..add(ProfileRead.serializer)
       ..add(ProfileUpdate.serializer)
       ..add(ProviderIn.serializer)
       ..add(PublicStayProviderList.serializer)
@@ -57,6 +75,7 @@ Serializers _$serializers = (Serializers().toBuilder()
       ..add(StayProviderPublicProviderTypeEnum.serializer)
       ..add(StayUnitCreate.serializer)
       ..add(StayUnitPublic.serializer)
+      ..add(StayUnitRead.serializer)
       ..add(Token.serializer)
       ..add(UnitsList.serializer)
       ..add(UpdatePassword.serializer)
@@ -68,6 +87,16 @@ Serializers _$serializers = (Serializers().toBuilder()
       ..add(ValidationError.serializer)
       ..add(VehicleType.serializer)
       ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(BookingCabPublic)]),
+          () => ListBuilder<BookingCabPublic>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(BookingStayPublic)]),
+          () => ListBuilder<BookingStayPublic>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(BookingStayUnitPublic)]),
+          () => ListBuilder<BookingStayUnitPublic>())
+      ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(BookingTravellerCreate)]),
           () => ListBuilder<BookingTravellerCreate>())
@@ -77,6 +106,38 @@ Serializers _$serializers = (Serializers().toBuilder()
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(BookingStayCreate)]),
           () => ListBuilder<BookingStayCreate>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(BookingTravellerPublic)]),
+          () => ListBuilder<BookingTravellerPublic>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(BookingCabProviderPublic)]),
+          () => ListBuilder<BookingCabProviderPublic>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(BookingStayProviderPublic)]),
+          () => ListBuilder<BookingStayProviderPublic>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(BookingTravellerRead)]),
+          () => ListBuilder<BookingTravellerRead>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(BookingCabRead)]),
+          () => ListBuilder<BookingCabRead>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(BookingStayRead)]),
+          () => ListBuilder<BookingStayRead>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(BookingTravellerUpdate)]),
+          () => ListBuilder<BookingTravellerUpdate>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(BookingCabUpdate)]),
+          () => ListBuilder<BookingCabUpdate>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(BookingStayUpdate)]),
+          () => ListBuilder<BookingStayUpdate>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(CabPublic)]),
           () => ListBuilder<CabPublic>())

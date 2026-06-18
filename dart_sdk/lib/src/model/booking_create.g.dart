@@ -8,8 +8,6 @@ part of 'booking_create.dart';
 
 class _$BookingCreate extends BookingCreate {
   @override
-  final String travelerId;
-  @override
   final DateTime? bookingDate;
   @override
   final BookingStatus? status;
@@ -28,8 +26,7 @@ class _$BookingCreate extends BookingCreate {
       (BookingCreateBuilder()..update(updates))._build();
 
   _$BookingCreate._(
-      {required this.travelerId,
-      this.bookingDate,
+      {this.bookingDate,
       this.status,
       this.totalAmount,
       this.travelAgencyId,
@@ -48,7 +45,6 @@ class _$BookingCreate extends BookingCreate {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is BookingCreate &&
-        travelerId == other.travelerId &&
         bookingDate == other.bookingDate &&
         status == other.status &&
         totalAmount == other.totalAmount &&
@@ -61,7 +57,6 @@ class _$BookingCreate extends BookingCreate {
   @override
   int get hashCode {
     var _$hash = 0;
-    _$hash = $jc(_$hash, travelerId.hashCode);
     _$hash = $jc(_$hash, bookingDate.hashCode);
     _$hash = $jc(_$hash, status.hashCode);
     _$hash = $jc(_$hash, totalAmount.hashCode);
@@ -76,7 +71,6 @@ class _$BookingCreate extends BookingCreate {
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'BookingCreate')
-          ..add('travelerId', travelerId)
           ..add('bookingDate', bookingDate)
           ..add('status', status)
           ..add('totalAmount', totalAmount)
@@ -91,10 +85,6 @@ class _$BookingCreate extends BookingCreate {
 class BookingCreateBuilder
     implements Builder<BookingCreate, BookingCreateBuilder> {
   _$BookingCreate? _$v;
-
-  String? _travelerId;
-  String? get travelerId => _$this._travelerId;
-  set travelerId(String? travelerId) => _$this._travelerId = travelerId;
 
   DateTime? _bookingDate;
   DateTime? get bookingDate => _$this._bookingDate;
@@ -136,7 +126,6 @@ class BookingCreateBuilder
   BookingCreateBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _travelerId = $v.travelerId;
       _bookingDate = $v.bookingDate;
       _status = $v.status;
       _totalAmount = $v.totalAmount;
@@ -167,8 +156,6 @@ class BookingCreateBuilder
     try {
       _$result = _$v ??
           _$BookingCreate._(
-            travelerId: BuiltValueNullFieldError.checkNotNull(
-                travelerId, r'BookingCreate', 'travelerId'),
             bookingDate: bookingDate,
             status: status,
             totalAmount: totalAmount,

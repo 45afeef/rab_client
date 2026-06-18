@@ -3,51 +3,49 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:rab_dio/src/model/booking_status.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
-part 'booking.g.dart';
+part 'stay_unit_read.g.dart';
 
-/// Booking
+/// StayUnit data with all relevant details
 ///
 /// Properties:
 /// * [id] 
-/// * [travelerId] 
-/// * [travelAgencyId] 
-/// * [travelAgencyStaffId] 
-/// * [enquiryId] 
-/// * [bookingDate] 
-/// * [status] 
-/// * [totalAmount] 
+/// * [name] 
+/// * [description] 
+/// * [providerId] 
+/// * [roomRate] 
+/// * [roomRateOccupancy] 
+/// * [perHeadRate] 
+/// * [maxOccupancy] 
 /// * [createdAt] 
 /// * [updatedAt] 
 @BuiltValue()
-abstract class Booking implements Built<Booking, BookingBuilder> {
+abstract class StayUnitRead implements Built<StayUnitRead, StayUnitReadBuilder> {
   @BuiltValueField(wireName: r'id')
-  String? get id;
+  String get id;
 
-  @BuiltValueField(wireName: r'traveler_id')
-  String get travelerId;
+  @BuiltValueField(wireName: r'name')
+  String get name;
 
-  @BuiltValueField(wireName: r'travel_agency_id')
-  String? get travelAgencyId;
+  @BuiltValueField(wireName: r'description')
+  String? get description;
 
-  @BuiltValueField(wireName: r'travel_agency_staff_id')
-  String? get travelAgencyStaffId;
+  @BuiltValueField(wireName: r'provider_id')
+  String? get providerId;
 
-  @BuiltValueField(wireName: r'enquiry_id')
-  String? get enquiryId;
+  @BuiltValueField(wireName: r'room_rate')
+  int? get roomRate;
 
-  @BuiltValueField(wireName: r'booking_date')
-  DateTime? get bookingDate;
+  @BuiltValueField(wireName: r'room_rate_occupancy')
+  int? get roomRateOccupancy;
 
-  @BuiltValueField(wireName: r'status')
-  BookingStatus? get status;
-  // enum statusEnum {  PENDING,  CONFIRMED,  CANCELLED,  COMPLETED,  };
+  @BuiltValueField(wireName: r'per_head_rate')
+  int? get perHeadRate;
 
-  @BuiltValueField(wireName: r'total_amount')
-  int? get totalAmount;
+  @BuiltValueField(wireName: r'max_occupancy')
+  int? get maxOccupancy;
 
   @BuiltValueField(wireName: r'created_at')
   DateTime? get createdAt;
@@ -55,80 +53,78 @@ abstract class Booking implements Built<Booking, BookingBuilder> {
   @BuiltValueField(wireName: r'updated_at')
   DateTime? get updatedAt;
 
-  Booking._();
+  StayUnitRead._();
 
-  factory Booking([void updates(BookingBuilder b)]) = _$Booking;
+  factory StayUnitRead([void updates(StayUnitReadBuilder b)]) = _$StayUnitRead;
 
   @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(BookingBuilder b) => b;
+  static void _defaults(StayUnitReadBuilder b) => b;
 
   @BuiltValueSerializer(custom: true)
-  static Serializer<Booking> get serializer => _$BookingSerializer();
+  static Serializer<StayUnitRead> get serializer => _$StayUnitReadSerializer();
 }
 
-class _$BookingSerializer implements PrimitiveSerializer<Booking> {
+class _$StayUnitReadSerializer implements PrimitiveSerializer<StayUnitRead> {
   @override
-  final Iterable<Type> types = const [Booking, _$Booking];
+  final Iterable<Type> types = const [StayUnitRead, _$StayUnitRead];
 
   @override
-  final String wireName = r'Booking';
+  final String wireName = r'StayUnitRead';
 
   Iterable<Object?> _serializeProperties(
     Serializers serializers,
-    Booking object, {
+    StayUnitRead object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
-    if (object.id != null) {
-      yield r'id';
-      yield serializers.serialize(
-        object.id,
-        specifiedType: const FullType(String),
-      );
-    }
-    yield r'traveler_id';
+    yield r'id';
     yield serializers.serialize(
-      object.travelerId,
+      object.id,
       specifiedType: const FullType(String),
     );
-    if (object.travelAgencyId != null) {
-      yield r'travel_agency_id';
+    yield r'name';
+    yield serializers.serialize(
+      object.name,
+      specifiedType: const FullType(String),
+    );
+    if (object.description != null) {
+      yield r'description';
       yield serializers.serialize(
-        object.travelAgencyId,
+        object.description,
         specifiedType: const FullType.nullable(String),
       );
     }
-    if (object.travelAgencyStaffId != null) {
-      yield r'travel_agency_staff_id';
+    if (object.providerId != null) {
+      yield r'provider_id';
       yield serializers.serialize(
-        object.travelAgencyStaffId,
+        object.providerId,
         specifiedType: const FullType.nullable(String),
       );
     }
-    if (object.enquiryId != null) {
-      yield r'enquiry_id';
+    if (object.roomRate != null) {
+      yield r'room_rate';
       yield serializers.serialize(
-        object.enquiryId,
-        specifiedType: const FullType.nullable(String),
+        object.roomRate,
+        specifiedType: const FullType.nullable(int),
       );
     }
-    if (object.bookingDate != null) {
-      yield r'booking_date';
+    if (object.roomRateOccupancy != null) {
+      yield r'room_rate_occupancy';
       yield serializers.serialize(
-        object.bookingDate,
-        specifiedType: const FullType.nullable(DateTime),
+        object.roomRateOccupancy,
+        specifiedType: const FullType.nullable(int),
       );
     }
-    if (object.status != null) {
-      yield r'status';
+    if (object.perHeadRate != null) {
+      yield r'per_head_rate';
       yield serializers.serialize(
-        object.status,
-        specifiedType: const FullType.nullable(BookingStatus),
+        object.perHeadRate,
+        specifiedType: const FullType.nullable(int),
       );
     }
-    if (object.totalAmount != null) {
-      yield r'total_amount';
+    if (object.maxOccupancy != null) {
+      yield r'max_occupancy';
       yield serializers.serialize(
-        object.totalAmount,
+        object.maxOccupancy,
         specifiedType: const FullType.nullable(int),
       );
     }
@@ -151,7 +147,7 @@ class _$BookingSerializer implements PrimitiveSerializer<Booking> {
   @override
   Object serialize(
     Serializers serializers,
-    Booking object, {
+    StayUnitRead object, {
     FullType specifiedType = FullType.unspecified,
   }) {
     return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
@@ -162,7 +158,7 @@ class _$BookingSerializer implements PrimitiveSerializer<Booking> {
     Object serialized, {
     FullType specifiedType = FullType.unspecified,
     required List<Object?> serializedList,
-    required BookingBuilder result,
+    required StayUnitReadBuilder result,
     required List<Object?> unhandled,
   }) {
     for (var i = 0; i < serializedList.length; i += 2) {
@@ -176,60 +172,60 @@ class _$BookingSerializer implements PrimitiveSerializer<Booking> {
           ) as String;
           result.id = valueDes;
           break;
-        case r'traveler_id':
+        case r'name':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(String),
           ) as String;
-          result.travelerId = valueDes;
+          result.name = valueDes;
           break;
-        case r'travel_agency_id':
+        case r'description':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType.nullable(String),
           ) as String?;
           if (valueDes == null) continue;
-          result.travelAgencyId = valueDes;
+          result.description = valueDes;
           break;
-        case r'travel_agency_staff_id':
+        case r'provider_id':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType.nullable(String),
           ) as String?;
           if (valueDes == null) continue;
-          result.travelAgencyStaffId = valueDes;
+          result.providerId = valueDes;
           break;
-        case r'enquiry_id':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
-          result.enquiryId = valueDes;
-          break;
-        case r'booking_date':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(DateTime),
-          ) as DateTime?;
-          if (valueDes == null) continue;
-          result.bookingDate = valueDes;
-          break;
-        case r'status':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(BookingStatus),
-          ) as BookingStatus?;
-          if (valueDes == null) continue;
-          result.status = valueDes;
-          break;
-        case r'total_amount':
+        case r'room_rate':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType.nullable(int),
           ) as int?;
           if (valueDes == null) continue;
-          result.totalAmount = valueDes;
+          result.roomRate = valueDes;
+          break;
+        case r'room_rate_occupancy':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
+          result.roomRateOccupancy = valueDes;
+          break;
+        case r'per_head_rate':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
+          result.perHeadRate = valueDes;
+          break;
+        case r'max_occupancy':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
+          result.maxOccupancy = valueDes;
           break;
         case r'created_at':
           final valueDes = serializers.deserialize(
@@ -256,12 +252,12 @@ class _$BookingSerializer implements PrimitiveSerializer<Booking> {
   }
 
   @override
-  Booking deserialize(
+  StayUnitRead deserialize(
     Serializers serializers,
     Object serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = BookingBuilder();
+    final result = StayUnitReadBuilder();
     final serializedList = (serialized as Iterable<Object?>).toList();
     final unhandled = <Object?>[];
     _deserializeProperties(

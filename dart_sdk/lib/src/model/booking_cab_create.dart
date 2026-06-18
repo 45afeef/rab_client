@@ -21,11 +21,10 @@ part 'booking_cab_create.g.dart';
 /// * [driverId] 
 /// * [rate] 
 /// * [status] 
-/// * [notes] 
 @BuiltValue()
 abstract class BookingCabCreate implements Built<BookingCabCreate, BookingCabCreateBuilder> {
   @BuiltValueField(wireName: r'cab_id')
-  String get cabId;
+  String? get cabId;
 
   @BuiltValueField(wireName: r'cab_provider_id')
   String? get cabProviderId;
@@ -52,9 +51,6 @@ abstract class BookingCabCreate implements Built<BookingCabCreate, BookingCabCre
   BookingStatus? get status;
   // enum statusEnum {  PENDING,  CONFIRMED,  CANCELLED,  COMPLETED,  };
 
-  @BuiltValueField(wireName: r'notes')
-  String? get notes;
-
   BookingCabCreate._();
 
   factory BookingCabCreate([void updates(BookingCabCreateBuilder b)]) = _$BookingCabCreate;
@@ -78,11 +74,13 @@ class _$BookingCabCreateSerializer implements PrimitiveSerializer<BookingCabCrea
     BookingCabCreate object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
-    yield r'cab_id';
-    yield serializers.serialize(
-      object.cabId,
-      specifiedType: const FullType(String),
-    );
+    if (object.cabId != null) {
+      yield r'cab_id';
+      yield serializers.serialize(
+        object.cabId,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
     if (object.cabProviderId != null) {
       yield r'cab_provider_id';
       yield serializers.serialize(
@@ -139,13 +137,6 @@ class _$BookingCabCreateSerializer implements PrimitiveSerializer<BookingCabCrea
         specifiedType: const FullType.nullable(BookingStatus),
       );
     }
-    if (object.notes != null) {
-      yield r'notes';
-      yield serializers.serialize(
-        object.notes,
-        specifiedType: const FullType.nullable(String),
-      );
-    }
   }
 
   @override
@@ -172,8 +163,9 @@ class _$BookingCabCreateSerializer implements PrimitiveSerializer<BookingCabCrea
         case r'cab_id':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.cabId = valueDes;
           break;
         case r'cab_provider_id':
@@ -239,14 +231,6 @@ class _$BookingCabCreateSerializer implements PrimitiveSerializer<BookingCabCrea
           ) as BookingStatus?;
           if (valueDes == null) continue;
           result.status = valueDes;
-          break;
-        case r'notes':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
-          result.notes = valueDes;
           break;
         default:
           unhandled.add(key);

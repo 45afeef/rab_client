@@ -22,5 +22,20 @@ void main() {
       // TODO
     });
 
+    // BuiltList<BookingTravellerUpdate> travellers
+    test('to test the property `travellers`', () async {
+      // TODO
+    });
+
+    // BuiltList<BookingCabUpdate> cabs
+    test('to test the property `cabs`', () async {
+      // TODO
+    });
+
+    // BuiltList<BookingStayUpdate> stays
+    test('to test the property `stays`', () async {
+      // TODO
+    });
+
   });
 }

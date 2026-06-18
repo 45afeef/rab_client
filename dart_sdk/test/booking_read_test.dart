@@ -1,19 +1,14 @@
 import 'package:test/test.dart';
 import 'package:rab_dio/rab_dio.dart';
 
-// tests for Booking
+// tests for BookingRead
 void main() {
-  final instance = BookingBuilder();
+  final instance = BookingReadBuilder();
   // TODO add properties to the builder and call build()
 
-  group(Booking, () {
+  group(BookingRead, () {
     // String id
     test('to test the property `id`', () async {
-      // TODO
-    });
-
-    // String travelerId
-    test('to test the property `travelerId`', () async {
       // TODO
     });
 
@@ -54,6 +49,21 @@ void main() {
 
     // DateTime updatedAt
     test('to test the property `updatedAt`', () async {
+      // TODO
+    });
+
+    // BuiltList<BookingTravellerRead> travellers (default value: ListBuilder())
+    test('to test the property `travellers`', () async {
+      // TODO
+    });
+
+    // BuiltList<BookingCabRead> cabs (default value: ListBuilder())
+    test('to test the property `cabs`', () async {
+      // TODO
+    });
+
+    // BuiltList<BookingStayRead> stays (default value: ListBuilder())
+    test('to test the property `stays`', () async {
       // TODO
     });
 

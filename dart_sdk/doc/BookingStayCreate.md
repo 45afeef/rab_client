@@ -8,7 +8,7 @@ import 'package:rab_dio/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**stayunitId** | **String** |  | 
+**stayunitId** | **String** |  | [optional] 
 **stayProviderId** | **String** |  | [optional] 
 **checkIn** | [**DateTime**](DateTime.md) |  | [optional] 
 **checkOut** | [**DateTime**](DateTime.md) |  | [optional] 

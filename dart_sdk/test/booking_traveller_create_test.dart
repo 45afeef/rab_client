@@ -12,5 +12,15 @@ void main() {
       // TODO
     });
 
+    // String travellerName
+    test('to test the property `travellerName`', () async {
+      // TODO
+    });
+
+    // String travellerPhone
+    test('to test the property `travellerPhone`', () async {
+      // TODO
+    });
+
   });
 }

@@ -7,11 +7,6 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(BookingCreate, () {
-    // String travelerId
-    test('to test the property `travelerId`', () async {
-      // TODO
-    });
-
     // DateTime bookingDate
     test('to test the property `bookingDate`', () async {
       // TODO

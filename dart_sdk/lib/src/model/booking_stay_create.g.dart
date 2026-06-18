@@ -8,7 +8,7 @@ part of 'booking_stay_create.dart';
 
 class _$BookingStayCreate extends BookingStayCreate {
   @override
-  final String stayunitId;
+  final String? stayunitId;
   @override
   final String? stayProviderId;
   @override
@@ -27,7 +27,7 @@ class _$BookingStayCreate extends BookingStayCreate {
       (BookingStayCreateBuilder()..update(updates))._build();
 
   _$BookingStayCreate._(
-      {required this.stayunitId,
+      {this.stayunitId,
       this.stayProviderId,
       this.checkIn,
       this.checkOut,
@@ -152,8 +152,7 @@ class BookingStayCreateBuilder
   _$BookingStayCreate _build() {
     final _$result = _$v ??
         _$BookingStayCreate._(
-          stayunitId: BuiltValueNullFieldError.checkNotNull(
-              stayunitId, r'BookingStayCreate', 'stayunitId'),
+          stayunitId: stayunitId,
           stayProviderId: stayProviderId,
           checkIn: checkIn,
           checkOut: checkOut,

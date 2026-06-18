@@ -16,7 +16,6 @@ part 'booking_create.g.dart';
 /// BookingCreate
 ///
 /// Properties:
-/// * [travelerId] 
 /// * [bookingDate] 
 /// * [status] 
 /// * [totalAmount] 
@@ -26,9 +25,6 @@ part 'booking_create.g.dart';
 /// * [stays] 
 @BuiltValue()
 abstract class BookingCreate implements Built<BookingCreate, BookingCreateBuilder> {
-  @BuiltValueField(wireName: r'traveler_id')
-  String get travelerId;
-
   @BuiltValueField(wireName: r'booking_date')
   DateTime? get bookingDate;
 
@@ -74,11 +70,6 @@ class _$BookingCreateSerializer implements PrimitiveSerializer<BookingCreate> {
     BookingCreate object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
-    yield r'traveler_id';
-    yield serializers.serialize(
-      object.travelerId,
-      specifiedType: const FullType(String),
-    );
     if (object.bookingDate != null) {
       yield r'booking_date';
       yield serializers.serialize(
@@ -151,13 +142,6 @@ class _$BookingCreateSerializer implements PrimitiveSerializer<BookingCreate> {
       final key = serializedList[i] as String;
       final value = serializedList[i + 1];
       switch (key) {
-        case r'traveler_id':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.travelerId = valueDes;
-          break;
         case r'booking_date':
           final valueDes = serializers.deserialize(
             value,
