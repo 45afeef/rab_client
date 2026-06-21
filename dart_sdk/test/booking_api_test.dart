@@ -9,7 +9,7 @@ void main() {
   group(BookingApi, () {
     // Create Booking
     //
-    // Create a booking. Only agency staff may create bookings. This operation creates Booking and related BookingTraveller/BookingCab/BookingStay rows transactionally. Returns complete booking with all nested data.  **Authorization**: Only agency staff can create bookings. The booking will be associated with the staff user's agency and staff record.
+    // Create a booking and all related records transactionally. Only agency staff may create bookings. This operation creates Booking and related BookingTraveller/BookingCab/BookingStay rows transactionally. Returns complete booking with all nested data.  **Authorization**: Only agency staff can create bookings. The booking will be associated with the staff user's agency and staff record.
     //
     //Future<BookingRead> bookingCreateBooking(BookingCreate bookingCreate) async
     test('test bookingCreateBooking', () async {
