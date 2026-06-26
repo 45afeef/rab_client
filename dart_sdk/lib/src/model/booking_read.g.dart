@@ -16,7 +16,9 @@ class _$BookingRead extends BookingRead {
   @override
   final String? enquiryId;
   @override
-  final DateTime? bookingDate;
+  final DateTime? dateStartingFrom;
+  @override
+  final DateTime? dateEndingOn;
   @override
   final BookingStatus? status;
   @override
@@ -40,7 +42,8 @@ class _$BookingRead extends BookingRead {
       this.travelAgencyId,
       this.travelAgencyStaffId,
       this.enquiryId,
-      this.bookingDate,
+      this.dateStartingFrom,
+      this.dateEndingOn,
       this.status,
       this.totalAmount,
       this.createdAt,
@@ -64,7 +67,8 @@ class _$BookingRead extends BookingRead {
         travelAgencyId == other.travelAgencyId &&
         travelAgencyStaffId == other.travelAgencyStaffId &&
         enquiryId == other.enquiryId &&
-        bookingDate == other.bookingDate &&
+        dateStartingFrom == other.dateStartingFrom &&
+        dateEndingOn == other.dateEndingOn &&
         status == other.status &&
         totalAmount == other.totalAmount &&
         createdAt == other.createdAt &&
@@ -81,7 +85,8 @@ class _$BookingRead extends BookingRead {
     _$hash = $jc(_$hash, travelAgencyId.hashCode);
     _$hash = $jc(_$hash, travelAgencyStaffId.hashCode);
     _$hash = $jc(_$hash, enquiryId.hashCode);
-    _$hash = $jc(_$hash, bookingDate.hashCode);
+    _$hash = $jc(_$hash, dateStartingFrom.hashCode);
+    _$hash = $jc(_$hash, dateEndingOn.hashCode);
     _$hash = $jc(_$hash, status.hashCode);
     _$hash = $jc(_$hash, totalAmount.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
@@ -100,7 +105,8 @@ class _$BookingRead extends BookingRead {
           ..add('travelAgencyId', travelAgencyId)
           ..add('travelAgencyStaffId', travelAgencyStaffId)
           ..add('enquiryId', enquiryId)
-          ..add('bookingDate', bookingDate)
+          ..add('dateStartingFrom', dateStartingFrom)
+          ..add('dateEndingOn', dateEndingOn)
           ..add('status', status)
           ..add('totalAmount', totalAmount)
           ..add('createdAt', createdAt)
@@ -133,9 +139,15 @@ class BookingReadBuilder implements Builder<BookingRead, BookingReadBuilder> {
   String? get enquiryId => _$this._enquiryId;
   set enquiryId(String? enquiryId) => _$this._enquiryId = enquiryId;
 
-  DateTime? _bookingDate;
-  DateTime? get bookingDate => _$this._bookingDate;
-  set bookingDate(DateTime? bookingDate) => _$this._bookingDate = bookingDate;
+  DateTime? _dateStartingFrom;
+  DateTime? get dateStartingFrom => _$this._dateStartingFrom;
+  set dateStartingFrom(DateTime? dateStartingFrom) =>
+      _$this._dateStartingFrom = dateStartingFrom;
+
+  DateTime? _dateEndingOn;
+  DateTime? get dateEndingOn => _$this._dateEndingOn;
+  set dateEndingOn(DateTime? dateEndingOn) =>
+      _$this._dateEndingOn = dateEndingOn;
 
   BookingStatus? _status;
   BookingStatus? get status => _$this._status;
@@ -180,7 +192,8 @@ class BookingReadBuilder implements Builder<BookingRead, BookingReadBuilder> {
       _travelAgencyId = $v.travelAgencyId;
       _travelAgencyStaffId = $v.travelAgencyStaffId;
       _enquiryId = $v.enquiryId;
-      _bookingDate = $v.bookingDate;
+      _dateStartingFrom = $v.dateStartingFrom;
+      _dateEndingOn = $v.dateEndingOn;
       _status = $v.status;
       _totalAmount = $v.totalAmount;
       _createdAt = $v.createdAt;
@@ -215,7 +228,8 @@ class BookingReadBuilder implements Builder<BookingRead, BookingReadBuilder> {
             travelAgencyId: travelAgencyId,
             travelAgencyStaffId: travelAgencyStaffId,
             enquiryId: enquiryId,
-            bookingDate: bookingDate,
+            dateStartingFrom: dateStartingFrom,
+            dateEndingOn: dateEndingOn,
             status: status,
             totalAmount: totalAmount,
             createdAt: createdAt,

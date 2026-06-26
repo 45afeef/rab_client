@@ -8,7 +8,9 @@ part of 'booking_create.dart';
 
 class _$BookingCreate extends BookingCreate {
   @override
-  final DateTime? bookingDate;
+  final DateTime? dateStartingFrom;
+  @override
+  final DateTime? dateEndingOn;
   @override
   final BookingStatus? status;
   @override
@@ -26,7 +28,8 @@ class _$BookingCreate extends BookingCreate {
       (BookingCreateBuilder()..update(updates))._build();
 
   _$BookingCreate._(
-      {this.bookingDate,
+      {this.dateStartingFrom,
+      this.dateEndingOn,
       this.status,
       this.totalAmount,
       this.travelAgencyId,
@@ -45,7 +48,8 @@ class _$BookingCreate extends BookingCreate {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is BookingCreate &&
-        bookingDate == other.bookingDate &&
+        dateStartingFrom == other.dateStartingFrom &&
+        dateEndingOn == other.dateEndingOn &&
         status == other.status &&
         totalAmount == other.totalAmount &&
         travelAgencyId == other.travelAgencyId &&
@@ -57,7 +61,8 @@ class _$BookingCreate extends BookingCreate {
   @override
   int get hashCode {
     var _$hash = 0;
-    _$hash = $jc(_$hash, bookingDate.hashCode);
+    _$hash = $jc(_$hash, dateStartingFrom.hashCode);
+    _$hash = $jc(_$hash, dateEndingOn.hashCode);
     _$hash = $jc(_$hash, status.hashCode);
     _$hash = $jc(_$hash, totalAmount.hashCode);
     _$hash = $jc(_$hash, travelAgencyId.hashCode);
@@ -71,7 +76,8 @@ class _$BookingCreate extends BookingCreate {
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'BookingCreate')
-          ..add('bookingDate', bookingDate)
+          ..add('dateStartingFrom', dateStartingFrom)
+          ..add('dateEndingOn', dateEndingOn)
           ..add('status', status)
           ..add('totalAmount', totalAmount)
           ..add('travelAgencyId', travelAgencyId)
@@ -86,9 +92,15 @@ class BookingCreateBuilder
     implements Builder<BookingCreate, BookingCreateBuilder> {
   _$BookingCreate? _$v;
 
-  DateTime? _bookingDate;
-  DateTime? get bookingDate => _$this._bookingDate;
-  set bookingDate(DateTime? bookingDate) => _$this._bookingDate = bookingDate;
+  DateTime? _dateStartingFrom;
+  DateTime? get dateStartingFrom => _$this._dateStartingFrom;
+  set dateStartingFrom(DateTime? dateStartingFrom) =>
+      _$this._dateStartingFrom = dateStartingFrom;
+
+  DateTime? _dateEndingOn;
+  DateTime? get dateEndingOn => _$this._dateEndingOn;
+  set dateEndingOn(DateTime? dateEndingOn) =>
+      _$this._dateEndingOn = dateEndingOn;
 
   BookingStatus? _status;
   BookingStatus? get status => _$this._status;
@@ -126,7 +138,8 @@ class BookingCreateBuilder
   BookingCreateBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _bookingDate = $v.bookingDate;
+      _dateStartingFrom = $v.dateStartingFrom;
+      _dateEndingOn = $v.dateEndingOn;
       _status = $v.status;
       _totalAmount = $v.totalAmount;
       _travelAgencyId = $v.travelAgencyId;
@@ -156,7 +169,8 @@ class BookingCreateBuilder
     try {
       _$result = _$v ??
           _$BookingCreate._(
-            bookingDate: bookingDate,
+            dateStartingFrom: dateStartingFrom,
+            dateEndingOn: dateEndingOn,
             status: status,
             totalAmount: totalAmount,
             travelAgencyId: travelAgencyId,

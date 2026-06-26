@@ -10,7 +10,9 @@ class _$BookingResponse extends BookingResponse {
   @override
   final String id;
   @override
-  final DateTime? bookingDate;
+  final DateTime? dateStartingFrom;
+  @override
+  final DateTime? dateEndingOn;
   @override
   final BookingStatus? status;
   @override
@@ -27,7 +29,8 @@ class _$BookingResponse extends BookingResponse {
 
   _$BookingResponse._(
       {required this.id,
-      this.bookingDate,
+      this.dateStartingFrom,
+      this.dateEndingOn,
       this.status,
       this.totalAmount,
       this.travellers,
@@ -46,7 +49,8 @@ class _$BookingResponse extends BookingResponse {
     if (identical(other, this)) return true;
     return other is BookingResponse &&
         id == other.id &&
-        bookingDate == other.bookingDate &&
+        dateStartingFrom == other.dateStartingFrom &&
+        dateEndingOn == other.dateEndingOn &&
         status == other.status &&
         totalAmount == other.totalAmount &&
         travellers == other.travellers &&
@@ -58,7 +62,8 @@ class _$BookingResponse extends BookingResponse {
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, id.hashCode);
-    _$hash = $jc(_$hash, bookingDate.hashCode);
+    _$hash = $jc(_$hash, dateStartingFrom.hashCode);
+    _$hash = $jc(_$hash, dateEndingOn.hashCode);
     _$hash = $jc(_$hash, status.hashCode);
     _$hash = $jc(_$hash, totalAmount.hashCode);
     _$hash = $jc(_$hash, travellers.hashCode);
@@ -72,7 +77,8 @@ class _$BookingResponse extends BookingResponse {
   String toString() {
     return (newBuiltValueToStringHelper(r'BookingResponse')
           ..add('id', id)
-          ..add('bookingDate', bookingDate)
+          ..add('dateStartingFrom', dateStartingFrom)
+          ..add('dateEndingOn', dateEndingOn)
           ..add('status', status)
           ..add('totalAmount', totalAmount)
           ..add('travellers', travellers)
@@ -90,9 +96,15 @@ class BookingResponseBuilder
   String? get id => _$this._id;
   set id(String? id) => _$this._id = id;
 
-  DateTime? _bookingDate;
-  DateTime? get bookingDate => _$this._bookingDate;
-  set bookingDate(DateTime? bookingDate) => _$this._bookingDate = bookingDate;
+  DateTime? _dateStartingFrom;
+  DateTime? get dateStartingFrom => _$this._dateStartingFrom;
+  set dateStartingFrom(DateTime? dateStartingFrom) =>
+      _$this._dateStartingFrom = dateStartingFrom;
+
+  DateTime? _dateEndingOn;
+  DateTime? get dateEndingOn => _$this._dateEndingOn;
+  set dateEndingOn(DateTime? dateEndingOn) =>
+      _$this._dateEndingOn = dateEndingOn;
 
   BookingStatus? _status;
   BookingStatus? get status => _$this._status;
@@ -128,7 +140,8 @@ class BookingResponseBuilder
     final $v = _$v;
     if ($v != null) {
       _id = $v.id;
-      _bookingDate = $v.bookingDate;
+      _dateStartingFrom = $v.dateStartingFrom;
+      _dateEndingOn = $v.dateEndingOn;
       _status = $v.status;
       _totalAmount = $v.totalAmount;
       _travellers = $v.travellers?.toBuilder();
@@ -159,7 +172,8 @@ class BookingResponseBuilder
           _$BookingResponse._(
             id: BuiltValueNullFieldError.checkNotNull(
                 id, r'BookingResponse', 'id'),
-            bookingDate: bookingDate,
+            dateStartingFrom: dateStartingFrom,
+            dateEndingOn: dateEndingOn,
             status: status,
             totalAmount: totalAmount,
             travellers: _travellers?.build(),

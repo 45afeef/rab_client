@@ -7,8 +7,13 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(BookingUpdate, () {
-    // DateTime bookingDate
-    test('to test the property `bookingDate`', () async {
+    // DateTime dateStartingFrom
+    test('to test the property `dateStartingFrom`', () async {
+      // TODO
+    });
+
+    // DateTime dateEndingOn
+    test('to test the property `dateEndingOn`', () async {
       // TODO
     });
 

@@ -8,7 +8,8 @@ import 'package:rab_dio/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**bookingDate** | [**DateTime**](DateTime.md) |  | [optional] 
+**dateStartingFrom** | [**DateTime**](DateTime.md) |  | [optional] 
+**dateEndingOn** | [**DateTime**](DateTime.md) |  | [optional] 
 **status** | [**BookingStatus**](BookingStatus.md) |  | [optional] 
 **totalAmount** | **int** |  | [optional] 
 **travelAgencyId** | **String** |  | [optional] 

@@ -16,7 +16,8 @@ part 'booking_update.g.dart';
 /// BookingUpdate
 ///
 /// Properties:
-/// * [bookingDate] 
+/// * [dateStartingFrom] 
+/// * [dateEndingOn] 
 /// * [status] 
 /// * [totalAmount] 
 /// * [travellers] 
@@ -24,8 +25,11 @@ part 'booking_update.g.dart';
 /// * [stays] 
 @BuiltValue()
 abstract class BookingUpdate implements Built<BookingUpdate, BookingUpdateBuilder> {
-  @BuiltValueField(wireName: r'booking_date')
-  DateTime? get bookingDate;
+  @BuiltValueField(wireName: r'date_starting_from')
+  DateTime? get dateStartingFrom;
+
+  @BuiltValueField(wireName: r'date_ending_on')
+  DateTime? get dateEndingOn;
 
   @BuiltValueField(wireName: r'status')
   BookingStatus? get status;
@@ -66,10 +70,17 @@ class _$BookingUpdateSerializer implements PrimitiveSerializer<BookingUpdate> {
     BookingUpdate object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
-    if (object.bookingDate != null) {
-      yield r'booking_date';
+    if (object.dateStartingFrom != null) {
+      yield r'date_starting_from';
       yield serializers.serialize(
-        object.bookingDate,
+        object.dateStartingFrom,
+        specifiedType: const FullType.nullable(DateTime),
+      );
+    }
+    if (object.dateEndingOn != null) {
+      yield r'date_ending_on';
+      yield serializers.serialize(
+        object.dateEndingOn,
         specifiedType: const FullType.nullable(DateTime),
       );
     }
@@ -131,13 +142,21 @@ class _$BookingUpdateSerializer implements PrimitiveSerializer<BookingUpdate> {
       final key = serializedList[i] as String;
       final value = serializedList[i + 1];
       switch (key) {
-        case r'booking_date':
+        case r'date_starting_from':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType.nullable(DateTime),
           ) as DateTime?;
           if (valueDes == null) continue;
-          result.bookingDate = valueDes;
+          result.dateStartingFrom = valueDes;
+          break;
+        case r'date_ending_on':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(DateTime),
+          ) as DateTime?;
+          if (valueDes == null) continue;
+          result.dateEndingOn = valueDes;
           break;
         case r'status':
           final valueDes = serializers.deserialize(

@@ -9,7 +9,8 @@ import 'package:rab_dio/api.dart';
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **String** |  | 
-**bookingDate** | [**DateTime**](DateTime.md) |  | 
+**dateStartingFrom** | [**DateTime**](DateTime.md) |  | [optional] 
+**dateEndingOn** | [**DateTime**](DateTime.md) |  | [optional] 
 **status** | [**BookingStatus**](BookingStatus.md) |  | [optional] 
 **totalAmount** | **int** |  | [optional] 
 **travellers** | [**BuiltList&lt;BookingTravellerPublic&gt;**](BookingTravellerPublic.md) |  | [optional] 
